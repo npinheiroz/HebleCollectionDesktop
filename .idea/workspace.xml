@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="tela de login funcional e previa do dashboard">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/test3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="tela de login funcional e previa do dashboard e inserção do model" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,61 +45,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.628868192781174E-272" />
-      <entry key="MS500" value="4.830073847132686E-55" />
-      <entry key="S2" value="2.6725322644356156E-14" />
-      <entry key="S5" value="4.774513767503118E-6" />
-      <entry key="S10" value="0.0036672000926447333" />
-      <entry key="S30" value="0.4237703132763621" />
-      <entry key="S60" value="1.657640639451075" />
-      <entry key="M2" value="4.018397989940023" />
-      <entry key="M5" value="12.048945120323776" />
-      <entry key="M10" value="23.003139498725787" />
-      <entry key="M15" value="31.928289168069444" />
-      <entry key="M30" value="57.19043971230336" />
-      <entry key="H1" value="94.94092396257207" />
-      <entry key="H2" value="132.27976095490763" />
-      <entry key="H4" value="159.4762155916059" />
-      <entry key="D1" value="188.3889686457168" />
-      <entry key="W1" value="194.03695524738643" />
+      <entry key="MS100" value="1.009162773338726" />
+      <entry key="MS500" value="1.4086253655735081" />
+      <entry key="S2" value="2.390650578165334" />
+      <entry key="S5" value="3.14394188276569" />
+      <entry key="S10" value="3.5244377867192807" />
+      <entry key="S30" value="3.829476797705645" />
+      <entry key="S60" value="3.9281483257455183" />
+      <entry key="M2" value="4.338846969896555" />
+      <entry key="M5" value="8.686403336136763" />
+      <entry key="M10" value="18.364191702034436" />
+      <entry key="M15" value="27.329568657981074" />
+      <entry key="M30" value="52.88972906645186" />
+      <entry key="H1" value="91.7821781384811" />
+      <entry key="H2" value="131.19527574436597" />
+      <entry key="H4" value="160.38134570369098" />
+      <entry key="D1" value="191.77466731933805" />
+      <entry key="W1" value="197.94644062655246" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000000000075" />
-      <entry key="S5" value="1.0000022570025302" />
-      <entry key="S10" value="1.0015102313315851" />
-      <entry key="S30" value="1.1423194826066247" />
-      <entry key="S60" value="1.667214027018119" />
-      <entry key="M2" value="2.9724100226601906" />
-      <entry key="M5" value="5.411593280120398" />
-      <entry key="M10" value="7.03709420275777" />
-      <entry key="M15" value="7.937102457795282" />
-      <entry key="M30" value="10.33601592028934" />
-      <entry key="H1" value="14.46756463699857" />
-      <entry key="H2" value="18.962752455709197" />
-      <entry key="H4" value="22.390297108298086" />
-      <entry key="D1" value="26.132692843731363" />
-      <entry key="W1" value="26.87341554328344" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="8.192543012862789E-246" />
+      <entry key="S2" value="5.350011093512911E-62" />
+      <entry key="S5" value="3.099865518380784E-25" />
+      <entry key="S10" value="5.57604573068788E-13" />
+      <entry key="S30" value="9.39747608944178E-5" />
+      <entry key="S60" value="0.01512178915341391" />
+      <entry key="M2" value="0.2830835468614203" />
+      <entry key="M5" value="2.1127470956919514" />
+      <entry key="M10" value="4.396980575725432" />
+      <entry key="M15" value="5.800998787711466" />
+      <entry key="M30" value="8.836363308935784" />
+      <entry key="H1" value="13.376904555842941" />
+      <entry key="H2" value="18.23398000491774" />
+      <entry key="H4" value="21.95583234044353" />
+      <entry key="D1" value="26.04748753022028" />
+      <entry key="W1" value="26.860880812606705" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="4.2326716311181825E-6" />
-      <entry key="MS500" value="0.08420209855410564" />
-      <entry key="S2" value="0.538679847957909" />
-      <entry key="S5" value="0.7807922854278502" />
-      <entry key="S10" value="0.8882396905139097" />
-      <entry key="S30" value="1.5021445174831727" />
-      <entry key="S60" value="3.254475334119071" />
-      <entry key="M2" value="6.918824852267951" />
-      <entry key="M5" value="17.40615735451744" />
-      <entry key="M10" value="30.003519639862578" />
-      <entry key="M15" value="39.83679151452174" />
-      <entry key="M30" value="67.50521643160334" />
-      <entry key="H1" value="109.3909262555359" />
-      <entry key="H2" value="151.22968869636688" />
-      <entry key="H4" value="181.8585045346817" />
-      <entry key="D1" value="214.52002994030588" />
-      <entry key="W1" value="220.91012922232755" />
+      <entry key="MS100" value="0.9951449213132674" />
+      <entry key="MS500" value="1.4035900903435656" />
+      <entry key="S2" value="2.387939110738286" />
+      <entry key="S5" value="3.142394566764001" />
+      <entry key="S10" value="3.523546171166892" />
+      <entry key="S30" value="3.829236668918718" />
+      <entry key="S60" value="3.9424629987155515" />
+      <entry key="M2" value="4.614989550207198" />
+      <entry key="M5" value="10.777884983862185" />
+      <entry key="M10" value="22.7382149844169" />
+      <entry key="M15" value="33.10965291890329" />
+      <entry key="M30" value="61.707928999083414" />
+      <entry key="H1" value="105.14284142834123" />
+      <entry key="H2" value="149.41692246797479" />
+      <entry key="H4" value="182.32932454863325" />
+      <entry key="D1" value="217.8205284997255" />
+      <entry key="W1" value="224.807079966302" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -219,6 +211,7 @@
     <MESSAGE value="tela de login pré pronta e database já integrada" />
     <MESSAGE value="tela de login pronta e funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="tela de login funcional e previa do dashboard" />
+    <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
+    <option name="LAST_COMMIT_MESSAGE" value="tela de login funcional e previa do dashboard e inserção do model" />
   </component>
 </project>
