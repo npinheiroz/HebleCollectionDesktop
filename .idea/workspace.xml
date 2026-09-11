@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="tela de login pré pronta e database já integrada">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-26.7.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/UsuarioDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/conexaoDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/test3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/images/Captura de tela 2026-09-03 172740.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/images/IMG_0516.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/view/dashboard.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0122592785692675" />
+      <entry key="MS500" value="1.4710241482152993" />
+      <entry key="S2" value="3.158399515192029" />
+      <entry key="S5" value="6.159068548160518" />
+      <entry key="S10" value="9.064319491041799" />
+      <entry key="S30" value="12.724856606019204" />
+      <entry key="S60" value="14.813925670484672" />
+      <entry key="M2" value="16.989876176747824" />
+      <entry key="M5" value="21.30317834609105" />
+      <entry key="M10" value="30.18032548631796" />
+      <entry key="M15" value="38.99887759412178" />
+      <entry key="M30" value="58.5184035268047" />
+      <entry key="H1" value="77.63934256148116" />
+      <entry key="H2" value="91.61562336192513" />
+      <entry key="H4" value="100.16584741700984" />
+      <entry key="D1" value="108.2627334408727" />
+      <entry key="W1" value="109.74928422395493" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="2.7044994617900817E-178" />
+      <entry key="S5" value="1.0238326070993893E-71" />
+      <entry key="S10" value="4.4179429027319825E-36" />
+      <entry key="S30" value="3.647050450617532E-12" />
+      <entry key="S60" value="3.784221637499829E-6" />
+      <entry key="M2" value="0.004192329920347979" />
+      <entry key="M5" value="0.37327639185292316" />
+      <entry key="M10" value="2.0481734117878045" />
+      <entry key="M15" value="3.8452782310427014" />
+      <entry key="M30" value="7.677631505361152" />
+      <entry key="H1" value="11.238049605012177" />
+      <entry key="H2" value="13.758135544182881" />
+      <entry key="H4" value="15.274689894114875" />
+      <entry key="D1" value="16.696538874749198" />
+      <entry key="W1" value="16.95623873088373" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.977943314161432" />
+      <entry key="MS500" value="1.462093784291672" />
+      <entry key="S2" value="3.1539610964524294" />
+      <entry key="S5" value="6.155434866579904" />
+      <entry key="S10" value="9.061494021177618" />
+      <entry key="S30" value="12.723361321012932" />
+      <entry key="S60" value="14.812830817947685" />
+      <entry key="M2" value="16.992956598917797" />
+      <entry key="M5" value="21.66868594261199" />
+      <entry key="M10" value="32.20936374772318" />
+      <entry key="M15" value="42.8200995854945" />
+      <entry key="M30" value="66.17083623579619" />
+      <entry key="H1" value="88.85804692151396" />
+      <entry key="H2" value="105.36154796362486" />
+      <entry key="H4" value="115.43364231577172" />
+      <entry key="D1" value="124.95799715316085" />
+      <entry key="W1" value="126.70533746431971" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3J9nWLWbQNxVv2buhozWq5gaVpw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Application.executor": "Run",
+    "Application.conexaoDB.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/projetos/HebleCollectionDesktop-main/HebleCollectionDesktop-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\OneDrive\coisas da minha mãe\Documentos\projetos\HebleCollectionDesktop-main\HebleCollectionDesktop-main\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.conexaoDB">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.heblecollectiondesktop.Application" />
+      <module name="HebleCollectionDesktop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.heblecollectiondesktop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="conexaoDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.heblecollectiondesktop.database.conexaoDB" />
+      <module name="HebleCollectionDesktop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.heblecollectiondesktop.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.conexaoDB" />
+        <item itemvalue="Application.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="" />
+      <created>1789082182030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789082182030</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="tela de login pré pronta e database já integrada" />
+    <option name="LAST_COMMIT_MESSAGE" value="tela de login pré pronta e database já integrada" />
+  </component>
+</project>

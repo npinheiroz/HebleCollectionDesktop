@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerLogin">
+   <children>
+      <ImageView fitHeight="176.0" fitWidth="185.0" layoutX="212.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/IMG_0516.JPG" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txMatricula" layoutX="226.0" layoutY="245.0" promptText="Insira sua matricula" />
+      <PasswordField fx:id="txSenha" layoutX="226.0" layoutY="282.0" promptText="Insira sua senha" />
+      <Button fx:id="btnLogin" layoutX="276.0" layoutY="314.0" mnemonicParsing="false" onAction="#fazerLogin" text="Entrar" />
+      <Hyperlink layoutX="226.0" layoutY="349.0" text="Esqueci senha ou matricula" />
+   </children>
+</AnchorPane>
