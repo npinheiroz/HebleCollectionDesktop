@@ -1,5 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
+import com.example.heblecollectiondesktop.model.funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,19 +72,21 @@ public class ControllerLogin implements Initializable {
             return;
         }
 
-        if (autenticarFuncionario(matricula, senha)) {
-            abrirDashboard();
+        funcionario funcionario = autenticarFuncionario(matricula, senha);
+
+        if (funcionario != null) {
+            abrirDashboard(funcionario);
         } else {
             exibirAlerta(Alert.AlertType.ERROR, "Acesso Negado", "Matrícula ou senha incorretos.");
         }
     }
 
-    private boolean autenticarFuncionario(String matricula, String senha) {
+    private funcionario autenticarFuncionario(String matricula, String senha) {
         String url = "jdbc:mysql://localhost:3306/login_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
         String usuarioDb = "root";
         String senhaDb = "heblecollection@_2026-2027";
 
-        String sql = "SELECT 1 FROM funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
+        String sql = "SELECT * FROM funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
 
         try (Connection conexao = DriverManager.getConnection(url, usuarioDb, senhaDb);
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -92,17 +95,23 @@ public class ControllerLogin implements Initializable {
             stmt.setString(2, senha);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next();
+                if (rs.next()) {
+                    return new funcionario(
+                            rs.getInt("idfuncionarios"),
+                            rs.getString("matricula"),
+                            rs.getString("senha")
+                    );
+                }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             exibirAlerta(Alert.AlertType.ERROR, "Erro de Conexão", "Não foi possível conectar ao banco de dados.");
-            return false;
         }
+        return null;
     }
 
-    private void abrirDashboard() {
+    private void abrirDashboard(funcionario funcionarioLogado) {
         try {
             Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
             stageAtual.close();
@@ -123,6 +132,11 @@ public class ControllerLogin implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(dashboardLocation);
             Parent root = fxmlLoader.load();
 
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof ControllerDashboard) {
+                ((ControllerDashboard) controller).setFuncionarioLogado(funcionarioLogado);
+            }
+
             Stage stageDashboard = new Stage();
             stageDashboard.setTitle("Heble Collection - Dashboard");
             stageDashboard.setScene(new Scene(root, 1200, 760));
@@ -132,7 +146,7 @@ public class ControllerLogin implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-            exibirAlerta(Alert.AlertType.ERROR, "Erro", "Falha ao abrir o Dashboard.");
+            exibirAlerta(Alert.AlertType.ERROR, "Erro", "Falha ao abrir a tela principal: " + e.getMessage());
         }
     }
 

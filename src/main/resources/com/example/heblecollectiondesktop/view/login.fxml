@@ -6,7 +6,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -14,9 +13,8 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="760.0" prefWidth="1200.0" style="-fx-background-color: #EDF2F7;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerLogin">
+<StackPane prefHeight="760.0" prefWidth="1200.0" style="-fx-background-color: #EDF2F7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerLogin">
    <children>
-
       <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="400.0" prefHeight="510.0" prefWidth="420.0" spacing="14.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-padding: 35;">
          <effect>
             <DropShadow blurType="THREE_PASS_BOX" height="30.0" radius="14.5" width="30.0">
@@ -26,11 +24,7 @@
             </DropShadow>
          </effect>
          <children>
-
-            <ImageView fx:id="imgLogo" fitHeight="67.0" fitWidth="80.0" preserveRatio="true">
-               <image>
-                  <Image url="@../images/IMG_0516.JPG" />
-               </image></ImageView>
+            <ImageView fx:id="imgLogo" fitHeight="60.0" fitWidth="60.0" preserveRatio="true" />
 
             <VBox alignment="CENTER" prefWidth="350.0" spacing="2.0">
                <children>
@@ -47,7 +41,6 @@
                </children>
             </VBox>
 
-
             <VBox alignment="CENTER_LEFT" prefWidth="350.0" spacing="4.0">
                <children>
                   <Label text="Matrícula" textFill="#334155">
@@ -58,7 +51,6 @@
                   <TextField fx:id="txMatricula" prefHeight="42.0" prefWidth="350.0" promptText="Digite sua matrícula" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12;" />
                </children>
             </VBox>
-
 
             <VBox alignment="CENTER_LEFT" prefWidth="350.0" spacing="4.0">
                <children>
@@ -71,13 +63,11 @@
                </children>
             </VBox>
 
-
             <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#fazerLogin" prefHeight="42.0" prefWidth="350.0" style="-fx-background-color: #111118; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 13px; -fx-cursor: hand;" text="Entrar no sistema">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </Button>
-
 
             <HBox alignment="CENTER" prefWidth="350.0" spacing="5.0">
                <children>
