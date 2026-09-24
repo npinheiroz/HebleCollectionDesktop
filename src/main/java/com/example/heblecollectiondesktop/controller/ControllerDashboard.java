@@ -1,6 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
-import com.example.heblecollectiondesktop.model.funcionario;
+import com.example.heblecollectiondesktop.model.Funcionario;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -13,21 +13,21 @@ public class ControllerDashboard implements Initializable {
     @FXML
     private Label lblUsuarioLogado;
 
-    private funcionario funcionarioLogado;
+    private Funcionario funcionarioLogado;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Inicializações visuais da Dashboard (gráficos, tabelas, etc.) entram aqui
     }
 
-    public void setFuncionarioLogado(funcionario funcionario) {
+    public void setFuncionarioLogado(Funcionario funcionario) {
         this.funcionarioLogado = funcionario;
         if (lblUsuarioLogado != null && funcionario != null) {
             lblUsuarioLogado.setText("Operador: " + funcionario.getMatricula());
         }
     }
 
-    public funcionario getFuncionarioLogado() {
+    public Funcionario getFuncionarioLogado() {
         return funcionarioLogado;
     }
 }

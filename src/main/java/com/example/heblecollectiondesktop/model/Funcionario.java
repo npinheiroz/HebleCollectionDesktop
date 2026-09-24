@@ -1,23 +1,27 @@
 package com.example.heblecollectiondesktop.model;
 
-public class funcionario {
+public class Funcionario {
     private int id;
     private String matricula;
     private String senha;
+    private Pessoa cargo;
 
-    public funcionario() {
+    public Funcionario() {
     }
 
-    public funcionario(int id, String matricula, String senha) {
+    public Pessoa getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Pessoa cargo) {
+        this.cargo = cargo;
+    }
+
+    public Funcionario(int id, String matricula, String senha) {
         this.id = id;
         this.matricula = matricula;
         this.senha = senha;
-    }
-
-
-    public funcionario (String matricula, String senha) {
-        this.matricula = matricula;
-        this.senha = senha;
+        this.cargo=Pessoa.FUNCIONARIO;
     }
 
     public int getId() {

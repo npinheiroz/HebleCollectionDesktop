@@ -1,6 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
-import com.example.heblecollectiondesktop.model.funcionario;
+import com.example.heblecollectiondesktop.model.Funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,7 +72,7 @@ public class ControllerLogin implements Initializable {
             return;
         }
 
-        funcionario funcionario = autenticarFuncionario(matricula, senha);
+        Funcionario funcionario = autenticarFuncionario(matricula, senha);
 
         if (funcionario != null) {
             abrirDashboard(funcionario);
@@ -81,12 +81,12 @@ public class ControllerLogin implements Initializable {
         }
     }
 
-    private funcionario autenticarFuncionario(String matricula, String senha) {
+    private Funcionario autenticarFuncionario(String matricula, String senha) {
         String url = "jdbc:mysql://localhost:3306/login_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
         String usuarioDb = "root";
         String senhaDb = "heblecollection@_2026-2027";
 
-        String sql = "SELECT * FROM funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
+        String sql = "SELECT * FROM Funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
 
         try (Connection conexao = DriverManager.getConnection(url, usuarioDb, senhaDb);
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -96,7 +96,7 @@ public class ControllerLogin implements Initializable {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new funcionario(
+                    return new Funcionario(
                             rs.getInt("idfuncionarios"),
                             rs.getString("matricula"),
                             rs.getString("senha")
@@ -111,7 +111,7 @@ public class ControllerLogin implements Initializable {
         return null;
     }
 
-    private void abrirDashboard(funcionario funcionarioLogado) {
+    private void abrirDashboard(Funcionario funcionarioLogado) {
         try {
             Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
             stageAtual.close();
