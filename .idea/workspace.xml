@@ -4,30 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="tela de login funcional e previa do dashboard e inserção do model">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarFuncionarios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/CupomDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/ProdutoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/TicketDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/cadastroFuncionarios.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/gerenciarFuncionarios.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/moderacaoHub.fxml" afterDir="false" />
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/banco de dados/banco_inicial.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/banco de dados/infoheble.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/UsuarioDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Gerente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cargo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +221,8 @@
     <MESSAGE value="tela de login pronta e funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
-    <option name="LAST_COMMIT_MESSAGE" value="tela de login funcional e previa do dashboard e inserção do model" />
+    <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
+    <option name="LAST_COMMIT_MESSAGE" value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

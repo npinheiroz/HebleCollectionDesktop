@@ -9,7 +9,6 @@
 
 <BorderPane prefHeight="760.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerDashboard">
 
-    <!-- MENU LATERAL -->
     <left>
         <VBox prefWidth="240.0" spacing="12.0" style="-fx-background-color: #000000; -fx-padding: 24;" BorderPane.alignment="CENTER">
             <children>
@@ -68,7 +67,6 @@
         </VBox>
     </left>
 
-    <!-- ÁREA CENTRAL COM O STACKPANE QUE DINAMICAMENTE RECEBERÁ AS TELAS -->
     <center>
         <StackPane fx:id="painelConteudoCentral" BorderPane.alignment="CENTER">
             <children>

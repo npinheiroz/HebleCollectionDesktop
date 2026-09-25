@@ -59,14 +59,14 @@ public class ControllerCadastroFuncionarios implements Initializable {
         }
 
         try {
-            // Passa 0 como id em vez de null para ser compatível com o tipo primitivo int
+
             Funcionario novoFuncionario = new Funcionario(0, matricula, senha, cargo);
 
             funcionarioDAO.salvar(novoFuncionario);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Funcionário cadastrado com sucesso!");
 
-            // Notifica o controller pai para atualizar a tabela na tela principal
+
             if (controllerPai != null) {
                 controllerPai.carregarFuncionarios();
             }

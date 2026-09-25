@@ -38,12 +38,12 @@ public class ControllerLogin implements Initializable {
 
     private final FuncionarioDAO funcionarioDAO;
 
-    // Construtor padrão utilizado pelo JavaFX
+
     public ControllerLogin() {
         this.funcionarioDAO = new FuncionarioDAO();
     }
 
-    // Construtor para injeção de dependência (testes unitários)
+
     public ControllerLogin(FuncionarioDAO funcionarioDAO) {
         this.funcionarioDAO = funcionarioDAO;
     }
@@ -117,13 +117,13 @@ public class ControllerLogin implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(dashboardLocation);
             Parent root = fxmlLoader.load();
 
-            // Passa o funcionário autenticado para o controller da Dashboard
+
             Object controller = fxmlLoader.getController();
             if (controller instanceof ControllerDashboard controllerDashboard) {
                 controllerDashboard.setFuncionarioLogado(funcionarioLogado);
             }
 
-            // Apenas fecha a tela atual após o carregamento bem-sucedido da nova tela
+
             Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
 
             Stage stageDashboard = new Stage();
