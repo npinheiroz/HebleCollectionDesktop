@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,61 +45,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000823997793653" />
-      <entry key="S5" value="1.0232471875591684" />
-      <entry key="S10" value="1.152470284184061" />
-      <entry key="S30" value="1.5342301609264604" />
-      <entry key="S60" value="1.7309105034730239" />
-      <entry key="M2" value="1.854979663974602" />
-      <entry key="M5" value="1.9613277477628288" />
-      <entry key="M10" value="2.2550887315345136" />
-      <entry key="M15" value="2.890351970787392" />
-      <entry key="M30" value="7.485679112131203" />
-      <entry key="H1" value="28.0915256326652" />
-      <entry key="H2" value="74.03046683923475" />
-      <entry key="H4" value="128.39260595828242" />
-      <entry key="D1" value="208.97477887684997" />
-      <entry key="W1" value="227.70456043185277" />
+      <entry key="MS100" value="1.0155584795501391" />
+      <entry key="MS500" value="1.6096224714795575" />
+      <entry key="S2" value="4.032973173992856" />
+      <entry key="S5" value="7.963587298401718" />
+      <entry key="S10" value="12.327160698997982" />
+      <entry key="S30" value="18.564525652703033" />
+      <entry key="S60" value="20.994994329254986" />
+      <entry key="M2" value="22.41470236129601" />
+      <entry key="M5" value="23.365425855358758" />
+      <entry key="M10" value="23.947946727394957" />
+      <entry key="M15" value="24.675457706761676" />
+      <entry key="M30" value="29.34330328919307" />
+      <entry key="H1" value="49.942482614025856" />
+      <entry key="H2" value="95.86913860429623" />
+      <entry key="H4" value="150.26055764003542" />
+      <entry key="D1" value="230.94007177906028" />
+      <entry key="W1" value="249.69918053380124" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="3.434010971097491E-220" />
-      <entry key="S30" value="1.1578837698840065E-73" />
-      <entry key="S60" value="6.905785254959426E-37" />
-      <entry key="M2" value="2.3747506264147002E-18" />
-      <entry key="M5" value="3.6875133580570927E-7" />
-      <entry key="M10" value="0.0021782400584189417" />
-      <entry key="M15" value="0.04225624742679915" />
-      <entry key="M30" value="0.936288494690145" />
-      <entry key="H1" value="5.178702135494422" />
-      <entry key="H2" value="13.479548329602297" />
-      <entry key="H4" value="22.59041844548512" />
-      <entry key="D1" value="35.53064239874327" />
-      <entry key="W1" value="38.48229927957782" />
+      <entry key="S10" value="8.806829547541616E-221" />
+      <entry key="S30" value="7.3564948840192E-74" />
+      <entry key="S60" value="5.5044769144321904E-37" />
+      <entry key="M2" value="2.120164232470406E-18" />
+      <entry key="M5" value="3.5239862022051923E-7" />
+      <entry key="M10" value="0.002129394064200349" />
+      <entry key="M15" value="0.041622145129168786" />
+      <entry key="M30" value="0.9292369119622397" />
+      <entry key="H1" value="5.15916378535852" />
+      <entry key="H2" value="13.45409629467221" />
+      <entry key="H4" value="22.56908079466353" />
+      <entry key="D1" value="35.52504681855669" />
+      <entry key="W1" value="38.48143344614583" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9726549474122855" />
-      <entry key="MS500" value="0.9944701686732144" />
-      <entry key="S2" value="0.9986969517291866" />
-      <entry key="S5" value="1.0226799361267382" />
-      <entry key="S10" value="1.1521507958653285" />
-      <entry key="S30" value="1.5340883745037683" />
-      <entry key="S60" value="1.7308305202454375" />
-      <entry key="M2" value="1.8549365185719833" />
-      <entry key="M5" value="1.9612639013267898" />
-      <entry key="M10" value="2.257062940542819" />
-      <entry key="M15" value="2.9322373293436264" />
-      <entry key="M30" value="8.420465323501785" />
-      <entry key="H1" value="33.26580679939883" />
-      <entry key="H2" value="87.50332756253792" />
-      <entry key="H4" value="150.97687614446195" />
-      <entry key="D1" value="244.5036737589299" />
-      <entry key="W1" value="266.18658552914076" />
+      <entry key="MS100" value="0.9675624150252429" />
+      <entry key="MS500" value="1.5948252816222752" />
+      <entry key="S2" value="4.0240390643764625" />
+      <entry key="S5" value="7.945498039224885" />
+      <entry key="S10" value="12.300369146909762" />
+      <entry key="S30" value="18.544499850208894" />
+      <entry key="S60" value="20.9826638090289" />
+      <entry key="M2" value="22.407855287562942" />
+      <entry key="M5" value="23.362464745278473" />
+      <entry key="M10" value="23.948395871272016" />
+      <entry key="M15" value="24.715720400206216" />
+      <entry key="M30" value="30.270548676720807" />
+      <entry key="H1" value="55.096990954897876" />
+      <entry key="H2" value="109.31643412255902" />
+      <entry key="H4" value="172.82343302881347" />
+      <entry key="D1" value="266.463360856194" />
+      <entry key="W1" value="288.18033830364305" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -122,39 +114,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Application.executor": "Run",
-    "Application.conexaoDB.executor": "Run",
-    "Maven.HebleCollectionDesktop [clean].executor": "Run",
-    "Maven.HebleCollectionDesktop [compile].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/projetos/HebleCollectionDesktop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.conexaoDB.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.HebleCollectionDesktop [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.HebleCollectionDesktop [compile].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/projetos/HebleCollectionDesktop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projetos\HebleCollectionDesktop-main\HebleCollectionDesktop-main\src\main\resources\com\example\heblecollectiondesktop\view" />
@@ -176,6 +168,13 @@
       </method>
     </configuration>
     <configuration name="conexaoDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_HOST" value="heble-collection-db-heble-collection-database.f.aivencloud.com" />
+        <env name="DB_PORT" value="18035" />
+        <env name="DB_NAME" value="defaultdb" />
+        <env name="DB_USER" value="avnadmin" />
+        <env name="DB_PASSWORD" value="AVNS_Wu8hHIABtrfu1dD5SBE" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="com.example.heblecollectiondesktop.database.conexaoDB" />
       <module name="HebleCollectionDesktop" />
       <extension name="coverage">
@@ -188,6 +187,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Application.conexaoDB" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
@@ -216,25 +219,25 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="tela de login pré pronta e database já integrada" />
     <MESSAGE value="tela de login pronta e funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
-    <option name="LAST_COMMIT_MESSAGE" value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/conexaoDB.java</url>
-          <line>16</line>
-          <placement>INTER_LINE</placement>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
+    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

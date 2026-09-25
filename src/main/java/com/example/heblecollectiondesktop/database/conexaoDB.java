@@ -1,22 +1,53 @@
 package com.example.heblecollectiondesktop.database;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
 public class conexaoDB {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/login_schema";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "heblecollection@_2026-2027";
+    private static String host;
+    private static String porta;
+    private static String banco;
+    private static String usuario;
+    private static String senha;
 
-    public static Connection getConexao() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, SENHA);
+    // Bloco estático: carrega as configurações do arquivo assim que a classe é utilizada
+    static {
+        Properties prop = new Properties();
+        try (InputStream input = new FileInputStream("config.properties")) {
+            prop.load(input);
+            host = prop.getProperty("db.host");
+            porta = prop.getProperty("db.port");
+            banco = prop.getProperty("db.name");
+            usuario = prop.getProperty("db.user");
+            senha = prop.getProperty("db.password");
+        } catch (IOException ex) {
+            System.err.println("Erro: Não foi possível carregar o arquivo 'config.properties'. Verifique se ele está na raiz do projeto.");
+        }
     }
 
+    public static Connection getConexao() throws SQLException {
+        if (host == null || senha == null) {
+            throw new SQLException("As configurações de conexão do banco de dados não foram carregadas corretamente!");
+        }
+
+        String url = String.format(
+                "jdbc:mysql://%s:%s/%s?sslMode=REQUIRED&enabledTLSProtocols=TLSv1.2,TLSv1.3",
+                host, porta, banco
+        );
+
+        return DriverManager.getConnection(url, usuario, senha);
+    }
 
     public static void main(String[] args) {
         try (Connection conexao = getConexao()) {
             if (conexao != null) {
-                System.out.println("Conexão com o banco realizada com sucesso!");
+                System.out.println("Conexão com o banco da Aiven realizada com sucesso!");
             }
         } catch (SQLException e) {
             System.err.println("Erro ao conectar ao banco de dados: " + e.getMessage());
