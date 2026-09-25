@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER_LEFT" spacing="12.0" prefWidth="350.0" prefHeight="300.0"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.heblecollectiondesktop.controller.ControllerCadastroFuncionarios">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Cadastro de Funcionário" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <Label text="Matrícula:" />
+    <TextField fx:id="txtMatricula" promptText="Digite a matrícula" />
+
+    <Label text="Senha:" />
+    <PasswordField fx:id="txtSenha" promptText="Digite a senha" />
+
+    <Label text="Confirmar Senha:" />
+    <PasswordField fx:id="txtConfirmarSenha" promptText="Confirme a senha" />
+
+    <Label text="Cargo:" />
+    <ComboBox fx:id="cbCargo" prefWidth="310.0" promptText="Selecione o cargo" />
+
+    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+        <padding>
+            <Insets top="10" />
+        </padding>
+        <Button text="Cancelar" onAction="#cancelar" />
+        <Button text="Salvar" onAction="#salvarFuncionario" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+    </HBox>
+
+</VBox>

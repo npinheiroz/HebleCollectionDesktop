@@ -4,31 +4,20 @@ public class Funcionario {
     private int id;
     private String matricula;
     private String senha;
-    private Pessoa cargo;
+    private Cargo cargo;
 
-    public Funcionario() {
-    }
-
-    public Pessoa getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Pessoa cargo) {
-        this.cargo = cargo;
-    }
-
-    public Funcionario(int id, String matricula, String senha) {
+    public Funcionario(int id, String matricula, String senha, Cargo cargo) {
         this.id = id;
         this.matricula = matricula;
         this.senha = senha;
-        this.cargo=Pessoa.FUNCIONARIO;
+        this.cargo = cargo;
     }
 
-    public int getId() {
+    public int getid() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setid(int id) {
         this.id = id;
     }
 
@@ -48,11 +37,6 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    @Override
-    public String toString() {
-        return "Funcionario{" +
-                "id=" + id +
-                ", matricula='" + matricula + '\'' +
-                '}';
-    }
+    public Cargo getCargo() { return cargo; }
+    public void setCargo(Cargo cargo) { this.cargo = cargo; }
 }

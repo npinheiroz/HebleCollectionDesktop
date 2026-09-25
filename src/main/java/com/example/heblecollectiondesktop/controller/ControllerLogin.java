@@ -1,5 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
+import com.example.heblecollectiondesktop.database.FuncionarioDAO;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +19,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -39,6 +36,18 @@ public class ControllerLogin implements Initializable {
     @FXML
     private Button btnLogin;
 
+    private final FuncionarioDAO funcionarioDAO;
+
+    // Construtor padrão utilizado pelo JavaFX
+    public ControllerLogin() {
+        this.funcionarioDAO = new FuncionarioDAO();
+    }
+
+    // Construtor para injeção de dependência (testes unitários)
+    public ControllerLogin(FuncionarioDAO funcionarioDAO) {
+        this.funcionarioDAO = funcionarioDAO;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarLogo();
@@ -54,10 +63,14 @@ public class ControllerLogin implements Initializable {
         };
 
         for (String caminho : caminhos) {
-            InputStream stream = getClass().getResourceAsStream(caminho);
-            if (stream != null) {
-                imgLogo.setImage(new Image(stream));
-                return;
+            // Uso de try-with-resources para garantir o fechamento da InputStream
+            try (InputStream stream = getClass().getResourceAsStream(caminho)) {
+                if (stream != null) {
+                    imgLogo.setImage(new Image(stream));
+                    return;
+                }
+            } catch (IOException e) {
+                // Silencioso ou log de depuração
             }
         }
     }
@@ -65,88 +78,66 @@ public class ControllerLogin implements Initializable {
     @FXML
     void fazerLogin(ActionEvent event) {
         String matricula = txMatricula.getText() != null ? txMatricula.getText().trim() : "";
-        String senha = txSenha.getText() != null ? txSenha.getText().trim() : "";
+        String senha = txSenha.getText() != null ? txSenha.getText() : "";
 
         if (matricula.isEmpty() || senha.isEmpty()) {
             exibirAlerta(Alert.AlertType.WARNING, "Campos Obrigatórios", "Por favor, preencha a matrícula e a senha.");
             return;
         }
 
-        Funcionario funcionario = autenticarFuncionario(matricula, senha);
+        try {
+            Funcionario funcionarioLogado = funcionarioDAO.autenticar(matricula, senha);
 
-        if (funcionario != null) {
-            abrirDashboard(funcionario);
-        } else {
-            exibirAlerta(Alert.AlertType.ERROR, "Acesso Negado", "Matrícula ou senha incorretos.");
-        }
-    }
-
-    private Funcionario autenticarFuncionario(String matricula, String senha) {
-        String url = "jdbc:mysql://localhost:3306/login_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        String usuarioDb = "root";
-        String senhaDb = "heblecollection@_2026-2027";
-
-        String sql = "SELECT * FROM Funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
-
-        try (Connection conexao = DriverManager.getConnection(url, usuarioDb, senhaDb);
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
-
-            stmt.setString(1, matricula);
-            stmt.setString(2, senha);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Funcionario(
-                            rs.getInt("idfuncionarios"),
-                            rs.getString("matricula"),
-                            rs.getString("senha")
-                    );
-                }
+            if (funcionarioLogado != null) {
+                abrirDashboard(funcionarioLogado);
+            } else {
+                exibirAlerta(Alert.AlertType.ERROR, "Acesso Negado", "Matrícula ou senha incorretos.");
+                txSenha.clear();
+                txSenha.requestFocus();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             exibirAlerta(Alert.AlertType.ERROR, "Erro de Conexão", "Não foi possível conectar ao banco de dados.");
         }
-        return null;
     }
 
     private void abrirDashboard(Funcionario funcionarioLogado) {
+        URL dashboardLocation = getClass().getResource("/com/example/heblecollectiondesktop/view/dashboard.fxml");
+
+        if (dashboardLocation == null) {
+            dashboardLocation = getClass().getResource("/view/dashboard.fxml");
+        }
+
+        if (dashboardLocation == null) {
+            exibirAlerta(Alert.AlertType.ERROR, "Erro de Configuração", "O arquivo 'dashboard.fxml' não foi encontrado nas pastas de recursos.");
+            return;
+        }
+
         try {
-            Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
-            stageAtual.close();
-
-            URL dashboardLocation = getClass().getResource("/com/example/heblecollectiondesktop/view/dashboard.fxml");
-            if (dashboardLocation == null) {
-                dashboardLocation = getClass().getResource("/view/dashboard.fxml");
-            }
-            if (dashboardLocation == null) {
-                dashboardLocation = getClass().getResource("view/dashboard.fxml");
-            }
-
-            if (dashboardLocation == null) {
-                exibirAlerta(Alert.AlertType.ERROR, "Erro", "Arquivo dashboard.fxml não foi encontrado.");
-                return;
-            }
-
             FXMLLoader fxmlLoader = new FXMLLoader(dashboardLocation);
             Parent root = fxmlLoader.load();
 
+            // Passa o funcionário autenticado para o controller da Dashboard
             Object controller = fxmlLoader.getController();
-            if (controller instanceof ControllerDashboard) {
-                ((ControllerDashboard) controller).setFuncionarioLogado(funcionarioLogado);
+            if (controller instanceof ControllerDashboard controllerDashboard) {
+                controllerDashboard.setFuncionarioLogado(funcionarioLogado);
             }
+
+            // Apenas fecha a tela atual após o carregamento bem-sucedido da nova tela
+            Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
 
             Stage stageDashboard = new Stage();
             stageDashboard.setTitle("Heble Collection - Dashboard");
             stageDashboard.setScene(new Scene(root, 1200, 760));
             stageDashboard.setResizable(true);
             stageDashboard.centerOnScreen();
+
             stageDashboard.show();
+            stageAtual.close();
 
         } catch (IOException e) {
             e.printStackTrace();
-            exibirAlerta(Alert.AlertType.ERROR, "Erro", "Falha ao abrir a tela principal: " + e.getMessage());
+            exibirAlerta(Alert.AlertType.ERROR, "Erro de Carregamento", "Falha ao carregar a tela principal: " + e.getMessage());
         }
     }
 

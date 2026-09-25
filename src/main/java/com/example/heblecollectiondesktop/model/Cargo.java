@@ -1,6 +1,6 @@
 package com.example.heblecollectiondesktop.model;
 
-public enum Pessoa {
+public enum Cargo {
         GERENTE,
         FUNCIONARIO
 }

@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="tela de login funcional e previa do dashboard e inserção do model">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarFuncionarios.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/CupomDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/ProdutoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/TicketDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cupom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Ticket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/cadastroFuncionarios.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/gerenciarFuncionarios.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/moderacaoHub.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/banco de dados/banco_inicial.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/banco de dados/infoheble.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/UsuarioDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Gerente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Cargo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,59 +72,59 @@
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.000000000000019" />
-      <entry key="S5" value="1.0000072107189835" />
-      <entry key="S10" value="1.0053375490547165" />
-      <entry key="S30" value="1.4397678261174378" />
-      <entry key="S60" value="2.331158848514523" />
-      <entry key="M2" value="3.525778926715553" />
-      <entry key="M5" value="7.995977307812313" />
-      <entry key="M10" value="17.480713822363015" />
-      <entry key="M15" value="26.427416937187058" />
-      <entry key="M30" value="52.0159614499513" />
-      <entry key="H1" value="91.14169636380305" />
-      <entry key="H2" value="131.01752064120691" />
-      <entry key="H4" value="160.6598418899036" />
-      <entry key="D1" value="192.63060834871723" />
-      <entry key="W1" value="198.92519162224892" />
+      <entry key="S2" value="1.0000823997793653" />
+      <entry key="S5" value="1.0232471875591684" />
+      <entry key="S10" value="1.152470284184061" />
+      <entry key="S30" value="1.5342301609264604" />
+      <entry key="S60" value="1.7309105034730239" />
+      <entry key="M2" value="1.854979663974602" />
+      <entry key="M5" value="1.9613277477628288" />
+      <entry key="M10" value="2.2550887315345136" />
+      <entry key="M15" value="2.890351970787392" />
+      <entry key="M30" value="7.485679112131203" />
+      <entry key="H1" value="28.0915256326652" />
+      <entry key="H2" value="74.03046683923475" />
+      <entry key="H4" value="128.39260595828242" />
+      <entry key="D1" value="208.97477887684997" />
+      <entry key="W1" value="227.70456043185277" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.2995851663917443E-302" />
-      <entry key="S2" value="4.262013643428654E-76" />
-      <entry key="S5" value="7.1096286040739066E-31" />
-      <entry key="S10" value="8.444585894249223E-16" />
-      <entry key="S30" value="1.0791833582385047E-5" />
-      <entry key="S60" value="0.005124425497124658" />
-      <entry key="M2" value="0.16479181269200582" />
-      <entry key="M5" value="1.7015938779997895" />
-      <entry key="M10" value="3.946015143317846" />
-      <entry key="M15" value="5.397246355155346" />
-      <entry key="M30" value="8.523310251032715" />
-      <entry key="H1" value="13.137810555563735" />
-      <entry key="H2" value="18.07029146598333" />
-      <entry key="H4" value="21.857060150330014" />
-      <entry key="D1" value="26.027920950894067" />
-      <entry key="W1" value="26.857997371155687" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="3.434010971097491E-220" />
+      <entry key="S30" value="1.1578837698840065E-73" />
+      <entry key="S60" value="6.905785254959426E-37" />
+      <entry key="M2" value="2.3747506264147002E-18" />
+      <entry key="M5" value="3.6875133580570927E-7" />
+      <entry key="M10" value="0.0021782400584189417" />
+      <entry key="M15" value="0.04225624742679915" />
+      <entry key="M30" value="0.936288494690145" />
+      <entry key="H1" value="5.178702135494422" />
+      <entry key="H2" value="13.479548329602297" />
+      <entry key="H4" value="22.59041844548512" />
+      <entry key="D1" value="35.53064239874327" />
+      <entry key="W1" value="38.48229927957782" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7320428479728127" />
-      <entry key="MS500" value="0.9395227492140118" />
-      <entry key="S2" value="0.984525173337433" />
-      <entry key="S5" value="0.9937883004927254" />
-      <entry key="S10" value="1.0022218959769633" />
-      <entry key="S30" value="1.4387010698615614" />
-      <entry key="S60" value="2.3354900356751696" />
-      <entry key="M2" value="3.6862702886329903" />
-      <entry key="M5" value="9.680340154501405" />
-      <entry key="M10" value="21.406074245634432" />
-      <entry key="M15" value="31.805169770375727" />
-      <entry key="M30" value="60.521734484913274" />
-      <entry key="H1" value="104.26354727965213" />
-      <entry key="H2" value="149.07558521100785" />
-      <entry key="H4" value="182.5090817089865" />
-      <entry key="D1" value="218.65690381046005" />
-      <entry key="W1" value="225.78294749489544" />
+      <entry key="MS100" value="0.9726549474122855" />
+      <entry key="MS500" value="0.9944701686732144" />
+      <entry key="S2" value="0.9986969517291866" />
+      <entry key="S5" value="1.0226799361267382" />
+      <entry key="S10" value="1.1521507958653285" />
+      <entry key="S30" value="1.5340883745037683" />
+      <entry key="S60" value="1.7308305202454375" />
+      <entry key="M2" value="1.8549365185719833" />
+      <entry key="M5" value="1.9612639013267898" />
+      <entry key="M10" value="2.257062940542819" />
+      <entry key="M15" value="2.9322373293436264" />
+      <entry key="M30" value="8.420465323501785" />
+      <entry key="H1" value="33.26580679939883" />
+      <entry key="H2" value="87.50332756253792" />
+      <entry key="H4" value="150.97687614446195" />
+      <entry key="D1" value="244.5036737589299" />
+      <entry key="W1" value="266.18658552914076" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -117,38 +139,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.conexaoDB.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.HebleCollectionDesktop [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.HebleCollectionDesktop [compile].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/projetos/HebleCollectionDesktop-main/HebleCollectionDesktop-main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Application.executor": "Run",
+    "Application.conexaoDB.executor": "Run",
+    "Maven.HebleCollectionDesktop [clean].executor": "Run",
+    "Maven.HebleCollectionDesktop [compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/projetos/HebleCollectionDesktop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projetos\HebleCollectionDesktop-main\HebleCollectionDesktop-main\src\main\resources\com\example\heblecollectiondesktop\view" />
@@ -216,5 +239,21 @@
     <MESSAGE value="tela de login funcional e previa do dashboard" />
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <option name="LAST_COMMIT_MESSAGE" value="tela de login funcional e previa do dashboard e inserção do model" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/conexaoDB.java</url>
+          <line>16</line>
+          <placement>INTER_LINE</placement>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

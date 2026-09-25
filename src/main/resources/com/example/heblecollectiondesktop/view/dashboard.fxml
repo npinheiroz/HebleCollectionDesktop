@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="760.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerDashboard">
+<BorderPane prefHeight="760.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerDashboard">
 
+    <!-- MENU LATERAL -->
     <left>
-        <VBox prefWidth="240.0" spacing="12.0" style="-fx-background-color: black;; -fx-padding: 24;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="240.0" spacing="12.0" style="-fx-background-color: #000000; -fx-padding: 24;" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <children>
@@ -30,64 +27,149 @@
                     </VBox.margin>
                 </HBox>
 
-                <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;" text="Visão Geral">
+                <Button fx:id="btnVisaoGeral" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleVisaoGeral" prefHeight="40.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;" text="Visão Geral">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Estoque / Produtos">
+
+                <Button fx:id="btnProdutos" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleProdutos" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Estoque / Produtos">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Vendas">
+
+                <Button fx:id="btnCupons" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCupons" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Cupons &amp; Descontos">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Configurações">
+
+                <Button fx:id="btnTickets" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleTickets" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Suporte / Tickets">
                     <font>
                         <Font size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btnModeracao" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleModeracao" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #38BDF8; -fx-background-radius: 8; -fx-cursor: hand;" text="★ Moderação (Gerente)">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Pane VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="btnSair" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#fecharAplicacao" prefHeight="40.0" style="-fx-background-color: #EF4444; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;" text="Sair do Sistema">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                 </Button>
             </children>
         </VBox>
     </left>
 
-
+    <!-- ÁREA CENTRAL COM O STACKPANE QUE DINAMICAMENTE RECEBERÁ AS TELAS -->
     <center>
-        <VBox spacing="24.0" style="-fx-padding: 30;" BorderPane.alignment="CENTER">
+        <StackPane fx:id="painelConteudoCentral" BorderPane.alignment="CENTER">
             <children>
-
-                <HBox alignment="CENTER_LEFT" prefHeight="50.0">
+                <VBox spacing="24.0" style="-fx-padding: 30;">
                     <children>
-                        <VBox spacing="2.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0">
                             <children>
-                                <Label text="Painel Principal" textFill="#0F172A">
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label text="Painel Principal" textFill="#0F172A">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Acompanhamento geral em tempo real" textFill="#64748B">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <Label fx:id="lblUsuarioLogado" style="-fx-background-color: #E2E8F0; -fx-padding: 8 16; -fx-background-radius: 20;" text="Operador: Conectando..." textFill="#1E293B">
                                     <font>
-                                        <Font name="System Bold" size="24.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Acompanhamento geral em tempo real" textFill="#64748B">
-                                    <font>
-                                        <Font size="13.0" />
+                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Label>
                             </children>
-                        </VBox>
-                        <Pane HBox.hgrow="ALWAYS" />
-                        <Label fx:id="lblUsuarioLogado" style="-fx-background-color: #E2E8F0; -fx-padding: 8 16; -fx-background-radius: 20;" text="Operador: Conectando..." textFill="#1E293B">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
+                        </HBox>
 
+                        <HBox spacing="20.0">
+                            <children>
+                                <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
+                                    <effect>
+                                        <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
+                                            <color>
+                                                <Color opacity="0.05" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <children>
+                                        <Label text="Produtos em Acervo" textFill="#64748B">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblTotalProdutos" text="0 itens" textFill="#0F172A">
+                                            <font>
+                                                <Font name="System Bold" size="22.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
 
-                <HBox spacing="20.0">
-                    <children>
-                        <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
+                                <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
+                                    <effect>
+                                        <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
+                                            <color>
+                                                <Color opacity="0.05" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <children>
+                                        <Label text="Cupons Promocionais" textFill="#64748B">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblCuponsAtivos" text="0 ativos" textFill="#0F172A">
+                                            <font>
+                                                <Font name="System Bold" size="22.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+
+                                <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
+                                    <effect>
+                                        <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
+                                            <color>
+                                                <Color opacity="0.05" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <children>
+                                        <Label text="Tickets de Suporte" textFill="#64748B">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblTicketsAbertos" text="0 pendentes" textFill="#0F172A">
+                                            <font>
+                                                <Font name="System Bold" size="22.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <VBox fx:id="containerAtividades" maxHeight="1.7976931348623157E308" prefHeight="440.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;" VBox.vgrow="ALWAYS">
                             <effect>
                                 <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
                                     <color>
@@ -96,83 +178,24 @@
                                 </DropShadow>
                             </effect>
                             <children>
-                                <Label text="Total de Vendas" textFill="#64748B">
+                                <Label text="Resumo de Status do Sistema" textFill="#0F172A">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font name="System Bold" size="16.0" />
                                     </font>
+                                    <VBox.margin>
+                                        <Insets bottom="12.0" />
+                                    </VBox.margin>
                                 </Label>
-                                <Label text="R$ 14.850,00" textFill="#0F172A">
+                                <Label fx:id="lblStatusDetalhado" text="Conectando ao banco de dados MySQL..." textFill="#475569">
                                     <font>
-                                        <Font name="System Bold" size="22.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </VBox>
-
-                        <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
-                            <effect>
-                                <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
-                                    <color>
-                                        <Color opacity="0.05" />
-                                    </color>
-                                </DropShadow>
-                            </effect>
-                            <children>
-                                <Label text="Produtos em Estoque" textFill="#64748B">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </Label>
-                                <Label text="324 itens" textFill="#0F172A">
-                                    <font>
-                                        <Font name="System Bold" size="22.0" />
+                                        <Font size="14.0" />
                                     </font>
                                 </Label>
                             </children>
                         </VBox>
-
-                        <VBox prefHeight="100.0" prefWidth="280.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;">
-                            <effect>
-                                <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
-                                    <color>
-                                        <Color opacity="0.05" />
-                                    </color>
-                                </DropShadow>
-                            </effect>
-                            <children>
-                                <Label text="Pedidos Pendentes" textFill="#64748B">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </Label>
-                                <Label text="12 pedidos" textFill="#0F172A">
-                                    <font>
-                                        <Font name="System Bold" size="22.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-
-
-                <VBox maxHeight="1.7976931348623157E308" prefHeight="440.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-padding: 20;" VBox.vgrow="ALWAYS">
-                    <effect>
-                        <DropShadow blurType="THREE_PASS_BOX" height="15.0" radius="7.0" width="15.0">
-                            <color>
-                                <Color opacity="0.05" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                    <children>
-                        <Label text="Atividade Recente" textFill="#0F172A">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
                     </children>
                 </VBox>
             </children>
-        </VBox>
+        </StackPane>
     </center>
 </BorderPane>

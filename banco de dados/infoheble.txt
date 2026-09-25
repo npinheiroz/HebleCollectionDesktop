@@ -1,2 +1,0 @@
-heblecollection@_2026-2027
-('heble.vendedor', 'caiquesenac');
