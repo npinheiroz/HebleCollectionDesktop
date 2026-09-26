@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -139,6 +140,44 @@ public class ControllerGerenciarFuncionarios implements Initializable {
             mostrarAlerta("Erro de Navegação", "Não foi possível retornar ao Hub: " + e.getMessage());
         }
     }
+    @FXML
+    private void AbrirSubjanela (ActionEvent event){
+        Funcionario FuncionarioSelecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+        if (FuncionarioSelecionado == null){
+            mostrarAlerta("Error", "Selecionar funcionário");
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/EditarFuncionarios.fxml"));
+
+            Parent subtela = loader.load();
+
+            ControllerEditarFuncionario controllerEditar= loader.getController();
+            controllerEditar.setFuncionario(FuncionarioSelecionado);
+            Button btnClicado = (Button) event.getSource();
+            Stage janelaAtual = (Stage) btnClicado.getScene().getWindow();
+
+
+            Stage subjanela = new Stage();
+            subjanela.initOwner(janelaAtual);
+            subjanela.initModality(Modality.WINDOW_MODAL);
+
+            subjanela.setScene(new Scene(subtela));
+
+            subjanela.setTitle("Editar Funcionario");
+
+            subjanela.setResizable(false);
+            subjanela.showAndWait();
+            carregarFuncionarios();
+
+        }catch (IOException e) {
+
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " + e.getMessage());
+        }
+
+    }
+
 
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

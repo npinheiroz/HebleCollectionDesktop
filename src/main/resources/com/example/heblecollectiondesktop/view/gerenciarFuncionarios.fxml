@@ -28,6 +28,13 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Button>
+                <Button fx:id="btnEditarFuncionario"  mnemonicParsing="false" onAction="#AbrirSubjanela" prefHeight="40.0" style="-fx-background-color: #d6b667; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="* Editar Funcionário">
+                    <font>
+
+                    <Font name="System bold" size="13.0"/>
+                </font>
+
+                </Button>
             </children>
         </HBox>
 
