@@ -67,6 +67,14 @@ public class ControllerEditarFuncionario {
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
+    public void Cancelar (){
+
+    }
+    public void Limpar(){
+        txEditarMatricula.clear();
+        txEditarSenha.clear();
+        cmbEditarCargo.getSelectionModel().clearSelection();
+    }
 
 
 }
