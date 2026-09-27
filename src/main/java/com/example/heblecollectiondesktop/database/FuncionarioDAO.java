@@ -1,24 +1,24 @@
 package com.example.heblecollectiondesktop.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.heblecollectiondesktop.model.Cargo;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Gerente;
 
 public class FuncionarioDAO {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/login_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USUARIO_DB = "root";
-    private static final String SENHA_DB = "heblecollection@_2026-2027";
-
     public Funcionario autenticar(String matricula, String senha) throws SQLException {
         String sql = "SELECT * FROM funcionarios WHERE matricula = ? AND senha = ? LIMIT 1";
 
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO_DB, SENHA_DB);
+        try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, matricula);
@@ -44,13 +44,13 @@ public class FuncionarioDAO {
             }
         }
         return null;
-
     }
-    public java.util.List<Funcionario> listarTodos() throws SQLException {
-        java.util.List<Funcionario> lista = new java.util.ArrayList<>();
+
+    public List<Funcionario> listarTodos() throws SQLException {
+        List<Funcionario> lista = new ArrayList<>();
         String sql = "SELECT * FROM funcionarios ORDER BY idfuncionarios DESC";
 
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO_DB, SENHA_DB);
+        try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -77,7 +77,7 @@ public class FuncionarioDAO {
     public void salvar(Funcionario funcionario) throws SQLException {
         String sql = "INSERT INTO funcionarios (matricula, senha, cargo) VALUES (?, ?, ?)";
 
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO_DB, SENHA_DB);
+        try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, funcionario.getMatricula());
@@ -86,6 +86,66 @@ public class FuncionarioDAO {
 
             stmt.executeUpdate();
         }
+    }
 
+    public boolean atualizar(Funcionario funcionario) {
+        String sql = "UPDATE funcionarios SET matricula = ?, senha = ?, cargo = ? WHERE idfuncionarios = ?";
+
+        try (Connection conn = conexaoDB.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, funcionario.getMatricula());
+            stmt.setString(2, funcionario.getSenha());
+            stmt.setString(3, funcionario.getCargo().name());
+            stmt.setInt(4, funcionario.getId());
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao executar UPDATE no banco de dados: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deletarComLog(int idFuncionarioDeletar, String matriculaModerador, String motivo, String observacao) throws SQLException {
+        String sqlDelete = "DELETE FROM funcionarios WHERE idfuncionarios = ?";
+        String sqlLog = "INSERT INTO logs_moderacao (funcionario_id, acao, detalhes, data_acao) VALUES (?, ?, ?, ?)";
+
+        Connection conn = null;
+        try {
+            conn = conexaoDB.getConexao();
+            conn.setAutoCommit(false);
+
+            // 1. Apaga o funcionário
+            try (PreparedStatement stmtDelete = conn.prepareStatement(sqlDelete)) {
+                stmtDelete.setInt(1, idFuncionarioDeletar);
+                stmtDelete.executeUpdate();
+            }
+
+            // 2. Registra o log de moderação
+            try (PreparedStatement stmtLog = conn.prepareStatement(sqlLog)) {
+                stmtLog.setString(1, matriculaModerador);
+                stmtLog.setString(2, "EXCLUSAO_FUNCIONARIO");
+                stmtLog.setString(3, "Motivo: " + motivo + " | Obs: " + observacao);
+                stmtLog.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                stmtLog.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                conn.rollback();
+            }
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.setAutoCommit(true);
+                conn.close();
+            }
+        }
     }
 }

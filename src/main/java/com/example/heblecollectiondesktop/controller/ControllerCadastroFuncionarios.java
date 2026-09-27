@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.example.heblecollectiondesktop.database.FuncionarioDAO;
 import com.example.heblecollectiondesktop.model.Cargo;
 import com.example.heblecollectiondesktop.model.Funcionario;
+import com.example.heblecollectiondesktop.model.Gerente;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -47,7 +48,6 @@ public class ControllerCadastroFuncionarios implements Initializable {
         String confirmarSenha = txtConfirmarSenha.getText() != null ? txtConfirmarSenha.getText().trim() : "";
         Cargo cargo = cbCargo.getValue();
 
-        // Validação de campos obrigatórios
         if (matricula.isEmpty() || senha.isEmpty() || cargo == null) {
             mostrarAlerta(Alert.AlertType.WARNING, "Campos Obrigatórios", "Por favor, preencha a matrícula, senha e selecione um cargo.");
             return;
@@ -59,13 +59,16 @@ public class ControllerCadastroFuncionarios implements Initializable {
         }
 
         try {
-
-            Funcionario novoFuncionario = new Funcionario(0, matricula, senha, cargo);
+            Funcionario novoFuncionario;
+            if (cargo == Cargo.GERENTE) {
+                novoFuncionario = new Gerente(0, matricula, senha);
+            } else {
+                novoFuncionario = new Funcionario(0, matricula, senha, cargo);
+            }
 
             funcionarioDAO.salvar(novoFuncionario);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Funcionário cadastrado com sucesso!");
-
 
             if (controllerPai != null) {
                 controllerPai.carregarFuncionarios();
@@ -75,7 +78,11 @@ public class ControllerCadastroFuncionarios implements Initializable {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Falha ao cadastrar funcionário: " + e.getMessage());
+            if (e.getMessage() != null && e.getMessage().contains("Duplicate entry")) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Matrícula Existente", "Já existe um funcionário cadastrado com esta matrícula.");
+            } else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Falha ao cadastrar funcionário: " + e.getMessage());
+            }
         }
     }
 

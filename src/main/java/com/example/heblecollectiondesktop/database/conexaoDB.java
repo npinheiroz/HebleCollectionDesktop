@@ -16,7 +16,6 @@ public class conexaoDB {
     private static String usuario;
     private static String senha;
 
-    // Bloco estático: carrega as configurações do arquivo assim que a classe é utilizada
     static {
         Properties prop = new Properties();
         try (InputStream input = new FileInputStream("config.properties")) {

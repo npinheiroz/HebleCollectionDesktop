@@ -63,14 +63,13 @@ public class ControllerLogin implements Initializable {
         };
 
         for (String caminho : caminhos) {
-            // Uso de try-with-resources para garantir o fechamento da InputStream
             try (InputStream stream = getClass().getResourceAsStream(caminho)) {
                 if (stream != null) {
                     imgLogo.setImage(new Image(stream));
                     return;
                 }
             } catch (IOException e) {
-                // Silencioso ou log de depuração
+
             }
         }
     }

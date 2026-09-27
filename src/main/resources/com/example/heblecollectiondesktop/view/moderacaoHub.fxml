@@ -25,7 +25,7 @@
 
         <HBox spacing="20.0" VBox.vgrow="ALWAYS">
             <children>
-                <VBox prefWidth="350.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
                     <children>
                         <Label text="👥 Gestão de Funcionários" textFill="#1E293B">
                             <font>
@@ -41,7 +41,7 @@
                     </children>
                 </VBox>
 
-                <VBox prefWidth="350.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
                     <children>
                         <Label text="🏢 Gestão de Empresas" textFill="#1E293B">
                             <font>
@@ -50,6 +50,22 @@
                         </Label>
                         <Label text="Administração de empresas cadastradas, CNPJs, fornecedores, parceiros e dados corporativos vinculados." textFill="#64748B" wrapText="true" VBox.vgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#abrirGerenciarEmpresas" prefHeight="42.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: #0F172A; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Gerenciar Empresas">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="📜 Logs de Moderação" textFill="#1E293B">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label text="Histórico imutável de ações administrativas, remoções, alterações e registros de auditoria do sistema." textFill="#64748B" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#abrirLogsModeracao" prefHeight="42.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: #475569; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Consultar Logs">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
