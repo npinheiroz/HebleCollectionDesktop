@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -17,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,19 +65,17 @@ public class ControllerGerenciarEmpresas {
 
     @FXML
     public void initialize() {
-        // 1. Vincula as colunas aos atributos da classe Empresa (getters)
+
         if (colID != null) colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         if (colNome != null) colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         if (colCNPJ != null) colCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         if (colEstilo != null) colEstilo.setCellValueFactory(new PropertyValueFactory<>("estilo"));
 
-        // 2. Carrega as empresas aprovadas na tabela
+
         carregarEmpresas();
     }
 
-    /**
-     * Busca as empresas aprovadas no banco e insere na TableView.
-     */
+
     public void carregarEmpresas() {
         try {
             ObservableList<Empresa> lista = FXCollections.observableArrayList(empresaDAO.listarAprovadas());
@@ -176,6 +177,39 @@ public class ControllerGerenciarEmpresas {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void AbrirEditarEmpresa(ActionEvent event) {
+        Empresa EmpresaSelcionada = TabelaEmpresas.getSelectionModel().getSelectedItem();
+        if (EmpresaSelcionada == null) {
+            mostrarAlerta("Aviso", "Por favor, selecione um funcionário na tabela para editar.", Alert.AlertType.WARNING);
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/EditarEmpresas.fxml"));
+            Parent subtela1 = loader.load();
+
+            ControllerEditarEmpresa controllerEditar = loader.getController();
+            controllerEditar.setEmpresa(EmpresaSelcionada);
+
+            Button btnClicado1 = (Button) event.getSource();
+            Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
+
+            Stage subjanela1 = new Stage();
+            subjanela1.initOwner(janelaAtual);
+            subjanela1.initModality(Modality.WINDOW_MODAL);
+            subjanela1.setScene(new Scene(subtela1));
+            subjanela1.setTitle("Editar Empresa");
+            subjanela1.setResizable(false);
+            subjanela1.showAndWait();
+
+            carregarEmpresas();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
+        }
+    }
+
 
     private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
