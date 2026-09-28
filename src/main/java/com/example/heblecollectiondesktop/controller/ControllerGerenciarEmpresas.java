@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -17,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -68,13 +71,10 @@ public class ControllerGerenciarEmpresas {
         if (colCNPJ != null) colCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         if (colEstilo != null) colEstilo.setCellValueFactory(new PropertyValueFactory<>("estilo"));
 
-        // 2. Carrega as empresas aprovadas na tabela
+
         carregarEmpresas();
     }
 
-    /**
-     * Busca as empresas aprovadas no banco e insere na TableView.
-     */
     public void carregarEmpresas() {
         try {
             ObservableList<Empresa> lista = FXCollections.observableArrayList(empresaDAO.listarAprovadas());
@@ -183,5 +183,39 @@ public class ControllerGerenciarEmpresas {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    private void abrirModalDeletar(Empresa empresaselecionada) {
+        if (empresaselecionada == null) {
+            mostrarAlerta("Nenhum Funcionário Selecionado", "Por favor, selecione um funcionário na tabela para realizar a exclusão.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/deletarEmpresa.fxml");
+
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            ControllerDeletarEmpresa controller = loader.getController();
+
+            String matriculaLogado = (funcionarioLogado != null) ? funcionarioLogado.getMatricula() : "SISTEMA";
+            controller.setDados(empresaselecionada, this, matriculaLogado);
+
+            Stage stage = new Stage();
+            stage.setTitle("Confirmar Exclusão e Registrar Log");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+
+            stage.showAndWait();
+
+            carregarEmpresas();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro ao Abrir Tela", "Não foi possível carregar a interface de exclusão: " + e.getMessage(), Alert.AlertType.WARNING);
+        }
     }
 }
