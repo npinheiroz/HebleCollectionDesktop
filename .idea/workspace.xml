@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Tela Gerenciamento de empresas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" afterDir="false" />
+    </list>
+    <list id="eaa82981-23bc-4f7a-8c3c-82d7079c877b" name="Changes by eduardo61437836" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -217,6 +217,15 @@
       <option name="presentableId" value="Default" />
       <updated>1789082182030</updated>
     </task>
+    <task id="LOCAL-00001" summary="Tela Gerenciamento de empresas">
+      <option name="closed" value="true" />
+      <created>1790619964065</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1790619964065</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +249,8 @@
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
     <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
-    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
+    <MESSAGE value="Tela Gerenciamento de empresas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tela Gerenciamento de empresas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
