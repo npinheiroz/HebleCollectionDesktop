@@ -34,7 +34,7 @@ public class ControllerModeracaoHub {
         try {
             URL url = getClass().getResource(fxmlPath);
             if (url == null) {
-                // Tenta fallback para caminho relativo simples caso a estrutura de pastas varie
+
                 url = getClass().getResource("/view/" + fxmlPath.substring(fxmlPath.lastIndexOf('/') + 1));
             }
 
@@ -46,15 +46,19 @@ public class ControllerModeracaoHub {
             FXMLLoader loader = new FXMLLoader(url);
             Parent novaVisao = loader.load();
 
-            // Passagem de contexto/sessão para a controller filha, se aplicável
             Object controller = loader.getController();
+
+
             if (controller instanceof ControllerGerenciarFuncionarios) {
                 ControllerGerenciarFuncionarios cgf = (ControllerGerenciarFuncionarios) controller;
                 cgf.setContainerCentral(containerCentral);
                 cgf.setFuncionarioLogado(funcionarioLogado);
+            } else if (controller instanceof ControllerLogsModeracao) {
+                ControllerLogsModeracao clm = (ControllerLogsModeracao) controller;
+                clm.setContainerCentral(containerCentral);
+                clm.setFuncionarioLogado(funcionarioLogado);
             }
 
-            // Injeta a sub-visão no container central
             containerCentral.getChildren().setAll(novaVisao);
 
         } catch (IOException e) {
@@ -62,8 +66,6 @@ public class ControllerModeracaoHub {
             mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " + e.getMessage());
         }
     }
-
-    // --- AÇÕES MAPEADAS NO MODERACAOHUB.FXML ---
 
     @FXML
     private void abrirGerenciarFuncionarios(ActionEvent event) {
@@ -77,7 +79,6 @@ public class ControllerModeracaoHub {
 
     @FXML
     private void abrirGerenciarEmpresas(ActionEvent event) {
-        // Ajuste o caminho se a sua view de empresas usar outro nome
         carregarSubVisao("/com/example/heblecollectiondesktop/view/gerenciar_empresas.fxml");
     }
 
@@ -87,13 +88,13 @@ public class ControllerModeracaoHub {
     }
 
     @FXML
-    private void abrirLogsAuditoria(ActionEvent event) {
-        carregarSubVisao("/com/example/heblecollectiondesktop/view/moderacaoLogs.fxml");
+    private void abrirLogsModeracao(ActionEvent event) {
+        carregarSubVisao("/com/example/heblecollectiondesktop/view/logsModeracao.fxml");
     }
 
     @FXML
-    private void handleLogsAuditoria(ActionEvent event) {
-        abrirLogsAuditoria(event);
+    private void handleLogsModeracao(ActionEvent event) {
+        abrirLogsModeracao(event);
     }
 
     @FXML
