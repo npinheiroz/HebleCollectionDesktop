@@ -15,19 +15,26 @@ import javafx.stage.Stage;
 public class ControllerDeletarEmpresa {
 
     @FXML
-    private Label lblFuncionarioInfo; // Representa as informações da empresa a ser excluída
-    @FXML private ComboBox<String> cbMotivo;
-    @FXML private TextArea txtObservacao;
+    private Label lblEmpresaInfo;
+
+    @FXML
+    private ComboBox<String> cbMotivo;
+
+    @FXML
+    private TextArea txtObservacao;
 
     private final EmpresaDAO empresaDAO = new EmpresaDAO();
     private Empresa empresaParaDeletar;
     private ControllerGerenciarEmpresas controllerPai;
+    private String usuarioLogado;
 
     public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, String usuarioLogado) {
         this.empresaParaDeletar = empresa;
         this.controllerPai = controllerPai;
-        if (empresa != null && lblFuncionarioInfo != null) {
-            lblFuncionarioInfo.setText("Excluindo: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
+        this.usuarioLogado = usuarioLogado;
+
+        if (empresa != null && lblEmpresaInfo != null) {
+            lblEmpresaInfo.setText("Excluindo Empresa: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
         }
     }
 
@@ -39,7 +46,8 @@ public class ControllerDeletarEmpresa {
                     "Denúncias e tickets excederam o limite",
                     "Solicitação da própria empresa",
                     "Cadastro Duplicado / Incorreto",
-                    "Violação das Políticas da Empresa",
+                    "Violação das Políticas do Sistema",
+                    "Inatividade prolongada",
                     "Outro"
             ));
         }
@@ -51,7 +59,7 @@ public class ControllerDeletarEmpresa {
         String observacao = txtObservacao.getText() != null ? txtObservacao.getText().trim() : "";
 
         if (motivo == null || motivo.isBlank()) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Motivo Obrigatório", "Por favor, selecione um motivo para a exclusão.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Motivo Obrigatório", "Por favor, selecione um motivo para a exclusão da empresa.");
             return;
         }
 
@@ -64,11 +72,11 @@ public class ControllerDeletarEmpresa {
             boolean sucesso = empresaDAO.deletar(empresaParaDeletar.getId());
 
             if (sucesso) {
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Empresa removida com sucesso!");
-
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso",
+                        "A empresa '" + empresaParaDeletar.getNome() + "' foi removida do sistema com sucesso!");
                 if (controllerPai != null) {
                     try {
-                        controllerPai.carregarEmpresas(); // Atualiza a tabela principal
+                        controllerPai.carregarEmpresas();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -81,14 +89,14 @@ public class ControllerDeletarEmpresa {
 
         } catch (Exception e) {
             e.printStackTrace();
-
-            // Tratamento específico para restrição de integridade (Foreign Key)
             String mensagemErro = e.getMessage();
             if (mensagemErro != null && (mensagemErro.contains("foreign key") || mensagemErro.contains("1451"))) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Violação de Integridade",
-                        "Não é possível excluir a empresa '" + empresaParaDeletar.getNome() + "' pois existem funcionários, produtos ou registros vinculados a ela no sistema.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Integridade Relacional",
+                        "Não é possível excluir a empresa '" + empresaParaDeletar.getNome() +
+                                "' pois existem registros vinculados a ela (funcionários, produtos, marcas ou coleções).");
             } else {
-                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Banco de Dados", "Falha ao deletar empresa: " + mensagemErro);
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Banco de Dados",
+                        "Falha ao excluir a empresa: " + mensagemErro);
             }
         }
     }

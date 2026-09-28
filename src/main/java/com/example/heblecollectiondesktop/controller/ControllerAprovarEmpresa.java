@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class ControllerAprovarEmpresa {
@@ -112,13 +113,18 @@ public class ControllerAprovarEmpresa {
 
         Optional<ButtonType> resultado = confirmacao.showAndWait();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            boolean sucesso = empresaDAO.deletar(selecionada.getId());
+            try {
+                boolean sucesso = empresaDAO.deletar(selecionada.getId());
 
-            if (sucesso) {
-                exibirAlerta("Sucesso", "Solicitação de empresa rejeitada com sucesso.", Alert.AlertType.INFORMATION);
-                carregarEmpresasPendentes();
-            } else {
-                exibirAlerta("Erro", "Não foi possível excluir o cadastro da empresa.", Alert.AlertType.ERROR);
+                if (sucesso) {
+                    exibirAlerta("Sucesso", "Solicitação de empresa rejeitada com sucesso.", Alert.AlertType.INFORMATION);
+                    carregarEmpresasPendentes();
+                } else {
+                    exibirAlerta("Erro", "Não foi possível excluir o cadastro da empresa.", Alert.AlertType.ERROR);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                exibirAlerta("Erro no Banco de Dados", "Falha ao excluir o cadastro da empresa: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }
