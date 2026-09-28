@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Tela Gerenciamento de empresas">
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/AprovarEmpresas.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <list id="eaa82981-23bc-4f7a-8c3c-82d7079c877b" name="Changes by eduardo61437836" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,15 +20,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/fixEditarFuncionarios-e-adicão-DeletarFuncionairos+LogsdaModeracao" />
+        <entry key="$PROJECT_DIR$" value="feature/model-e-DAO-empreasa" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,63 +48,70 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/login.fxml" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0155584795501391" />
-      <entry key="MS500" value="1.6096224714795575" />
-      <entry key="S2" value="4.032973173992856" />
-      <entry key="S5" value="7.963587298401718" />
-      <entry key="S10" value="12.327160698997982" />
-      <entry key="S30" value="18.564525652703033" />
-      <entry key="S60" value="20.994994329254986" />
-      <entry key="M2" value="22.41470236129601" />
-      <entry key="M5" value="23.365425855358758" />
-      <entry key="M10" value="23.947946727394957" />
-      <entry key="M15" value="24.675457706761676" />
-      <entry key="M30" value="29.34330328919307" />
-      <entry key="H1" value="49.942482614025856" />
-      <entry key="H2" value="95.86913860429623" />
-      <entry key="H4" value="150.26055764003542" />
-      <entry key="D1" value="230.94007177906028" />
-      <entry key="W1" value="249.69918053380124" />
+      <entry key="MS100" value="4.770512035084489E-52" />
+      <entry key="MS500" value="9.41261295847279E-11" />
+      <entry key="S2" value="0.0052367927176107595" />
+      <entry key="S5" value="0.18546511518480843" />
+      <entry key="S10" value="0.6125284224074375" />
+      <entry key="S30" value="1.4978389627424664" />
+      <entry key="S60" value="2.0582241742334126" />
+      <entry key="M2" value="2.7187910604242083" />
+      <entry key="M5" value="4.328419391152035" />
+      <entry key="M10" value="9.098479290861473" />
+      <entry key="M15" value="16.314591551407172" />
+      <entry key="M30" value="38.68313358212355" />
+      <entry key="H1" value="73.96166623049946" />
+      <entry key="H2" value="129.81739735561615" />
+      <entry key="H4" value="197.5234806253169" />
+      <entry key="D1" value="307.17876460780553" />
+      <entry key="W1" value="334.19131767433595" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="8.806829547541616E-221" />
-      <entry key="S30" value="7.3564948840192E-74" />
-      <entry key="S60" value="5.5044769144321904E-37" />
-      <entry key="M2" value="2.120164232470406E-18" />
-      <entry key="M5" value="3.5239862022051923E-7" />
-      <entry key="M10" value="0.002129394064200349" />
-      <entry key="M15" value="0.041622145129168786" />
-      <entry key="M30" value="0.9292369119622397" />
-      <entry key="H1" value="5.15916378535852" />
-      <entry key="H2" value="13.45409629467221" />
-      <entry key="H4" value="22.56908079466353" />
-      <entry key="D1" value="35.52504681855669" />
-      <entry key="W1" value="38.48143344614583" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0000000000329075" />
+      <entry key="S30" value="1.00092279878592" />
+      <entry key="S60" value="1.0836739620994018" />
+      <entry key="M2" value="1.8908894307897817" />
+      <entry key="M5" value="5.0243065324733385" />
+      <entry key="M10" value="8.22936666456518" />
+      <entry key="M15" value="10.188699548770495" />
+      <entry key="M30" value="13.476590405423826" />
+      <entry key="H1" value="17.90385061626065" />
+      <entry key="H2" value="26.02990004099733" />
+      <entry key="H4" value="36.34685908303229" />
+      <entry key="D1" value="53.13883380059903" />
+      <entry key="W1" value="57.26586080725771" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9675624150252429" />
-      <entry key="MS500" value="1.5948252816222752" />
-      <entry key="S2" value="4.0240390643764625" />
-      <entry key="S5" value="7.945498039224885" />
-      <entry key="S10" value="12.300369146909762" />
-      <entry key="S30" value="18.544499850208894" />
-      <entry key="S60" value="20.9826638090289" />
-      <entry key="M2" value="22.407855287562942" />
-      <entry key="M5" value="23.362464745278473" />
-      <entry key="M10" value="23.948395871272016" />
-      <entry key="M15" value="24.715720400206216" />
-      <entry key="M30" value="30.270548676720807" />
-      <entry key="H1" value="55.096990954897876" />
-      <entry key="H2" value="109.31643412255902" />
-      <entry key="H4" value="172.82343302881347" />
-      <entry key="D1" value="266.463360856194" />
-      <entry key="W1" value="288.18033830364305" />
+      <entry key="MS100" value="5.4760557665252006E-12" />
+      <entry key="MS500" value="0.00559362794105926" />
+      <entry key="S2" value="0.2763963901305208" />
+      <entry key="S5" value="0.7276958943645546" />
+      <entry key="S10" value="1.2788485689911717" />
+      <entry key="S30" value="2.3272577143528803" />
+      <entry key="S60" value="3.041434257107207" />
+      <entry key="M2" value="4.5462205724658" />
+      <entry key="M5" value="9.311632854216612" />
+      <entry key="M10" value="17.29807379361412" />
+      <entry key="M15" value="26.47915739377042" />
+      <entry key="M30" value="52.14374861774424" />
+      <entry key="H1" value="91.85432732851125" />
+      <entry key="H2" value="155.83780067760065" />
+      <entry key="H4" value="233.86267095145195" />
+      <entry key="D1" value="360.315442495542" />
+      <entry key="W1" value="391.45683817771624" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -131,7 +140,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/tela-de-empresas",
+    "git-widget-placeholder": "feature/tela-gerencial-de-empresas-aprovacoes",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -217,15 +226,6 @@
       <option name="presentableId" value="Default" />
       <updated>1789082182030</updated>
     </task>
-    <task id="LOCAL-00001" summary="Tela Gerenciamento de empresas">
-      <option name="closed" value="true" />
-      <created>1790619964065</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1790619964065</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,8 +249,7 @@
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
     <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
-    <MESSAGE value="Tela Gerenciamento de empresas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tela Gerenciamento de empresas" />
+    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
