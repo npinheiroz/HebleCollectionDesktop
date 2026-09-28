@@ -1,45 +1,41 @@
 package com.example.heblecollectiondesktop.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
 import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.LogModeracao;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
-public class ControllerLogsModeracao implements Initializable {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
+public class ControllerLogsModeracao {
 
     @FXML private TableView<LogModeracao> tabelaLogs;
     @FXML private TableColumn<LogModeracao, Integer> colId;
     @FXML private TableColumn<LogModeracao, LocalDateTime> colDataHora;
     @FXML private TableColumn<LogModeracao, String> colModerador;
     @FXML private TableColumn<LogModeracao, String> colAcao;
+    @FXML private TableColumn<LogModeracao, String> colAlvoAfetado;
     @FXML private TableColumn<LogModeracao, String> colDetalhes;
     @FXML private TextField txtFiltro;
 
-    private final LogsDAO logDAO = new LogsDAO();
-    private final ObservableList<LogModeracao> listaLogs = FXCollections.observableArrayList();
-    private FilteredList<LogModeracao> listaFiltrada;
+    private final LogsDAO logsDAO = new LogsDAO();
+    private ObservableList<LogModeracao> listaLogs = FXCollections.observableArrayList();
+    private FilteredList<LogModeracao> logsFiltrados;
 
     private Pane containerCentral;
     private Funcionario funcionarioLogado;
@@ -48,110 +44,97 @@ public class ControllerLogsModeracao implements Initializable {
         this.containerCentral = containerCentral;
     }
 
-    public void setFuncionarioLogado(Funcionario funcionario) {
-        this.funcionarioLogado = funcionario;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        configurarTabela();
-        configurarFiltro();
-        carregarLogs();
-    }
-
-    private void configurarTabela() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colModerador.setCellValueFactory(new PropertyValueFactory<>("funcionarioId"));
-        colAcao.setCellValueFactory(new PropertyValueFactory<>("acao"));
-        colDetalhes.setCellValueFactory(new PropertyValueFactory<>("detalhes"));
-        colDataHora.setCellValueFactory(new PropertyValueFactory<>("dataAcao"));
-        colDataHora.setCellFactory(column -> new TableCell<LogModeracao, LocalDateTime>() {
-            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
-            @Override
-            protected void updateItem(LocalDateTime item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.format(formatter));
-                }
-            }
-        });
-
-        listaFiltrada = new FilteredList<>(listaLogs, p -> true);
-        tabelaLogs.setItems(listaFiltrada);
-    }
-
-    private void configurarFiltro() {
-        txtFiltro.textProperty().addListener((observable, oldValue, newValue) -> {
-            listaFiltrada.setPredicate(log -> {
-                if (newValue == null || newValue.isBlank()) {
-                    return true;
-                }
-                String termo = newValue.toLowerCase();
-
-                boolean bateuModerador = log.getFuncionarioId() != null && log.getFuncionarioId().toLowerCase().contains(termo);
-                boolean bateuAcao = log.getAcao() != null && log.getAcao().toLowerCase().contains(termo);
-                boolean bateuDetalhes = log.getDetalhes() != null && log.getDetalhes().toLowerCase().contains(termo);
-
-                return bateuModerador || bateuAcao || bateuDetalhes;
-            });
-        });
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
     }
 
     @FXML
-    public void carregarLogs() {
+    public void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colDataHora.setCellValueFactory(new PropertyValueFactory<>("dataAcao"));
+        colModerador.setCellValueFactory(new PropertyValueFactory<>("funcionarioId"));
+        colAcao.setCellValueFactory(new PropertyValueFactory<>("acao"));
+        colAlvoAfetado.setCellValueFactory(new PropertyValueFactory<>("alvoAfetado"));
+        colDetalhes.setCellValueFactory(new PropertyValueFactory<>("detalhes"));
+
+        logsFiltrados = new FilteredList<>(listaLogs, p -> true);
+
+        if (txtFiltro != null) {
+            txtFiltro.textProperty().addListener((observable, oldValue, newValue) -> {
+                logsFiltrados.setPredicate(log -> {
+                    if (newValue == null || newValue.isBlank()) {
+                        return true;
+                    }
+
+                    String termo = newValue.toLowerCase();
+
+                    boolean bateModerador = log.getFuncionarioId() != null && log.getFuncionarioId().toLowerCase().contains(termo);
+                    boolean bateAcao = log.getAcao() != null && log.getAcao().toLowerCase().contains(termo);
+                    boolean bateAlvo = log.getAlvoAfetado() != null && log.getAlvoAfetado().toLowerCase().contains(termo);
+                    boolean bateDetalhes = log.getDetalhes() != null && log.getDetalhes().toLowerCase().contains(termo);
+
+                    return bateModerador || bateAcao || bateAlvo || bateDetalhes;
+                });
+            });
+        }
+
+        tabelaLogs.setItems(logsFiltrados);
+        carregarLogs();
+    }
+
+    @FXML
+    public void atualizarLogs() {
+        carregarLogs();
+    }
+
+    private void carregarLogs() {
         try {
-            listaLogs.clear();
-            listaLogs.addAll(logDAO.listarTodos());
+            listaLogs.setAll(logsDAO.listarTodos());
         } catch (SQLException e) {
             e.printStackTrace();
-            mostrarAlerta("Erro ao carregar logs: " + e.getMessage());
+            exibirAlerta("Erro ao carregar logs", "Não foi possível carregar os registros de auditoria: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    private void atualizarLogs(ActionEvent event) {
-        carregarLogs();
-    }
+    public void voltarAoHub(ActionEvent event) {
+        if (containerCentral == null) {
+            exibirAlerta("Erro de Navegação", "Container central não configurado.", Alert.AlertType.ERROR);
+            return;
+        }
 
-    @FXML
-    private void voltarAoHub(ActionEvent event) {
         try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/moderacaoHub.fxml");
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/HubGeral.fxml");
             if (url == null) {
-                url = getClass().getResource("/view/moderacaoHub.fxml");
+                url = getClass().getResource("/view/HubGeral.fxml");
             }
 
             if (url == null) {
-                mostrarAlerta("Arquivo moderacaoHub.fxml não encontrado.");
+                exibirAlerta("Erro FXML", "Arquivo HubGeral.fxml não encontrado.", Alert.AlertType.ERROR);
                 return;
             }
 
             FXMLLoader loader = new FXMLLoader(url);
             Parent hubView = loader.load();
 
-            ControllerModeracaoHub controllerHub = loader.getController();
-            if (controllerHub != null) {
-                controllerHub.setContainerCentral(containerCentral);
-                if (funcionarioLogado != null) {
-                    controllerHub.setFuncionarioLogado(funcionarioLogado);
-                }
+            Object controller = loader.getController();
+            if (controller != null) {
+                try {
+                    controller.getClass().getMethod("setContainerCentral", Pane.class).invoke(controller, containerCentral);
+                    controller.getClass().getMethod("setFuncionarioLogado", Funcionario.class).invoke(controller, funcionarioLogado);
+                } catch (Exception ignored) {}
             }
 
-            if (containerCentral != null) {
-                containerCentral.getChildren().setAll(hubView);
-            }
+            containerCentral.getChildren().setAll(hubView);
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Não foi possível retornar ao Hub: " + e.getMessage());
+            exibirAlerta("Erro de Navegação", "Falha ao retornar ao painel principal: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private void mostrarAlerta(String mensagem) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Logs de Moderação");
+    private void exibirAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();

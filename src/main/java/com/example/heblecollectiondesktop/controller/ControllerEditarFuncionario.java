@@ -1,6 +1,7 @@
 package com.example.heblecollectiondesktop.controller;
 
 import com.example.heblecollectiondesktop.database.FuncionarioDAO;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Cargo;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import javafx.collections.FXCollections;
@@ -18,7 +19,9 @@ public class ControllerEditarFuncionario {
     @FXML private ComboBox<Cargo> cmbEditarCargo;
 
     private final FuncionarioDAO editarfuncionarioDAO = new FuncionarioDAO();
+    private final LogsDAO logsDAO = new LogsDAO();
     private Funcionario funcionarioeditando;
+    private Funcionario funcionarioLogado;
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionarioeditando = funcionario;
@@ -28,6 +31,10 @@ public class ControllerEditarFuncionario {
             txEditarSenha.setText(funcionario.getSenha());
             cmbEditarCargo.setValue(funcionario.getCargo());
         }
+    }
+
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
     }
 
     @FXML
@@ -62,6 +69,12 @@ public class ControllerEditarFuncionario {
         boolean sucesso = editarfuncionarioDAO.atualizar(funcionarioeditando);
 
         if (sucesso) {
+            logsDAO.registrarLog(
+                    funcionarioLogado,
+                    "EDICAO_FUNCIONARIO",
+                    "Editou os dados do funcionário com Matrícula: " + funcionarioeditando.getMatricula() + " (Cargo: " + cargo + ")"
+            );
+
             mostrarAlerta("Sucesso", "Funcionário editado com sucesso!", Alert.AlertType.INFORMATION);
 
             Stage janelaAtual = (Stage) txEditarMatricula.getScene().getWindow();

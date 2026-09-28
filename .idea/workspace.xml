@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Gerencia de empresas completa e integradas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/LogModeracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/LogModeracao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature/gerencia-de-empresas-completa-e-integrada" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.6714674046119833" />
-      <entry key="MS500" value="4.363594096218018" />
-      <entry key="S2" value="11.826183637621039" />
-      <entry key="S5" value="20.591560340250414" />
-      <entry key="S10" value="26.848706459518066" />
-      <entry key="S30" value="33.0235201625072" />
-      <entry key="S60" value="34.92438662122587" />
-      <entry key="M2" value="35.97359725869398" />
-      <entry key="M5" value="37.32620037486668" />
-      <entry key="M10" value="40.587317421865585" />
-      <entry key="M15" value="45.97674756507899" />
-      <entry key="M30" value="65.85152001592334" />
-      <entry key="H1" value="100.91866111790615" />
-      <entry key="H2" value="157.69828425334154" />
-      <entry key="H4" value="227.4648051786225" />
-      <entry key="D1" value="342.32227005250166" />
-      <entry key="W1" value="370.90205192145805" />
+      <entry key="MS100" value="1.5487419813768557" />
+      <entry key="MS500" value="3.7278653167796247" />
+      <entry key="S2" value="8.78369816870881" />
+      <entry key="S5" value="12.219957241807508" />
+      <entry key="S10" value="13.90601800349412" />
+      <entry key="S30" value="15.71648715455544" />
+      <entry key="S60" value="20.441553314286637" />
+      <entry key="M2" value="31.576282679231714" />
+      <entry key="M5" value="48.60461294500963" />
+      <entry key="M10" value="59.86072161989405" />
+      <entry key="M15" value="68.04191755638159" />
+      <entry key="M30" value="90.64619655555163" />
+      <entry key="H1" value="127.34852006616198" />
+      <entry key="H2" value="185.24065508390268" />
+      <entry key="H4" value="256.0173749015082" />
+      <entry key="D1" value="372.7170283309022" />
+      <entry key="W1" value="401.8085675600757" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="8.093503057117755E-45" />
-      <entry key="MS500" value="1.5192432204988026E-9" />
-      <entry key="S2" value="0.006243193948498655" />
-      <entry key="S5" value="0.13126916741406952" />
-      <entry key="S10" value="0.36231087123362593" />
-      <entry key="S30" value="0.7128976033027109" />
-      <entry key="S60" value="0.844674669477397" />
-      <entry key="M2" value="0.955876365110064" />
-      <entry key="M5" value="2.019975024328918" />
-      <entry key="M10" value="4.841954995036946" />
-      <entry key="M15" value="7.244631321275" />
-      <entry key="M30" value="11.819053181887599" />
-      <entry key="H1" value="17.343608497504167" />
-      <entry key="H2" value="26.13364277303619" />
-      <entry key="H4" value="37.01330392513975" />
-      <entry key="D1" value="54.811794190264635" />
-      <entry key="W1" value="59.215449972864214" />
+      <entry key="MS100" value="4.516061814852205E-13" />
+      <entry key="MS500" value="0.003395877187851647" />
+      <entry key="S2" value="0.24140040472688115" />
+      <entry key="S5" value="0.5663634225635444" />
+      <entry key="S10" value="0.7525713532452524" />
+      <entry key="S30" value="0.9148583071303268" />
+      <entry key="S60" value="1.0262897942514675" />
+      <entry key="M2" value="1.2567529166814189" />
+      <entry key="M5" value="2.226942485554518" />
+      <entry key="M10" value="4.783382962336268" />
+      <entry key="M15" value="7.147918394377569" />
+      <entry key="M30" value="11.888975262764964" />
+      <entry key="H1" value="17.647633220236212" />
+      <entry key="H2" value="26.60413267451741" />
+      <entry key="H4" value="37.63649519213726" />
+      <entry key="D1" value="55.718412833636556" />
+      <entry key="W1" value="60.20102786035648" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6180505650912516" />
-      <entry key="MS500" value="4.336071462135055" />
-      <entry key="S2" value="11.812208835472257" />
-      <entry key="S5" value="20.690260922205855" />
-      <entry key="S10" value="27.17409975197344" />
-      <entry key="S30" value="33.71370406601013" />
-      <entry key="S60" value="35.75572665689702" />
-      <entry key="M2" value="36.9213485296189" />
-      <entry key="M5" value="39.335415921868936" />
-      <entry key="M10" value="45.414630625745254" />
-      <entry key="M15" value="53.20626896338545" />
-      <entry key="M30" value="77.65771797867934" />
-      <entry key="H1" value="118.2521075615024" />
-      <entry key="H2" value="183.82284415715253" />
-      <entry key="H4" value="264.47058578494824" />
-      <entry key="D1" value="397.1318996428895" />
-      <entry key="W1" value="430.1171587757018" />
+      <entry key="MS100" value="1.5048829069827594" />
+      <entry key="MS500" value="3.7081753069833003" />
+      <entry key="S2" value="8.965626790123569" />
+      <entry key="S5" value="12.732311703557787" />
+      <entry key="S10" value="14.622674152184095" />
+      <entry key="S30" value="16.61463893379536" />
+      <entry key="S60" value="21.450416885136274" />
+      <entry key="M2" value="32.81407320704884" />
+      <entry key="M5" value="50.81372355519485" />
+      <entry key="M10" value="64.6258642540316" />
+      <entry key="M15" value="75.17218587215733" />
+      <entry key="M30" value="102.52075628745479" />
+      <entry key="H1" value="144.9850713273292" />
+      <entry key="H2" value="211.83521435248724" />
+      <entry key="H4" value="293.64608336741327" />
+      <entry key="D1" value="428.4332232077729" />
+      <entry key="W1" value="462.00924422686074" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -141,7 +146,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/tela-gerencial-de-empresas-aprovacoes",
+    "git-widget-placeholder": "feature/melhora-dos-logs",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -250,7 +255,8 @@
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
     <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
-    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
+    <MESSAGE value="Gerencia de empresas completa e integradas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gerencia de empresas completa e integradas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

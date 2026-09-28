@@ -145,8 +145,8 @@ public class ControllerGerenciarEmpresas {
 
             ControllerDeletarEmpresa controllerDeletar = loader.getController();
             if (controllerDeletar != null) {
-                String nomeUsuario = (funcionarioLogado != null) ? funcionarioLogado.getMatricula() : "Moderação";
-                controllerDeletar.setDados(selecionada, this, nomeUsuario);
+                // Passa o objeto Funcionario diretamente no lugar da String nomeUsuario
+                controllerDeletar.setDados(selecionada, this, funcionarioLogado);
             }
 
             Stage modalStage = new Stage();
@@ -190,6 +190,9 @@ public class ControllerGerenciarEmpresas {
             ControllerEditarEmpresa controllerEditar = loader.getController();
             if (controllerEditar != null) {
                 controllerEditar.setEmpresa(empresaSelecionada);
+                if (funcionarioLogado != null) {
+                    controllerEditar.setFuncionarioLogado(funcionarioLogado);
+                }
             }
 
             Button btnClicado = (Button) event.getSource();

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.example.heblecollectiondesktop.database.FuncionarioDAO;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Cargo;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Gerente;
@@ -28,10 +29,16 @@ public class ControllerCadastroFuncionarios implements Initializable {
     @FXML private ComboBox<Cargo> cbCargo;
 
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private final LogsDAO logsDAO = new LogsDAO();
     private ControllerGerenciarFuncionarios controllerPai;
+    private Funcionario funcionarioLogado;
 
     public void setControllerPai(ControllerGerenciarFuncionarios controllerPai) {
         this.controllerPai = controllerPai;
+    }
+
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
     }
 
     @Override
@@ -67,6 +74,12 @@ public class ControllerCadastroFuncionarios implements Initializable {
             }
 
             funcionarioDAO.salvar(novoFuncionario);
+
+            logsDAO.registrarLog(
+                    funcionarioLogado,
+                    "CADASTRO_FUNCIONARIO",
+                    "Cadastrou um novo funcionário com Matrícula: " + matricula + " (Cargo: " + cargo + ")"
+            );
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Funcionário cadastrado com sucesso!");
 

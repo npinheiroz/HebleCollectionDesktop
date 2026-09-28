@@ -1,6 +1,7 @@
 package com.example.heblecollectiondesktop.controller;
 
 import com.example.heblecollectiondesktop.database.EmpresaDAO;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Empresa;
 import com.example.heblecollectiondesktop.model.Funcionario;
 
@@ -25,30 +26,18 @@ import java.util.Optional;
 
 public class ControllerAprovarEmpresa {
 
-    @FXML
-    private TableView<Empresa> tabelaEmpresasPendentes;
-
-    @FXML
-    private TableColumn<Empresa, Integer> colId;
-
-    @FXML
-    private TableColumn<Empresa, String> colNome;
-
-    @FXML
-    private TableColumn<Empresa, String> colCnpj;
-
-    @FXML
-    private TableColumn<Empresa, String> colEstilo;
-
-    @FXML
-    private Button btnAprovarEmpresa;
-
-    @FXML
-    private Button btnRejeitarEmpresa;
+    @FXML private TableView<Empresa> tabelaEmpresasPendentes;
+    @FXML private TableColumn<Empresa, Integer> colId;
+    @FXML private TableColumn<Empresa, String> colNome;
+    @FXML private TableColumn<Empresa, String> colCnpj;
+    @FXML private TableColumn<Empresa, String> colEstilo;
+    @FXML private Button btnAprovarEmpresa;
+    @FXML private Button btnRejeitarEmpresa;
 
     private Pane containerCentral;
     private Funcionario funcionarioLogado;
     private final EmpresaDAO empresaDAO = new EmpresaDAO();
+    private final LogsDAO logsDAO = new LogsDAO();
 
     public void setContainerCentral(Pane containerCentral) {
         this.containerCentral = containerCentral;
@@ -87,9 +76,16 @@ public class ControllerAprovarEmpresa {
             return;
         }
 
+        // Removido o try-catch(SQLException) que causava o erro de compilação
         boolean sucesso = empresaDAO.atualizarStatusAprovacao(selecionada.getId(), true);
 
         if (sucesso) {
+            logsDAO.registrarLog(
+                    funcionarioLogado,
+                    "APROVACAO_EMPRESA",
+                    "Aprovou o cadastro da empresa '" + selecionada.getNome() + "' (CNPJ: " + selecionada.getCnpj() + ")"
+            );
+
             exibirAlerta("Sucesso", "A empresa '" + selecionada.getNome() + "' foi aprovada!", Alert.AlertType.INFORMATION);
             carregarEmpresasPendentes();
         } else {
@@ -117,6 +113,12 @@ public class ControllerAprovarEmpresa {
                 boolean sucesso = empresaDAO.deletar(selecionada.getId());
 
                 if (sucesso) {
+                    logsDAO.registrarLog(
+                            funcionarioLogado,
+                            "REJEICAO_EMPRESA",
+                            "Rejeitou e excluiu o cadastro da empresa '" + selecionada.getNome() + "' (CNPJ: " + selecionada.getCnpj() + ")"
+                    );
+
                     exibirAlerta("Sucesso", "Solicitação de empresa rejeitada com sucesso.", Alert.AlertType.INFORMATION);
                     carregarEmpresasPendentes();
                 } else {
@@ -164,6 +166,7 @@ public class ControllerAprovarEmpresa {
             exibirAlerta("Erro de Navegação", "Não foi possível retornar à Gestão de Empresas: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
     private void exibirAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
