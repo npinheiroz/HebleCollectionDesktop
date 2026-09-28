@@ -79,7 +79,7 @@ public class ControllerModeracaoHub {
 
     @FXML
     private void abrirGerenciarEmpresas(ActionEvent event) {
-        carregarSubVisao("/com/example/heblecollectiondesktop/view/gerenciar_empresas.fxml");
+        carregarSubVisao("/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml");
     }
 
     @FXML
