@@ -19,7 +19,6 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class ControllerLogsModeracao {
@@ -97,35 +96,32 @@ public class ControllerLogsModeracao {
     }
 
     @FXML
-    public void voltarAoHub(ActionEvent event) {
-        if (containerCentral == null) {
-            exibirAlerta("Erro de Navegação", "Container central não configurado.", Alert.AlertType.ERROR);
-            return;
-        }
-
+    private void voltarAoHub(ActionEvent event) {
         try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/HubGeral.fxml");
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/moderacaoHub.fxml");
             if (url == null) {
-                url = getClass().getResource("/view/HubGeral.fxml");
+                url = getClass().getResource("/view/moderacaoHub.fxml");
             }
 
             if (url == null) {
-                exibirAlerta("Erro FXML", "Arquivo HubGeral.fxml não encontrado.", Alert.AlertType.ERROR);
+                exibirAlerta("Erro FXML", "Arquivo moderacaoHub.fxml não encontrado.", Alert.AlertType.ERROR);
                 return;
             }
 
             FXMLLoader loader = new FXMLLoader(url);
             Parent hubView = loader.load();
 
-            Object controller = loader.getController();
-            if (controller != null) {
-                try {
-                    controller.getClass().getMethod("setContainerCentral", Pane.class).invoke(controller, containerCentral);
-                    controller.getClass().getMethod("setFuncionarioLogado", Funcionario.class).invoke(controller, funcionarioLogado);
-                } catch (Exception ignored) {}
+            ControllerModeracaoHub controllerHub = loader.getController();
+            if (controllerHub != null) {
+                controllerHub.setContainerCentral(containerCentral);
+                if (funcionarioLogado != null) {
+                    controllerHub.setFuncionarioLogado(funcionarioLogado);
+                }
             }
 
-            containerCentral.getChildren().setAll(hubView);
+            if (containerCentral != null) {
+                containerCentral.getChildren().setAll(hubView);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             exibirAlerta("Erro de Navegação", "Falha ao retornar ao painel principal: " + e.getMessage(), Alert.AlertType.ERROR);
