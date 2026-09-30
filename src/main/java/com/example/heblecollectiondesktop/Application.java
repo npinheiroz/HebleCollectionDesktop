@@ -13,12 +13,12 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
-            URL fxmlLocation = getClass().getResource("/com/example/heblecollectiondesktop/view/login.fxml");
+            URL fxmlLocation = getClass().getResource("/com/example/heblecollectiondesktop/view/GerenciarTicketsPendentes.fxml");
             if (fxmlLocation == null) {
-                fxmlLocation = getClass().getResource("/view/login.fxml");
+                fxmlLocation = getClass().getResource("/view/GerenciarTicketsPendentes.fxml");
             }
             if (fxmlLocation == null) {
-                fxmlLocation = getClass().getResource("view/login.fxml");
+                fxmlLocation = getClass().getResource("view/GerenciarTicketsPendentes.fxml");
             }
 
             if (fxmlLocation == null) {

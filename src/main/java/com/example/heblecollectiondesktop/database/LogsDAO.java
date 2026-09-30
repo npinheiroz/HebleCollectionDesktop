@@ -14,9 +14,7 @@ import com.example.heblecollectiondesktop.model.LogModeracao;
 
 public class LogsDAO {
 
-    /**
-     * Insere um novo registro de log diretamente no banco de dados.
-     */
+
     public boolean salvar(LogModeracao log) throws SQLException {
         String sql = "INSERT INTO logs_moderacao (funcionario_id, acao, detalhes, data_acao) VALUES (?, ?, ?, ?)";
 
