@@ -1,26 +1,22 @@
 package com.example.heblecollectiondesktop.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.heblecollectiondesktop.model.Ticket; // Certifique-se de ter este Model criado
+import com.example.heblecollectiondesktop.model.Ticket;
 
 public class TicketDAO {
 
-    private final String url = "jdbc:mysql://localhost:3306/login_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private final String usuarioDb = "root";
-    private final String senhaDb = "heblecollection@_2026-2027";
 
-    public List<Ticket> listarTodos() throws SQLException {
+    public List<Ticket> listarTodos() {
+        String sql = "SELECT * FROM login_schema.tickets ORDER BY criado_em DESC";
         List<Ticket> lista = new ArrayList<>();
-        String sql = "SELECT * FROM tickets ORDER BY criado_em DESC";
 
-        try (Connection conexao = DriverManager.getConnection(url, usuarioDb, senhaDb);
+        try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -29,24 +25,50 @@ public class TicketDAO {
                         rs.getInt("id"),
                         rs.getString("assunto"),
                         rs.getString("descricao"),
-                        rs.getString("status"),
+                        rs.getBoolean("status"),
                         rs.getInt("funcionario_id")
                 );
                 lista.add(t);
             }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar todos os tickets: " + e.getMessage(), e);
         }
+
         return lista;
     }
 
-    public void atualizarStatus(int idTicket, String novoStatus) throws SQLException {
-        String sql = "UPDATE tickets SET status = ? WHERE id = ?";
 
-        try (Connection conexao = DriverManager.getConnection(url, usuarioDb, senhaDb);
+    public boolean atualizarStatus(int idTicket, boolean novoStatus) {
+        String sql = "UPDATE login_schema.tickets SET status = ? WHERE id = ?";
+
+        try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, novoStatus);
+            stmt.setBoolean(1, novoStatus);
             stmt.setInt(2, idTicket);
-            stmt.executeUpdate();
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar status do ticket: " + e.getMessage(), e);
+        }
+    }
+
+
+    public boolean deletar(int idTicket) {
+        String sql = "DELETE FROM login_schema.tickets WHERE id = ?";
+
+        try (Connection conexao = conexaoDB.getConexao();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, idTicket);
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao deletar ticket: " + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
     }
 }
