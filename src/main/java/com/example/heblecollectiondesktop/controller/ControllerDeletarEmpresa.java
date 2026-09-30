@@ -1,13 +1,11 @@
 package com.example.heblecollectiondesktop.controller;
 
 import com.example.heblecollectiondesktop.database.EmpresaDAO;
-import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Empresa;
-import com.example.heblecollectiondesktop.model.Funcionario;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -16,52 +14,49 @@ import javafx.stage.Stage;
 
 public class ControllerDeletarEmpresa {
 
-    @FXML private Label lblEmpresaInfo;
+    @FXML
+    private Label lblFuncionarioInfo; // Representa as informações da empresa a ser excluída
     @FXML private ComboBox<String> cbMotivo;
     @FXML private TextArea txtObservacao;
 
+    private final EmpresaDAO empresaDAO = new EmpresaDAO();
     private Empresa empresaParaDeletar;
     private ControllerGerenciarEmpresas controllerPai;
-    private Funcionario funcionarioLogado;
 
-    private final EmpresaDAO empresaDAO = new EmpresaDAO();
-    private final LogsDAO logsDAO = new LogsDAO();
+    public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, String usuarioLogado) {
+        this.empresaParaDeletar = empresa;
+        this.controllerPai = controllerPai;
+        if (empresa != null && lblFuncionarioInfo != null) {
+            lblFuncionarioInfo.setText("Excluindo: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
+        }
+    }
 
     @FXML
     public void initialize() {
         if (cbMotivo != null) {
             cbMotivo.setItems(FXCollections.observableArrayList(
-                    "Encerramento de Atividades",
+                    "Fechamento da empresa",
+                    "Denúncias e tickets excederam o limite",
+                    "Solicitação da própria empresa",
                     "Cadastro Duplicado / Incorreto",
-                    "Solicitação do Cliente / Empresa",
-                    "Fraude / Irregularidade",
+                    "Violação das Políticas da Empresa",
                     "Outro"
             ));
         }
     }
 
-    public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, Funcionario funcionario) {
-        this.empresaParaDeletar = empresa;
-        this.controllerPai = controllerPai;
-        this.funcionarioLogado = funcionario;
-
-        if (lblEmpresaInfo != null && empresa != null) {
-            lblEmpresaInfo.setText("Excluindo Empresa: " + empresa.getNome());
-        }
-    }
-
     @FXML
-    private void confirmarExclusao(ActionEvent event) {
-        if (empresaParaDeletar == null) {
-            mostrarAlerta("Erro", "Nenhuma empresa selecionada para exclusão.", Alert.AlertType.ERROR);
-            return;
-        }
-
+    private void confirmarDelecao(ActionEvent event) {
         String motivo = cbMotivo.getValue();
         String observacao = txtObservacao.getText() != null ? txtObservacao.getText().trim() : "";
 
         if (motivo == null || motivo.isBlank()) {
-            mostrarAlerta("Motivo Obrigatório", "Por favor, selecione um motivo para a exclusão.", Alert.AlertType.WARNING);
+            mostrarAlerta(Alert.AlertType.WARNING, "Motivo Obrigatório", "Por favor, selecione um motivo para a exclusão.");
+            return;
+        }
+
+        if (empresaParaDeletar == null) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Nenhuma empresa selecionada para exclusão.");
             return;
         }
 
@@ -69,54 +64,53 @@ public class ControllerDeletarEmpresa {
             boolean sucesso = empresaDAO.deletar(empresaParaDeletar.getId());
 
             if (sucesso) {
-                String idFuncionario = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
-                        ? funcionarioLogado.getMatricula()
-                        : "SISTEMA";
-
-                String alvo = empresaParaDeletar.getNome();
-                String detalhes = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
-
-                logsDAO.registrarLog(
-                        idFuncionario,
-                        "EXCLUSAO_EMPRESA",
-                        alvo,
-                        detalhes
-                );
-
-                mostrarAlerta("Sucesso", "Empresa excluída com sucesso!", Alert.AlertType.INFORMATION);
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Empresa removida com sucesso!");
 
                 if (controllerPai != null) {
-                    controllerPai.carregarEmpresas();
+                    try {
+                        controllerPai.carregarEmpresas(); // Atualiza a tabela principal
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
-                fecharJanela();
-
+                fecharJanela(event);
             } else {
-                mostrarAlerta("Erro de Banco", "Não foi possível confirmar a exclusão no banco de dados.", Alert.AlertType.ERROR);
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível concluir a exclusão da empresa.");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta("Erro", "Ocorreu uma exceção ao tentar excluir: " + e.getMessage(), Alert.AlertType.ERROR);
+
+            // Tratamento específico para restrição de integridade (Foreign Key)
+            String mensagemErro = e.getMessage();
+            if (mensagemErro != null && (mensagemErro.contains("foreign key") || mensagemErro.contains("1451"))) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Violação de Integridade",
+                        "Não é possível excluir a empresa '" + empresaParaDeletar.getNome() + "' pois existem funcionários, produtos ou registros vinculados a ela no sistema.");
+            } else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Banco de Dados", "Falha ao deletar empresa: " + mensagemErro);
+            }
         }
     }
 
-    @FXML
-    private void cancelar(ActionEvent event) {
-        fecharJanela();
-    }
-
-    private void fecharJanela() {
-        if (lblEmpresaInfo != null && lblEmpresaInfo.getScene() != null) {
-            Stage stage = (Stage) lblEmpresaInfo.getScene().getWindow();
-            stage.close();
-        }
-    }
-
-    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    private void fecharJanela(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+        fecharJanela(event);
     }
 }
