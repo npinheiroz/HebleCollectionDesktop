@@ -4,24 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/LogModeracao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/deletarFuncionarios.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" afterDir="false" />
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Gerencia de empresas completa e integradas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarFuncionarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerModeracaoHub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/conexaoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/conexaoDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/gerenciarFuncionarios.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/gerenciarFuncionarios.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/moderacaoHub.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/moderacaoHub.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/EditarFuncionarios.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/EditarFuncionarios.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +36,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/EditarFuncionarios" />
+        <entry key="$PROJECT_DIR$" value="WIP/melhora-dos-logs" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -68,61 +66,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="4.770512035084489E-52" />
-      <entry key="MS500" value="9.41261295847279E-11" />
-      <entry key="S2" value="0.0052367927176107595" />
-      <entry key="S5" value="0.18546511518480843" />
-      <entry key="S10" value="0.6125284224074375" />
-      <entry key="S30" value="1.4978389627424664" />
-      <entry key="S60" value="2.0582241742334126" />
-      <entry key="M2" value="2.7187910604242083" />
-      <entry key="M5" value="4.328419391152035" />
-      <entry key="M10" value="9.098479290861473" />
-      <entry key="M15" value="16.314591551407172" />
-      <entry key="M30" value="38.68313358212355" />
-      <entry key="H1" value="73.96166623049946" />
-      <entry key="H2" value="129.81739735561615" />
-      <entry key="H4" value="197.5234806253169" />
-      <entry key="D1" value="307.17876460780553" />
-      <entry key="W1" value="334.19131767433595" />
+      <entry key="MS100" value="1.5487419813768557" />
+      <entry key="MS500" value="3.7278653167796247" />
+      <entry key="S2" value="8.78369816870881" />
+      <entry key="S5" value="12.219957241807508" />
+      <entry key="S10" value="13.90601800349412" />
+      <entry key="S30" value="15.71648715455544" />
+      <entry key="S60" value="20.441553314286637" />
+      <entry key="M2" value="31.576282679231714" />
+      <entry key="M5" value="48.60461294500963" />
+      <entry key="M10" value="59.86072161989405" />
+      <entry key="M15" value="68.04191755638159" />
+      <entry key="M30" value="90.64619655555163" />
+      <entry key="H1" value="127.34852006616198" />
+      <entry key="H2" value="185.24065508390268" />
+      <entry key="H4" value="256.0173749015082" />
+      <entry key="D1" value="372.7170283309022" />
+      <entry key="W1" value="401.8085675600757" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000000329075" />
-      <entry key="S30" value="1.00092279878592" />
-      <entry key="S60" value="1.0836739620994018" />
-      <entry key="M2" value="1.8908894307897817" />
-      <entry key="M5" value="5.0243065324733385" />
-      <entry key="M10" value="8.22936666456518" />
-      <entry key="M15" value="10.188699548770495" />
-      <entry key="M30" value="13.476590405423826" />
-      <entry key="H1" value="17.90385061626065" />
-      <entry key="H2" value="26.02990004099733" />
-      <entry key="H4" value="36.34685908303229" />
-      <entry key="D1" value="53.13883380059903" />
-      <entry key="W1" value="57.26586080725771" />
+      <entry key="MS100" value="4.516061814852205E-13" />
+      <entry key="MS500" value="0.003395877187851647" />
+      <entry key="S2" value="0.24140040472688115" />
+      <entry key="S5" value="0.5663634225635444" />
+      <entry key="S10" value="0.7525713532452524" />
+      <entry key="S30" value="0.9148583071303268" />
+      <entry key="S60" value="1.0262897942514675" />
+      <entry key="M2" value="1.2567529166814189" />
+      <entry key="M5" value="2.226942485554518" />
+      <entry key="M10" value="4.783382962336268" />
+      <entry key="M15" value="7.147918394377569" />
+      <entry key="M30" value="11.888975262764964" />
+      <entry key="H1" value="17.647633220236212" />
+      <entry key="H2" value="26.60413267451741" />
+      <entry key="H4" value="37.63649519213726" />
+      <entry key="D1" value="55.718412833636556" />
+      <entry key="W1" value="60.20102786035648" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.4760557665252006E-12" />
-      <entry key="MS500" value="0.00559362794105926" />
-      <entry key="S2" value="0.2763963901305208" />
-      <entry key="S5" value="0.7276958943645546" />
-      <entry key="S10" value="1.2788485689911717" />
-      <entry key="S30" value="2.3272577143528803" />
-      <entry key="S60" value="3.041434257107207" />
-      <entry key="M2" value="4.5462205724658" />
-      <entry key="M5" value="9.311632854216612" />
-      <entry key="M10" value="17.29807379361412" />
-      <entry key="M15" value="26.47915739377042" />
-      <entry key="M30" value="52.14374861774424" />
-      <entry key="H1" value="91.85432732851125" />
-      <entry key="H2" value="155.83780067760065" />
-      <entry key="H4" value="233.86267095145195" />
-      <entry key="D1" value="360.315442495542" />
-      <entry key="W1" value="391.45683817771624" />
+      <entry key="MS100" value="1.5048829069827594" />
+      <entry key="MS500" value="3.7081753069833003" />
+      <entry key="S2" value="8.965626790123569" />
+      <entry key="S5" value="12.732311703557787" />
+      <entry key="S10" value="14.622674152184095" />
+      <entry key="S30" value="16.61463893379536" />
+      <entry key="S60" value="21.450416885136274" />
+      <entry key="M2" value="32.81407320704884" />
+      <entry key="M5" value="50.81372355519485" />
+      <entry key="M10" value="64.6258642540316" />
+      <entry key="M15" value="75.17218587215733" />
+      <entry key="M30" value="102.52075628745479" />
+      <entry key="H1" value="144.9850713273292" />
+      <entry key="H2" value="211.83521435248724" />
+      <entry key="H4" value="293.64608336741327" />
+      <entry key="D1" value="428.4332232077729" />
+      <entry key="W1" value="462.00924422686074" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -151,7 +149,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/fixEditarFuncionarios-e-adicão-DeletarFuncionairos+LogsdaModeracao",
+    "git-widget-placeholder": "WIP/melhora-dos-logs",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -260,7 +258,8 @@
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
     <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
-    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
+    <MESSAGE value="Gerencia de empresas completa e integradas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gerencia de empresas completa e integradas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

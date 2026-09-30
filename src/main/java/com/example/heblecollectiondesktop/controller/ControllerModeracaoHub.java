@@ -34,7 +34,6 @@ public class ControllerModeracaoHub {
         try {
             URL url = getClass().getResource(fxmlPath);
             if (url == null) {
-
                 url = getClass().getResource("/view/" + fxmlPath.substring(fxmlPath.lastIndexOf('/') + 1));
             }
 
@@ -48,11 +47,14 @@ public class ControllerModeracaoHub {
 
             Object controller = loader.getController();
 
-
             if (controller instanceof ControllerGerenciarFuncionarios) {
                 ControllerGerenciarFuncionarios cgf = (ControllerGerenciarFuncionarios) controller;
                 cgf.setContainerCentral(containerCentral);
                 cgf.setFuncionarioLogado(funcionarioLogado);
+            } else if (controller instanceof ControllerGerenciarEmpresas) {
+                ControllerGerenciarEmpresas cge = (ControllerGerenciarEmpresas) controller;
+                cge.setContainerCentral(containerCentral);
+                cge.setFuncionarioLogado(funcionarioLogado);
             } else if (controller instanceof ControllerLogsModeracao) {
                 ControllerLogsModeracao clm = (ControllerLogsModeracao) controller;
                 clm.setContainerCentral(containerCentral);
@@ -79,7 +81,7 @@ public class ControllerModeracaoHub {
 
     @FXML
     private void abrirGerenciarEmpresas(ActionEvent event) {
-        carregarSubVisao("/com/example/heblecollectiondesktop/view/gerenciar_empresas.fxml");
+        carregarSubVisao("/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml");
     }
 
     @FXML

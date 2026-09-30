@@ -3,6 +3,7 @@ package com.example.heblecollectiondesktop.controller;
 import java.sql.SQLException;
 
 import com.example.heblecollectiondesktop.database.FuncionarioDAO;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Funcionario;
 
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ public class ControllerDeletarFuncionario {
     @FXML private TextArea txtObservacao;
 
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private final LogsDAO logsDAO = new LogsDAO();
     private Funcionario funcionarioParaDeletar;
     private ControllerGerenciarFuncionarios controllerPai;
     private String usuarioLogado = "ADMIN";
@@ -66,19 +68,26 @@ public class ControllerDeletarFuncionario {
         }
 
         try {
-            boolean sucesso = funcionarioDAO.deletarComLog(
-                    funcionarioParaDeletar.getId(),
-                    usuarioLogado,
-                    motivo,
-                    observacao
-            );
+
+            boolean sucesso = funcionarioDAO.deletar(funcionarioParaDeletar.getId());
 
             if (sucesso) {
+                // 2. Grava APENAS UM log com o nome/matrícula limpos
+                String alvoAfetado = funcionarioParaDeletar.getMatricula();
+                String detalhes = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
+
+                logsDAO.registrarLog(
+                        usuarioLogado,
+                        "EXCLUSAO_FUNCIONARIO",
+                        alvoAfetado,
+                        detalhes
+                );
+
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Funcionário removido e ação registrada no log da moderação!");
 
                 if (controllerPai != null) {
                     try {
-                        controllerPai.carregarFuncionarios(); // Atualiza a tabela principal
+                        controllerPai.carregarFuncionarios();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

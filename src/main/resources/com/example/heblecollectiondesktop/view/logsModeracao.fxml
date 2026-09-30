@@ -13,7 +13,6 @@
 <VBox spacing="20.0" style="-fx-padding: 24; -fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerLogsModeracao">
     <children>
         <Button mnemonicParsing="false" onAction="#voltarAoHub" style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-cursor: hand;" text="← Voltar ao Painel" />
-
         <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
                 <VBox HBox.hgrow="ALWAYS">
@@ -26,7 +25,7 @@
                         <Label text="Registro imutável de ações e alterações realizadas no sistema" textFill="#64748B" />
                     </children>
                 </VBox>
-                <TextField fx:id="txtFiltro" prefWidth="250.0" promptText="Filtrar por moderador ou ação..." style="-fx-background-radius: 8; -fx-border-color: #CBD5E1; -fx-border-radius: 8;" />
+                <TextField fx:id="txtFiltro" prefWidth="250.0" promptText="Filtrar por moderador, ação ou alvo..." style="-fx-background-radius: 8; -fx-border-color: #CBD5E1; -fx-border-radius: 8;" />
                 <Button mnemonicParsing="false" onAction="#atualizarLogs" style="-fx-background-color: #64748B; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Atualizar">
                     <font>
                         <Font name="System Bold" size="13.0" />
@@ -37,11 +36,12 @@
 
         <TableView fx:id="tabelaLogs" editable="false" prefHeight="400.0" style="-fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
-                <TableColumn fx:id="colDataHora" prefWidth="150.0" text="Data / Hora" />
-                <TableColumn fx:id="colModerador" prefWidth="140.0" text="Moderador" />
-                <TableColumn fx:id="colAcao" prefWidth="180.0" text="Ação" />
-                <TableColumn fx:id="colDetalhes" prefWidth="300.0" text="Detalhes / Observações" />
+                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="colDataHora" prefWidth="130.0" text="Data / Hora" />
+                <TableColumn fx:id="colModerador" prefWidth="110.0" text="Moderador" />
+                <TableColumn fx:id="colAcao" prefWidth="140.0" text="Ação" />
+                <TableColumn fx:id="colAlvoAfetado" prefWidth="180.0" text="Alvo / Afetado" />
+                <TableColumn fx:id="colDetalhes" prefWidth="250.0" text="Detalhes / Observações" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
