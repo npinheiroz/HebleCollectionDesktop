@@ -9,19 +9,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ControllerEditarFuncionario {
 
     @FXML private TextField txEditarMatricula;
-    @FXML private TextField txEditarSenha;
+    @FXML private PasswordField txEditarSenha;
     @FXML private ComboBox<Cargo> cmbEditarCargo;
 
     private final FuncionarioDAO editarfuncionarioDAO = new FuncionarioDAO();
     private final LogsDAO logsDAO = new LogsDAO();
     private Funcionario funcionarioeditando;
     private Funcionario funcionarioLogado;
+    private ControllerGerenciarFuncionarios controllerPai;
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionarioeditando = funcionario;
@@ -35,6 +37,10 @@ public class ControllerEditarFuncionario {
 
     public void setFuncionarioLogado(Funcionario funcionarioLogado) {
         this.funcionarioLogado = funcionarioLogado;
+    }
+
+    public void setControllerPai(ControllerGerenciarFuncionarios controllerPai) {
+        this.controllerPai = controllerPai;
     }
 
     @FXML
@@ -62,6 +68,8 @@ public class ControllerEditarFuncionario {
             return;
         }
 
+        String matriculaAntiga = funcionarioeditando.getMatricula();
+
         funcionarioeditando.setMatricula(matricula);
         funcionarioeditando.setSenha(senha);
         funcionarioeditando.setCargo(cargo);
@@ -69,13 +77,23 @@ public class ControllerEditarFuncionario {
         boolean sucesso = editarfuncionarioDAO.atualizar(funcionarioeditando);
 
         if (sucesso) {
+            String idModerador = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                    ? funcionarioLogado.getMatricula() : "SISTEMA";
+
+            String alvo = "Matrícula: " + matricula;
+
             logsDAO.registrarLog(
-                    funcionarioLogado,
+                    idModerador,
                     "EDICAO_FUNCIONARIO",
-                    "Editou os dados do funcionário com Matrícula: " + funcionarioeditando.getMatricula() + " (Cargo: " + cargo + ")"
+                    alvo,
+                    "Dados atualizados para o cargo: " + cargo + " (Matrícula anterior: " + matriculaAntiga + ")"
             );
 
             mostrarAlerta("Sucesso", "Funcionário editado com sucesso!", Alert.AlertType.INFORMATION);
+
+            if (controllerPai != null) {
+                controllerPai.carregarFuncionarios();
+            }
 
             Stage janelaAtual = (Stage) txEditarMatricula.getScene().getWindow();
             janelaAtual.close();

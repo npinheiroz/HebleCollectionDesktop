@@ -75,10 +75,15 @@ public class ControllerCadastroFuncionarios implements Initializable {
 
             funcionarioDAO.salvar(novoFuncionario);
 
+            String idModerador = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                    ? funcionarioLogado.getMatricula() : "SISTEMA";
+            String alvo = "Matrícula: " + matricula;
+
             logsDAO.registrarLog(
-                    funcionarioLogado,
+                    idModerador,
                     "CADASTRO_FUNCIONARIO",
-                    "Cadastrou um novo funcionário com Matrícula: " + matricula + " (Cargo: " + cargo + ")"
+                    alvo,
+                    "Novo funcionário cadastrado com o cargo: " + cargo
             );
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Funcionário cadastrado com sucesso!");

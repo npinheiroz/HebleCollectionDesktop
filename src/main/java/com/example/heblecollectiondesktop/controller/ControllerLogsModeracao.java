@@ -90,7 +90,7 @@ public class ControllerLogsModeracao {
     private void carregarLogs() {
         try {
             listaLogs.setAll(logsDAO.listarTodos());
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             exibirAlerta("Erro ao carregar logs", "Não foi possível carregar os registros de auditoria: " + e.getMessage(), Alert.AlertType.ERROR);
         }

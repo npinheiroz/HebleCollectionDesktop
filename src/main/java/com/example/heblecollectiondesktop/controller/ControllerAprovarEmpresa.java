@@ -76,14 +76,18 @@ public class ControllerAprovarEmpresa {
             return;
         }
 
-        // Removido o try-catch(SQLException) que causava o erro de compilação
         boolean sucesso = empresaDAO.atualizarStatusAprovacao(selecionada.getId(), true);
 
         if (sucesso) {
+            String matricula = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                    ? funcionarioLogado.getMatricula() : "SISTEMA";
+            String alvo = selecionada.getNome() + " (CNPJ: " + selecionada.getCnpj() + ")";
+
             logsDAO.registrarLog(
-                    funcionarioLogado,
+                    matricula,
                     "APROVACAO_EMPRESA",
-                    "Aprovou o cadastro da empresa '" + selecionada.getNome() + "' (CNPJ: " + selecionada.getCnpj() + ")"
+                    alvo,
+                    "Solicitação de cadastro da empresa aprovada."
             );
 
             exibirAlerta("Sucesso", "A empresa '" + selecionada.getNome() + "' foi aprovada!", Alert.AlertType.INFORMATION);
@@ -113,10 +117,15 @@ public class ControllerAprovarEmpresa {
                 boolean sucesso = empresaDAO.deletar(selecionada.getId());
 
                 if (sucesso) {
+                    String matricula = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                            ? funcionarioLogado.getMatricula() : "SISTEMA";
+                    String alvo = selecionada.getNome() + " (CNPJ: " + selecionada.getCnpj() + ")";
+
                     logsDAO.registrarLog(
-                            funcionarioLogado,
+                            matricula,
                             "REJEICAO_EMPRESA",
-                            "Rejeitou e excluiu o cadastro da empresa '" + selecionada.getNome() + "' (CNPJ: " + selecionada.getCnpj() + ")"
+                            alvo,
+                            "Solicitação de cadastro da empresa rejeitada e excluída."
                     );
 
                     exibirAlerta("Sucesso", "Solicitação de empresa rejeitada com sucesso.", Alert.AlertType.INFORMATION);
@@ -124,9 +133,9 @@ public class ControllerAprovarEmpresa {
                 } else {
                     exibirAlerta("Erro", "Não foi possível excluir o cadastro da empresa.", Alert.AlertType.ERROR);
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                exibirAlerta("Erro no Banco de Dados", "Falha ao excluir o cadastro da empresa: " + e.getMessage(), Alert.AlertType.ERROR);
+                exibirAlerta("Erro Inesperado", "Falha ao processar a exclusão: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }

@@ -17,6 +17,7 @@ public class ControllerEditarEmpresa {
 
     private Empresa Empresaeditando;
     private Funcionario funcionarioLogado;
+    private ControllerGerenciarEmpresas controllerPai;
     private final EmpresaDAO EditarEmpresaDAO = new EmpresaDAO();
     private final LogsDAO logsDAO = new LogsDAO();
 
@@ -32,6 +33,10 @@ public class ControllerEditarEmpresa {
 
     public void setFuncionarioLogado(Funcionario funcionario) {
         this.funcionarioLogado = funcionario;
+    }
+
+    public void setControllerPai(ControllerGerenciarEmpresas controllerPai) {
+        this.controllerPai = controllerPai;
     }
 
     @FXML
@@ -56,17 +61,25 @@ public class ControllerEditarEmpresa {
         Empresaeditando.setCnpj(CNPJ);
         Empresaeditando.setEstilo(Estilo);
 
-        // Removido o try-catch(SQLException) desnecessário
         boolean sucesso = EditarEmpresaDAO.atualizar(Empresaeditando);
 
         if (sucesso) {
+            String matricula = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                    ? funcionarioLogado.getMatricula() : "SISTEMA";
+            String alvo = Empresaeditando.getNome() + " (ID: " + Empresaeditando.getId() + ")";
+
             logsDAO.registrarLog(
-                    funcionarioLogado,
+                    matricula,
                     "EDICAO_EMPRESA",
-                    "Editou os dados da empresa '" + Empresaeditando.getNome() + "' (ID: " + Empresaeditando.getId() + ")"
+                    alvo,
+                    "Dados da empresa atualizados com sucesso."
             );
 
             mostrarAlerta1("Sucesso", "Empresa editada com sucesso!", "Informação");
+
+            if (controllerPai != null) {
+                controllerPai.carregarEmpresas();
+            }
 
             Stage janelaAtual = (Stage) txNomeEmpresa.getScene().getWindow();
             janelaAtual.close();

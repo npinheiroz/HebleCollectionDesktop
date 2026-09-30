@@ -9,12 +9,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAprovarEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerCadastroFuncionarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerLogsModeracao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/EmpresaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/FuncionarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/LogsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/LogModeracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/model/LogModeracao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/EditarFuncionarios.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/EditarFuncionarios.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/logsModeracao.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/gerencia-de-empresas-completa-e-integrada" />
+        <entry key="$PROJECT_DIR$" value="WIP/melhora-dos-logs" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -146,7 +149,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/melhora-dos-logs",
+    "git-widget-placeholder": "WIP/melhora-dos-logs",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",

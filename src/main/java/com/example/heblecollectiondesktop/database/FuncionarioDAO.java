@@ -109,27 +109,51 @@ public class FuncionarioDAO {
         }
     }
 
-    public boolean deletarComLog(int idFuncionarioDeletar, String matriculaModerador, String motivo, String observacao) throws SQLException {
+    public boolean deletar(int idFuncionarioDeletar) throws SQLException {
         String sqlDelete = "DELETE FROM funcionarios WHERE idfuncionarios = ?";
-        String sqlLog = "INSERT INTO logs_moderacao (funcionario_id, acao, detalhes, data_acao) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = conexaoDB.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sqlDelete)) {
+
+            stmt.setInt(1, idFuncionarioDeletar);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        }
+    }
+
+    public boolean deletar(int idFuncionarioDeletar, String matriculaModerador, String motivo, String observacao) throws SQLException {
+        String sqlSelect = "SELECT matricula FROM funcionarios WHERE idfuncionarios = ?";
+        String sqlDelete = "DELETE FROM funcionarios WHERE idfuncionarios = ?";
+        String sqlLog = "INSERT INTO logs_moderacao (funcionario_id, acao, alvo_afetado, detalhes, data_acao) VALUES (?, ?, ?, ?, ?)";
 
         Connection conn = null;
         try {
             conn = conexaoDB.getConexao();
             conn.setAutoCommit(false);
 
-            // 1. Apaga o funcionário
+            String alvoAfetado = "ID: " + idFuncionarioDeletar;
+            try (PreparedStatement stmtSelect = conn.prepareStatement(sqlSelect)) {
+                stmtSelect.setInt(1, idFuncionarioDeletar);
+                try (ResultSet rs = stmtSelect.executeQuery()) {
+                    if (rs.next()) {
+                        alvoAfetado = rs.getString("matricula");
+                    }
+                }
+            }
+
+
             try (PreparedStatement stmtDelete = conn.prepareStatement(sqlDelete)) {
                 stmtDelete.setInt(1, idFuncionarioDeletar);
                 stmtDelete.executeUpdate();
             }
 
-            // 2. Registra o log de moderação
+
             try (PreparedStatement stmtLog = conn.prepareStatement(sqlLog)) {
                 stmtLog.setString(1, matriculaModerador);
                 stmtLog.setString(2, "EXCLUSAO_FUNCIONARIO");
-                stmtLog.setString(3, "Motivo: " + motivo + " | Obs: " + observacao);
-                stmtLog.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                stmtLog.setString(3, alvoAfetado);
+                stmtLog.setString(4, "Motivo: " + motivo + (observacao.isBlank() ? "" : " | Obs: " + observacao));
+                stmtLog.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
                 stmtLog.executeUpdate();
             }
 

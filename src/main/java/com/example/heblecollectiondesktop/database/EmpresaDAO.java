@@ -23,7 +23,6 @@ import java.util.List;
 public class EmpresaDAO {
 
 
-
     public List<Empresa> listarPendentes() {
 
         String sql = "SELECT * FROM login_schema.empresa WHERE aprovado = 0 ORDER BY id DESC";
@@ -31,13 +30,11 @@ public class EmpresaDAO {
         List<Empresa> empresas = new ArrayList<>();
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql);
 
              ResultSet rs = stmt.executeQuery()) {
-
 
 
             while (rs.next()) {
@@ -67,11 +64,9 @@ public class EmpresaDAO {
         }
 
 
-
         return empresas;
 
     }
-
 
 
     public List<Empresa> listarAprovadas() {
@@ -81,13 +76,11 @@ public class EmpresaDAO {
         List<Empresa> empresas = new ArrayList<>();
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql);
 
              ResultSet rs = stmt.executeQuery()) {
-
 
 
             while (rs.next()) {
@@ -117,11 +110,9 @@ public class EmpresaDAO {
         }
 
 
-
         return empresas;
 
     }
-
 
 
     public List<Empresa> listarTodas() {
@@ -131,13 +122,11 @@ public class EmpresaDAO {
         List<Empresa> empresas = new ArrayList<>();
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql);
 
              ResultSet rs = stmt.executeQuery()) {
-
 
 
             while (rs.next()) {
@@ -167,11 +156,9 @@ public class EmpresaDAO {
         }
 
 
-
         return empresas;
 
     }
-
 
 
     public boolean atualizar(Empresa empresa) {
@@ -179,11 +166,9 @@ public class EmpresaDAO {
         String sql = "UPDATE login_schema.empresa SET nome = ?, cnpj = ?, estilo = ? WHERE id = ?";
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
 
 
             stmt.setString(1, empresa.getNome());
@@ -193,7 +178,6 @@ public class EmpresaDAO {
             stmt.setString(3, empresa.getEstilo());
 
             stmt.setInt(4, empresa.getId());
-
 
 
             return stmt.executeUpdate() > 0;
@@ -207,17 +191,14 @@ public class EmpresaDAO {
     }
 
 
-
     public boolean atualizarCampos(int id, String nome, String cnpj, String estilo) {
 
         String sql = "UPDATE login_schema.empresa SET nome = ?, cnpj = ?, estilo = ? WHERE id = ?";
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
 
 
             stmt.setString(1, nome);
@@ -227,7 +208,6 @@ public class EmpresaDAO {
             stmt.setString(3, estilo);
 
             stmt.setInt(4, id);
-
 
 
             return stmt.executeUpdate() > 0;
@@ -241,11 +221,9 @@ public class EmpresaDAO {
     }
 
 
-
     public boolean atualizarStatusAprovacao(int id, boolean aprovado) {
 
         String sql = "UPDATE login_schema.empresa SET aprovado = ? WHERE id = ?";
-
 
 
         try (Connection conn = conexaoDB.getConexao();
@@ -253,11 +231,9 @@ public class EmpresaDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
 
-
             stmt.setBoolean(1, aprovado);
 
             stmt.setInt(2, id);
-
 
 
             return stmt.executeUpdate() > 0;
@@ -271,17 +247,14 @@ public class EmpresaDAO {
     }
 
 
-
     public Empresa buscarPorId(int id) {
 
         String sql = "SELECT * FROM login_schema.empresa WHERE id = ?";
 
 
-
         try (Connection conn = conexaoDB.getConexao();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
 
 
             stmt.setInt(1, id);
@@ -315,27 +288,23 @@ public class EmpresaDAO {
         }
 
 
-
         return null;
 
     }
 
-
-
-    public boolean deletar(int id) throws SQLException {
-
-        String sql = "DELETE FROM login_schema.empresa WHERE id = ?";
-
-
+    public boolean deletar(int idEmpresa) {
+        String sql = "DELETE FROM empresa WHERE id = ?"; // Ajusta a chave primária se for id_empresa
         try (Connection conn = conexaoDB.getConexao();
-
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setInt(1, idEmpresa);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
 
-            stmt.setInt(1, id);
-
-            return stmt.executeUpdate() > 0;
-
+        } catch (SQLException e) {
+            System.err.println("Erro ao deletar empresa: " + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
     }
 }

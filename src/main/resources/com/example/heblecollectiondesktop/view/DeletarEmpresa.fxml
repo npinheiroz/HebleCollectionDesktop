@@ -55,7 +55,7 @@
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#confirmarDelecao" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Confirmar Exclusão">
+                <Button mnemonicParsing="false" onAction="#confirmarExclusao" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Confirmar Exclusão">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
