@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarEmpresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/EditarEmpresas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketFechados.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/ticketFechados.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarEmpresas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/GerenciarEmpresas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,14 +200,6 @@
         <item itemvalue="Application.conexaoDB" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
