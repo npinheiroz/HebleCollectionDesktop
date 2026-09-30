@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="24.0" style="-fx-padding: 30; -fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerTicketsHub">
+    <children>
+        <VBox spacing="4.0">
+            <children>
+                <Label text="Central de Suporte &amp; Tickets" textFill="#0F172A">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label text="Selecione o fluxo de chamados que deseja gerenciar ou auditar" textFill="#64748B">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+
+        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+            <children>
+                <!-- Card 1: Tickets Pendentes -->
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="⏳ Tickets Pendentes" textFill="#1E293B">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label text="Solicitações aguardando análise inicial. Realize a aprovação ou negação dos novos chamados cadastrados." textFill="#64748B" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirTicketsPendentes" prefHeight="42.0" style="-fx-background-color: #F59E0B; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Gerenciar Pendentes">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <!-- Card 2: Tickets em Andamento -->
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="⚙ Em Andamento" textFill="#1E293B">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label text="Chamados em execução pelas equipes de suporte. Acompanhe a resolução e atualização dos status." textFill="#64748B" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirTicketsEmAndamento" prefHeight="42.0" style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Ver em Andamento">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <!-- Card 3: Tickets Fechados / Concluídos -->
+                <VBox prefWidth="300.0" spacing="16.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="✅ Tickets Fechados" textFill="#1E293B">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label text="Histórico de chamados finalizados, resolvidos ou encerrados. Permite consulta de soluções e auditoria." textFill="#64748B" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirTicketsFechados" prefHeight="42.0" style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Consultar Fechados">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
