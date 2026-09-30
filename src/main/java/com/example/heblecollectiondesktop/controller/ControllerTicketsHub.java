@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.net.URL;
 
 public class ControllerTicketsHub {
@@ -15,6 +16,12 @@ public class ControllerTicketsHub {
     @FXML
     private Pane containerCentral;
 
+=======
+
+public class ControllerTicketsHub {
+
+    private Pane containerCentral;
+>>>>>>> aa14548 (tickets)
     private Funcionario funcionarioLogado;
 
     public void setContainerCentral(Pane containerCentral) {
@@ -27,6 +34,7 @@ public class ControllerTicketsHub {
 
     @FXML
     private void abrirTicketsPendentes(ActionEvent event) {
+<<<<<<< HEAD
         // Adicionada a barra '/' no início do caminho
         carregarView("/com/example/heblecollectiondesktop/view/GerenciarTicketsPendentes.fxml", loader -> {
             ControllerTicketsPendentes controller = loader.getController();
@@ -79,14 +87,45 @@ public class ControllerTicketsHub {
                 containerCentral.getChildren().setAll(view);
             } else {
                 System.err.println("AVISO: containerCentral está nulo.");
+=======
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsPendentes.fxml"));
+            Parent view = loader.load();
+
+            ControllerTicketsPendentes controller = loader.getController();
+            controller.setContainerCentral(containerCentral);
+            controller.setFuncionarioLogado(funcionarioLogado);
+
+            if (containerCentral != null) {
+                containerCentral.getChildren().setAll(view);
+>>>>>>> aa14548 (tickets)
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+<<<<<<< HEAD
     @FunctionalInterface
     private interface ControllerInitializer {
         void initialize(FXMLLoader loader);
+=======
+    @FXML
+    private void abrirTicketsFechados(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/ticketFechados.fxml"));
+            Parent view = loader.load();
+
+            ControllerTicketFechados controller = loader.getController();
+            controller.setContainerCentral(containerCentral);
+            controller.setFuncionarioLogado(funcionarioLogado);
+
+            if (containerCentral != null) {
+                containerCentral.getChildren().setAll(view);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+>>>>>>> aa14548 (tickets)
     }
 }

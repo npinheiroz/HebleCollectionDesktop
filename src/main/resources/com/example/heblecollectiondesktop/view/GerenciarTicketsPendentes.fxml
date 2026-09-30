@@ -10,11 +10,7 @@
 
 <VBox spacing="20.0" style="-fx-padding: 24; -fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerTicketsPendentes">
    <children>
-<<<<<<< HEAD
-      <Button mnemonicParsing="false" onAction="#voltarAoHub" style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-cursor: hand;" text="← Voltar ao Hub" />
-=======
       <Button mnemonicParsing="false"  style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-cursor: hand;" text="← Voltar ao Painel" />
->>>>>>> d975941 (Tela e controller de tickets pendentes)
       <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
             <VBox HBox.hgrow="ALWAYS">
@@ -43,11 +39,7 @@
          <columns>
             <TableColumn fx:id="colID" prefWidth="60.0" text="ID" />
             <TableColumn fx:id="colAssunto" prefWidth="203.0" text="Assunto" />
-<<<<<<< HEAD
-            <TableColumn fx:id="colDescricao" prefWidth="211.0" text="Descrição" />
-=======
             <TableColumn fx:id="ColDescricao" prefWidth="211.0" text="Descrição" />
->>>>>>> d975941 (Tela e controller de tickets pendentes)
             <TableColumn fx:id="colStatus" prefWidth="210.0" text="Status" />
          </columns>
          <columnResizePolicy>
@@ -55,8 +47,4 @@
          </columnResizePolicy>
       </TableView>
    </children>
-<<<<<<< HEAD
 </VBox>
-=======
-</VBox>
->>>>>>> d975941 (Tela e controller de tickets pendentes)
