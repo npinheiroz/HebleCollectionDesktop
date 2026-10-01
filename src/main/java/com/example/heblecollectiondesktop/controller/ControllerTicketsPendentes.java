@@ -1,6 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
-import com.example.heblecollectiondesktop.database.TicketDAO;
+
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Ticket;
 import javafx.collections.FXCollections;
@@ -9,13 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -34,10 +35,9 @@ public class ControllerTicketsPendentes {
     private TableColumn<Ticket, String> colDescricao;
     @FXML
     private TableColumn<Ticket, Boolean> colStatus;
-
-    private final TicketDAO ticketsPendentesDao = new TicketDAO();
     private Pane containerCentral;
     private Funcionario funcionarioLogado;
+    private final TicketDAO ticketsPendentesDao = TicketDAO();
 
     public void setContainerCentral(Pane containerCentral) {
         this.containerCentral = containerCentral;
@@ -98,22 +98,7 @@ public class ControllerTicketsPendentes {
             return;
         }
 
-        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacao.setTitle("Confirmar rejeição");
-        confirmacao.setHeaderText(null);
-        confirmacao.setContentText("Deseja rejeitar e excluir o ticket #" + selecionado.getId() + "?");
-        Optional<ButtonType> resultado = confirmacao.showAndWait();
 
-        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            boolean sucesso = ticketsPendentesDao.deletar(selecionado.getId());
-
-            if (sucesso) {
-                mostrarAlerta("Sucesso", "Ticket rejeitado e excluído com sucesso.");
-                carregarTickets();
-            } else {
-                mostrarAlerta("Erro", "Não foi possível excluir o ticket.");
-            }
-        }
     }
 
     @FXML
@@ -148,8 +133,46 @@ public class ControllerTicketsPendentes {
         }
     }
 
+
+
     private void mostrarAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+    @FXML
+    private void subjanela(ActionEvent event){
+        Ticket TicketSelecionado = TabelaTickets.getSelectionModel().getSelectedItem();
+        if (TicketSelecionado == null) {
+            mostrarAlerta("Aviso", "Por favor, selecione um ticket na tabela para Rejeitar.", Alert.AlertType.WARNING);
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/RejeitarTickets.fxml"));
+            Parent subtela = loader.load();
+            ControllerConfirmarRejeicao ControllerRejeicao = loader.getController();
+            ControllerRejeicao.SetTicket(TicketSelecionado);
+
+            Button Btnclicado1 = (Button) event.getSource();
+            Stage JanelaAtual = (Stage) Btnclicado1.getScene().getWindow();
+
+            Stage SubJanela1 = new Stage();
+            SubJanela1.initOwner(JanelaAtual);
+            SubJanela1.initModality(Modality.WINDOW_MODAL);
+            SubJanela1.setScene(new Scene(subtela));
+            SubJanela1.setTitle("Rejeitar Tickets");
+            SubJanela1.setResizable(false);
+            SubJanela1.showAndWait();
+            carregarTickets();
+        }catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
+        }
+    }
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
