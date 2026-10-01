@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="20.0" style="-fx-padding: 24; -fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerGerenciarProdutos">
+    <children>
+        <!-- Botão Voltar -->
+        <Button mnemonicParsing="false" onAction="#voltarAoHub" style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-cursor: hand;" text="← Voltar ao Painel" />
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Aprovação e Gestão de Produtos" textFill="#0F172A">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Label>
+                        <Label text="Análise gerencial para aprovar, editar informações, rejeitar ou excluir produtos" textFill="#64748B" />
+                    </children>
+                </VBox>
+
+                <Button fx:id="btnAprovar" mnemonicParsing="false" onAction="#acaoAprovarProduto" prefHeight="40.0" style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="✓ Aprovar">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btnRejeitar" mnemonicParsing="false" onAction="#acaoRejeitarProduto" prefHeight="40.0" style="-fx-background-color: #F59E0B; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="✕ Rejeitar">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btnEditarProduto" mnemonicParsing="false" onAction="#abrirModalEdicao" prefHeight="40.0" style="-fx-background-color: #d6b667; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="✎ Editar">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btnDeletarProduto" mnemonicParsing="false" onAction="#acaoDeletarProduto" prefHeight="40.0" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="🗑 Excluir">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+
+        <!-- Barra de Busca -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <TextField fx:id="txtPesquisaProduto" prefHeight="38.0" prefWidth="320.0" promptText="Pesquisar por nome ou descrição..." style="-fx-background-radius: 6; -fx-border-color: #CBD5E1; -fx-border-radius: 6;" />
+                <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#acaoBuscarProduto" prefHeight="38.0" style="-fx-background-color: #64748B; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Buscar" />
+            </children>
+        </HBox>
+
+        <!-- Tabela de Produtos -->
+        <TableView fx:id="tvProdutos" style="-fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="colNome" prefWidth="220.0" text="Nome do Produto" />
+                <TableColumn fx:id="colCategoria" prefWidth="220.0" text="Descrição / Categoria" />
+                <TableColumn fx:id="colPreco" prefWidth="110.0" text="Preço (R$)" />
+                <TableColumn fx:id="colEstoque" prefWidth="90.0" text="Estoque" />
+                <TableColumn fx:id="colStatus" prefWidth="130.0" text="Status" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>

@@ -20,10 +20,9 @@ public class TicketDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                // Lê o valor como String para evitar o NumberFormatException no MySQL
+
                 String statusString = rs.getString("status");
 
-                // Mapeia o texto do banco para booleano
                 boolean statusBoolean = "APROVADO".equalsIgnoreCase(statusString)
                         || "CONCLUIDO".equalsIgnoreCase(statusString)
                         || "TRUE".equalsIgnoreCase(statusString)
@@ -52,7 +51,6 @@ public class TicketDAO {
         try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            // Converte o booleano em String compatível com a coluna status
             String statusTexto = novoStatus ? "APROVADO" : "NEGADO";
 
             stmt.setString(1, statusTexto);

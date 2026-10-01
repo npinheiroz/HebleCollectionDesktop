@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar 😛">
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="telas de tickets funcionando e todas juntas">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarProdutos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/GerenciarProdutos.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarEmpresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDeletarFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTickestAndamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketsAndamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketFechados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketFechados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketsHub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketsHub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketsPendentes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerTicketsPendentes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/ProdutoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/database/TicketDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/TicketsAndamento .fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/TicketsAndamento.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/deletarFuncionarios.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/deletarFuncionarios.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/ticketsHub.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/ticketsHub.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tela-de-tickets" />
+        <entry key="$PROJECT_DIR$" value="feature/tickets-completos" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -141,7 +134,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/tickets-completos",
+    "git-widget-placeholder": "feature/Produtos-e-Estoque",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -227,8 +220,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1789082182030</updated>
-      <workItem from="1790874537693" duration="3542000" />
+      <workItem from="1790874537693" duration="10650000" />
     </task>
+    <task id="LOCAL-00001" summary="telas de tickets funcionando e todas juntas">
+      <option name="closed" value="true" />
+      <created>1790878246078</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1790878246078</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +254,8 @@
     <MESSAGE value="tela de login funcional e previa do dashboard e inserção do model" />
     <MESSAGE value="adiciona controller de cadastro de funcionários e ajusta mapeamento do JavaFX&#10;&#10;- Adicionado ControllerCadastroFuncionarios com validação de campos e callback para tela pai&#10;- Adicionado FXML para o cadastro de funcionários&#10;- Atualizado module-info.java abrindo o pacote model para javafx.base&#10;- Adicionados getters e setters públicos na model Funcionario" />
     <MESSAGE value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
-    <option name="LAST_COMMIT_MESSAGE" value="banco de dados passados pra nuvem agora da pra acessar de qualquer lugar " />
+    <MESSAGE value="telas de tickets funcionando e todas juntas" />
+    <option name="LAST_COMMIT_MESSAGE" value="telas de tickets funcionando e todas juntas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
