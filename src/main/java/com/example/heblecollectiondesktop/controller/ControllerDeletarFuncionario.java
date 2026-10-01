@@ -72,7 +72,7 @@ public class ControllerDeletarFuncionario {
             boolean sucesso = funcionarioDAO.deletar(funcionarioParaDeletar.getId());
 
             if (sucesso) {
-                // 2. Grava APENAS UM log com o nome/matrícula limpos
+
                 String alvoAfetado = funcionarioParaDeletar.getMatricula();
                 String detalhes = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
 

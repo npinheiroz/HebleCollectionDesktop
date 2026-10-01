@@ -133,60 +133,74 @@ public class ControllerDashboard implements Initializable {
     }
 
     @FXML
-    private void handleTickets(ActionEvent event) {
-        mostrarAlerta("Módulo Tickets", "Aba de Suporte e Chamados selecionada.");
+    private void abrirTicketsHub(ActionEvent event) {
+        try {
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
+            if (url == null) {
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
+            }
+
+            if (url == null) {
+                System.err.println("❌ FXML NÃO ENCONTRADO NO PATH: TicketsHub.fxml");
+                mostrarAlerta("Erro FXML", "Arquivo TicketsHub.fxml não encontrado.");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent hubView = loader.load();
+
+            ControllerTicketsHub controllerHub = loader.getController();
+            if (controllerHub != null) {
+                controllerHub.setContainerCentral(painelConteudoCentral);
+                if (funcionarioLogado != null) {
+                    controllerHub.setFuncionarioLogado(funcionarioLogado);
+                }
+            }
+
+            if (painelConteudoCentral != null) {
+                painelConteudoCentral.getChildren().setAll(hubView);
+            } else {
+                System.err.println("❌ ERRO CRÍTICO: painelConteudoCentral está NULL!");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a central de tickets: " + e.getMessage());
+        }
     }
 
     @FXML
     private void handleModeracao(ActionEvent event) {
-        System.out.println(">>> 1. Botão Moderação Clicado!");
-
         if (funcionarioLogado == null) {
-            System.out.println("❌ ERRO: funcionarioLogado está NULL.");
             mostrarAlerta("Erro de Sessão", "Nenhum usuário logado detectado.");
             return;
         }
 
-        System.out.println(">>> 2. Cargo do Usuário: " + funcionarioLogado.getCargo());
-
         if (funcionarioLogado.getCargo() == Cargo.GERENTE) {
             try {
-                URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/moderacaoHub.fxml");
+                URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/ModeracaoHub.fxml");
                 if (url == null) {
-                    url = getClass().getResource("/view/moderacaoHub.fxml");
+                    url = getClass().getResource("/com/example/heblecollectiondesktop/view/moderacaoHub.fxml");
                 }
 
                 if (url == null) {
-                    System.out.println("❌ ERRO: FXML moderacaoHub.fxml NÃO ENCONTRADO nos recursos!");
                     mostrarAlerta("Erro", "Não foi possível encontrar moderacaoHub.fxml.");
                     return;
                 }
 
-                System.out.println(">>> 3. FXML encontrado em: " + url.toExternalForm());
-
                 FXMLLoader loader = new FXMLLoader(url);
                 Parent hubView = loader.load();
-                System.out.println(">>> 4. FXML carregado com sucesso pelo FXMLLoader.");
 
                 ControllerModeracaoHub controllerHub = loader.getController();
                 if (controllerHub != null) {
                     controllerHub.setContainerCentral(painelConteudoCentral);
                     controllerHub.setFuncionarioLogado(funcionarioLogado);
-                    System.out.println(">>> 5. Referência do containerCentral e Usuário repassados para ControllerModeracaoHub.");
-                } else {
-                    System.out.println("⚠️ AVISO: ControllerModeracaoHub veio NULL do loader.");
                 }
 
-                // INSERÇÃO DA TELA NO CONTAINER CENTRAL:
                 if (painelConteudoCentral != null) {
                     painelConteudoCentral.getChildren().setAll(hubView);
-                    System.out.println("✅ 6. Visão inserida no painelConteudoCentral com sucesso!");
-                } else {
-                    System.out.println("❌ ERRO CRÍTICO: painelConteudoCentral está NULL!");
                 }
 
             } catch (IOException e) {
-                System.out.println("❌ EXCEÇÃO ao carregar o FXML:");
                 e.printStackTrace();
                 mostrarAlerta("Erro de Carregamento", "Falha ao carregar a tela de moderação: " + e.getMessage());
             }

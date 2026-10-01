@@ -4,7 +4,10 @@ module com.example.heblecollectiondesktop {
     requires java.sql;
     opens com.example.heblecollectiondesktop.model to javafx.base, javafx.fxml;
     opens com.example.heblecollectiondesktop.controller to javafx.fxml;
+    opens com.example.heblecollectiondesktop.view to javafx.fxml;
+    opens com.example.heblecollectiondesktop to javafx.fxml;
     exports com.example.heblecollectiondesktop;
     exports com.example.heblecollectiondesktop.model;
     exports com.example.heblecollectiondesktop.controller;
+
 }
