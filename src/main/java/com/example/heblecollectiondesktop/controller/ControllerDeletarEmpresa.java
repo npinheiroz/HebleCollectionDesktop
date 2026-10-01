@@ -82,7 +82,6 @@ public class ControllerDeletarEmpresa {
         } catch (Exception e) {
             e.printStackTrace();
 
-            // Tratamento específico para restrição de integridade (Foreign Key)
             String mensagemErro = e.getMessage();
             if (mensagemErro != null && (mensagemErro.contains("foreign key") || mensagemErro.contains("1451"))) {
                 mostrarAlerta(Alert.AlertType.ERROR, "Violação de Integridade",

@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ControllerTicketsPendentes {
+
     @FXML
     private TableView<Ticket> TabelaTickets;
     @FXML
@@ -60,7 +61,7 @@ public class ControllerTicketsPendentes {
         try {
             List<Ticket> listaBanco = ticketsPendentesDao.listarTodos();
             List<Ticket> pendentes = listaBanco.stream()
-                    .filter(t -> !t.getStatus()) // Exibe apenas os pendentes (false)
+                    .filter(t -> !t.getStatus()) // Apenas pendentes (false)
                     .collect(Collectors.toList());
 
             ObservableList<Ticket> lista = FXCollections.observableArrayList(pendentes);
@@ -118,12 +119,12 @@ public class ControllerTicketsPendentes {
     @FXML
     private void voltarAoHub(ActionEvent event) {
         try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
             if (url == null) {
-                url = getClass().getResource("/view/ticketsHub.fxml");
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
             }
             if (url == null) {
-                mostrarAlerta("Erro FXML", "Arquivo ticketsHub.fxml não encontrado.");
+                mostrarAlerta("Erro FXML", "Arquivo TicketsHub.fxml não encontrado.");
                 return;
             }
 

@@ -44,7 +44,7 @@
                     </font>
                 </Button>
 
-                <Button fx:id="btnTickets" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleTickets" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Suporte / Tickets">
+                <Button fx:id="btnTickets" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirTicketsHub" prefHeight="40.0" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-background-radius: 8; -fx-cursor: hand;" text="Suporte / Tickets">
                     <font>
                         <Font size="13.0" />
                     </font>

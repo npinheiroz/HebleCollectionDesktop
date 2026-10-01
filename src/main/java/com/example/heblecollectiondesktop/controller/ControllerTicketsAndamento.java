@@ -19,8 +19,10 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class ControllerTickestAndamento {
+public class ControllerTicketsAndamento {
 
     @FXML private TableView<Ticket> ticketsEmAndamento;
     @FXML private TableColumn<Ticket, Integer> colID;
@@ -46,19 +48,27 @@ public class ControllerTickestAndamento {
 
     @FXML
     public void initialize() {
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
-        colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        colFuncionarioId.setCellValueFactory(new PropertyValueFactory<>("funcionarioId"));
+        if (colID != null) colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if (colAssunto != null) colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
+        if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        if (colFuncionarioId != null) colFuncionarioId.setCellValueFactory(new PropertyValueFactory<>("funcionarioId"));
 
         carregarTickets();
     }
 
     public void carregarTickets() {
         try {
-            listaTickets.setAll(ticketDAO.listarTodos());
-            ticketsEmAndamento.setItems(listaTickets);
+            List<Ticket> todos = ticketDAO.listarTodos();
+            // Filtra chamados em andamento (não finalizados)
+            List<Ticket> emAndamento = todos.stream()
+                    .filter(t -> !t.getStatus())
+                    .collect(Collectors.toList());
+
+            listaTickets.setAll(emAndamento);
+            if (ticketsEmAndamento != null) {
+                ticketsEmAndamento.setItems(listaTickets);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             mostrarAlerta("Erro", "Não foi possível carregar os tickets: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -70,7 +80,7 @@ public class ControllerTickestAndamento {
         Ticket ticketSelecionado = ticketsEmAndamento.getSelectionModel().getSelectedItem();
 
         if (ticketSelecionado == null) {
-            mostrarAlerta("Atenção", "Selecione um ticket na tabela para aprovar.", Alert.AlertType.WARNING);
+            mostrarAlerta("Atenção", "Selecione um ticket na tabela para concluir/aprovar.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -78,8 +88,8 @@ public class ControllerTickestAndamento {
             boolean sucesso = ticketDAO.atualizarStatus(ticketSelecionado.getId(), true);
 
             if (sucesso) {
-                registrarLog("APROVACAO_TICKET", ticketSelecionado, "Ticket aprovado no painel.");
-                mostrarAlerta("Sucesso", "Ticket #" + ticketSelecionado.getId() + " aprovado com sucesso!", Alert.AlertType.INFORMATION);
+                registrarLog("CONCLUSAO_TICKET", ticketSelecionado, "Ticket finalizado com sucesso.");
+                mostrarAlerta("Sucesso", "Ticket #" + ticketSelecionado.getId() + " finalizado com sucesso!", Alert.AlertType.INFORMATION);
                 carregarTickets();
             } else {
                 mostrarAlerta("Erro", "Falha ao atualizar o status do ticket.", Alert.AlertType.ERROR);
@@ -95,7 +105,7 @@ public class ControllerTickestAndamento {
         Ticket ticketSelecionado = ticketsEmAndamento.getSelectionModel().getSelectedItem();
 
         if (ticketSelecionado == null) {
-            mostrarAlerta("Atenção", "Selecione um ticket na tabela para negar.", Alert.AlertType.WARNING);
+            mostrarAlerta("Atenção", "Selecione um ticket na tabela para recusar.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -103,15 +113,15 @@ public class ControllerTickestAndamento {
             boolean sucesso = ticketDAO.atualizarStatus(ticketSelecionado.getId(), false);
 
             if (sucesso) {
-                registrarLog("REJEICAO_TICKET", ticketSelecionado, "Ticket negado pela moderação.");
-                mostrarAlerta("Sucesso", "Ticket #" + ticketSelecionado.getId() + " negado com sucesso.", Alert.AlertType.INFORMATION);
+                registrarLog("REJEICAO_TICKET", ticketSelecionado, "Ticket retornado para análise/negado.");
+                mostrarAlerta("Sucesso", "Status do Ticket #" + ticketSelecionado.getId() + " atualizado.", Alert.AlertType.INFORMATION);
                 carregarTickets();
             } else {
                 mostrarAlerta("Erro", "Falha ao alterar o status do ticket.", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta("Erro", "Erro ao negar ticket: " + e.getMessage(), Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Erro ao alterar status do ticket: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -157,13 +167,13 @@ public class ControllerTickestAndamento {
     @FXML
     private void voltarAoHub(ActionEvent event) {
         try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
             if (url == null) {
-                url = getClass().getResource("/view/ticketsHub.fxml");
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
             }
 
             if (url == null) {
-                mostrarAlerta("Erro FXML", "Arquivo ticketsHub.fxml não encontrado.", Alert.AlertType.ERROR);
+                mostrarAlerta("Erro FXML", "Arquivo TicketsHub.fxml não encontrado.", Alert.AlertType.ERROR);
                 return;
             }
 

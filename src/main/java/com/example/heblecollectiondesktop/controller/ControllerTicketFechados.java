@@ -54,10 +54,10 @@ public class ControllerTicketFechados {
 
     @FXML
     public void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
-        colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        if (colId != null) colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if (colAssunto != null) colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
+        if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         carregarTickets();
     }
@@ -66,11 +66,13 @@ public class ControllerTicketFechados {
         try {
             List<Ticket> listaBanco = ticketDAO.listarTodos();
             List<Ticket> fechados = listaBanco.stream()
-                    .filter(t -> t.getStatus()) // Exibe apenas os resolvidos/fechados (true)
+                    .filter(Ticket::getStatus) // Exibe apenas os finalizados/fechados (true)
                     .collect(Collectors.toList());
 
             ObservableList<Ticket> listaObservable = FXCollections.observableArrayList(fechados);
-            tbTicketsFechados.setItems(listaObservable);
+            if (tbTicketsFechados != null) {
+                tbTicketsFechados.setItems(listaObservable);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,12 +83,12 @@ public class ControllerTicketFechados {
     @FXML
     private void voltarAoHub(ActionEvent event) {
         try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
             if (url == null) {
-                url = getClass().getResource("/view/ticketsHub.fxml");
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/ticketsHub.fxml");
             }
             if (url == null) {
-                mostrarAlertaErro("Erro FXML", "Arquivo ticketsHub.fxml não encontrado.");
+                mostrarAlertaErro("Erro FXML", "Arquivo TicketsHub.fxml não encontrado.");
                 return;
             }
 
