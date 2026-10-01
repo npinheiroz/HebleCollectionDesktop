@@ -1,28 +1,30 @@
 package com.example.heblecollectiondesktop.controller;
 
 import com.example.heblecollectiondesktop.database.EmpresaDAO;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.model.Empresa;
+import com.example.heblecollectiondesktop.model.Funcionario;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class ControllerDeletarEmpresa {
-
+    @FXML private TextField txNomeEmpresa;
+    @FXML private TextField txCNPJ;
+    @FXML private TextField txEstilo;
     @FXML
     private Label lblFuncionarioInfo; // Representa as informações da empresa a ser excluída
     @FXML private ComboBox<String> cbMotivo;
     @FXML private TextArea txtObservacao;
-
+    private final LogsDAO logsDAO = new LogsDAO();
+    private Funcionario funcionarioLogado;
     private final EmpresaDAO empresaDAO = new EmpresaDAO();
     private Empresa empresaParaDeletar;
     private ControllerGerenciarEmpresas controllerPai;
-
+    private String usuarioLogado = "ADMIN";
     public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, String usuarioLogado) {
         this.empresaParaDeletar = empresa;
         this.controllerPai = controllerPai;
@@ -30,7 +32,9 @@ public class ControllerDeletarEmpresa {
             lblFuncionarioInfo.setText("Excluindo: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
         }
     }
-
+    public void setFuncionarioLogado(Funcionario funcionario) {
+        this.funcionarioLogado = funcionario;
+    }
     @FXML
     public void initialize() {
         if (cbMotivo != null) {
@@ -64,6 +68,17 @@ public class ControllerDeletarEmpresa {
             boolean sucesso = empresaDAO.deletar(empresaParaDeletar.getId());
 
             if (sucesso) {
+                String usuarioLogado = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                        ? funcionarioLogado.getMatricula() : "SISTEMA";
+                String alvoAfetado = empresaParaDeletar.getNome();
+                String detalhes = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
+
+                logsDAO.registrarLog(
+                        usuarioLogado,
+                        "EXCLUSAO_EMPRESA",
+                        alvoAfetado,
+                        detalhes
+                );
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Empresa removida com sucesso!");
 
                 if (controllerPai != null) {
@@ -111,5 +126,9 @@ public class ControllerDeletarEmpresa {
     @FXML
     private void cancelar(ActionEvent event) {
         fecharJanela(event);
+    }
+    public void setEmpresa(Empresa empresa) {
+        this.empresaParaDeletar = empresa;
+
     }
 }

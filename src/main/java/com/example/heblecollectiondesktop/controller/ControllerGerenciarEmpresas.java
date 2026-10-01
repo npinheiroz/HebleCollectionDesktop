@@ -134,21 +134,30 @@ public class ControllerGerenciarEmpresas {
             return;
         }
 
-        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacao.setTitle("Confirmar Exclusão");
-        confirmacao.setHeaderText(null);
-        confirmacao.setContentText("Deseja realmente remover a empresa '" + selecionada.getNome() + "'?");
+       try{
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml"));
+           Parent subtela2 = loader.load();
 
-        Optional<ButtonType> resultado = confirmacao.showAndWait();
-        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            boolean sucesso = empresaDAO.deletar(selecionada.getId());
-            if (sucesso) {
-                mostrarAlerta("Sucesso", "Empresa removida com sucesso.", Alert.AlertType.INFORMATION);
-                carregarEmpresas(); // Recarrega a lista atualizada
-            } else {
-                mostrarAlerta("Erro", "Não foi possível remover a empresa.", Alert.AlertType.ERROR);
-            }
-        }
+           ControllerDeletarEmpresa controllerDeletar = loader.getController();
+           controllerDeletar.setEmpresa(selecionada);
+
+           Button btnClicado1 = (Button) event.getSource();
+           Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
+
+           Stage subjanela1 = new Stage();
+           subjanela1.initOwner(janelaAtual);
+           subjanela1.initModality(Modality.WINDOW_MODAL);
+           subjanela1.setScene(new Scene(subtela2));
+           subjanela1.setTitle("Deletar Empresa");
+           subjanela1.setResizable(false);
+           subjanela1.showAndWait();
+
+           carregarEmpresas();
+       } catch (IOException e) {
+           e.printStackTrace();
+           mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
+       }
+
     }
 
     @FXML
