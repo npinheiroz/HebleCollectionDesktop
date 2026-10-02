@@ -1,5 +1,6 @@
 package com.example.heblecollectiondesktop.controller;
 
+import com.example.heblecollectiondesktop.database.TicketDAO;
 import com.example.heblecollectiondesktop.model.Ticket;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
