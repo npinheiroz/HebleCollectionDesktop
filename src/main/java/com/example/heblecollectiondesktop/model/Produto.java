@@ -7,14 +7,16 @@ public class Produto {
     private double preco;
     private int quantidadeEstoque;
     private String status;
+    private String nomeEmpresa;
 
-    public Produto(int id, String nome, String descricao, double preco, int quantidadeEstoque, String status) {
+    public Produto(int id, String nome, String descricao, double preco, int quantidadeEstoque, String status, String nomeEmpresa) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidadeEstoque = quantidadeEstoque;
         this.status = status;
+        this.nomeEmpresa = nomeEmpresa;
     }
 
     public int getId() { return id; }
@@ -34,4 +36,7 @@ public class Produto {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getNomeEmpresa() { return nomeEmpresa; }
+    public void setNomeEmpresa(String nomeEmpresa) { this.nomeEmpresa = nomeEmpresa; }
 }

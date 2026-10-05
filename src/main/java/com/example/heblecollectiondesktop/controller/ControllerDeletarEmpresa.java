@@ -16,7 +16,7 @@ public class ControllerDeletarEmpresa {
     @FXML private TextField txCNPJ;
     @FXML private TextField txEstilo;
     @FXML
-    private Label lblFuncionarioInfo; // Representa as informações da empresa a ser excluída
+    private Label lblFuncionarioInfo;
     @FXML private ComboBox<String> cbMotivo;
     @FXML private TextArea txtObservacao;
     private final LogsDAO logsDAO = new LogsDAO();

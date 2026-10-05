@@ -123,8 +123,35 @@ public class ControllerDashboard implements Initializable {
     }
 
     @FXML
-    private void handleProdutos(ActionEvent event) {
-        mostrarAlerta("Módulo Estoque", "Aba de Estoque e Produtos selecionada.");
+    private void irparaprodutos(ActionEvent event) {
+        try {
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/GerenciarProdutos.fxml");
+            if (url == null) {
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/gerenciarProdutos.fxml");
+            }
+
+            if (url == null) {
+                mostrarAlerta("Erro FXML", "Arquivo GerenciamentoProdutos.fxml não encontrado.");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent produtosView = loader.load();
+
+            ControllerGerenciarProdutos controllerProdutos = loader.getController();
+            if (controllerProdutos != null) {
+                controllerProdutos.setContainerCentral(painelConteudoCentral);
+                controllerProdutos.setFuncionarioLogado(funcionarioLogado);
+                controllerProdutos.setAcaoVoltar(() -> handleVisaoGeral(null));
+            }
+
+            if (painelConteudoCentral != null) {
+                painelConteudoCentral.getChildren().setAll(produtosView);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a gestão de produtos: " + e.getMessage());
+        }
     }
 
     @FXML
