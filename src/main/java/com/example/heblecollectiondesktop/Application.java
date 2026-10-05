@@ -13,6 +13,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
+            // Alterado para carregar o arquivo FXML de login
             URL fxmlLocation = getClass().getResource("/com/example/heblecollectiondesktop/view/login.fxml");
             if (fxmlLocation == null) {
                 fxmlLocation = getClass().getResource("/view/login.fxml");
@@ -22,6 +23,7 @@ public class Application extends javafx.application.Application {
             }
 
             if (fxmlLocation == null) {
+                System.err.println("Erro: Arquivo FXML de login não encontrado!");
                 return;
             }
 
