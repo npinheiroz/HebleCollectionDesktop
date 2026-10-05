@@ -1,6 +1,10 @@
 package com.example.heblecollectiondesktop.controller;
 
+import com.example.heblecollectiondesktop.controller.ControllerTicketsAndamento;
+import com.example.heblecollectiondesktop.controller.ControllerTicketsPendentes;
+import com.example.heblecollectiondesktop.database.LogsDAO;
 import com.example.heblecollectiondesktop.database.TicketDAO;
+import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Ticket;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -9,23 +13,36 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class ControllerConfirmarRejeicao {
-    @FXML
-    private ComboBox <String> cbMotivoRejeicao;
+
+    @FXML private ComboBox<String> cbMotivoRejeicao;
     @FXML private TextArea txtObservacao;
-    private Ticket TicketRejeitar;
+
+    private Ticket ticketRejeitar;
     private ControllerTicketsPendentes controllerPai;
+    private Funcionario funcionarioLogado;
 
-    private TicketDAO ticketDAO = new TicketDAO();
+    private final LogsDAO rejeitarLog = new LogsDAO();
+    private final TicketDAO ticketDAO = new TicketDAO();
 
-    public void initialize(){
+    public void setTicketSelecionado(Ticket ticket) {
+        this.ticketRejeitar = ticket;
+    }
+
+    public void setControllerPai(ControllerTicketsPendentes controllerPai) {
+        this.controllerPai = controllerPai;
+    }
+
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
+    }
+
+    @FXML
+    public void initialize() {
         if (cbMotivoRejeicao != null) {
             cbMotivoRejeicao.setItems(FXCollections.observableArrayList(
-                    "",
                     "Denúncias e tickets excederam o limite",
                     "Solicitação da própria empresa",
                     "Cadastro Duplicado / Incorreto",
@@ -34,26 +51,36 @@ public class ControllerConfirmarRejeicao {
             ));
         }
     }
+
     @FXML
     private void confirmarRejeicao(ActionEvent event) {
         String motivo = cbMotivoRejeicao.getValue();
         String observacao = txtObservacao.getText() != null ? txtObservacao.getText().trim() : "";
 
         if (motivo == null || motivo.isBlank()) {
-            mostrarAlerta( "Motivo Obrigatório", "Por favor, selecione um motivo para a rejeição.", Alert.AlertType.WARNING);
+            mostrarAlerta("Motivo Obrigatório", "Por favor, selecione um motivo para a rejeição.", Alert.AlertType.WARNING);
             return;
         }
 
-        if ( TicketRejeitar== null) {
-            mostrarAlerta( "Erro", "Nenhuma Ticket selecionado para exclusão.", Alert.AlertType.ERROR);
+        if (ticketRejeitar == null) {
+            mostrarAlerta("Erro", "Nenhum Ticket selecionado para rejeição.", Alert.AlertType.ERROR);
             return;
         }
 
         try {
-            boolean sucesso = ticketDAO.deletar(TicketRejeitar.getId());
+            boolean sucesso = ticketDAO.deletar(ticketRejeitar.getId());
 
             if (sucesso) {
-                mostrarAlerta( "Sucesso", "Empresa removida com sucesso!",Alert.AlertType.INFORMATION);
+                mostrarAlerta("Sucesso", "Ticket removido com sucesso!", Alert.AlertType.INFORMATION);
+
+                String idModerador = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
+                        ? funcionarioLogado.getMatricula()
+                        : "SISTEMA";
+
+                String detalheLog = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
+
+
+                rejeitarLog.registrarLog(idModerador, "REJEITAR_TICKET", String.valueOf(ticketRejeitar.getId()), detalheLog);
 
                 if (controllerPai != null) {
                     try {
@@ -65,7 +92,7 @@ public class ControllerConfirmarRejeicao {
 
                 fecharJanela(event);
             } else {
-                mostrarAlerta( "Erro", "Não foi possível concluir a exclusão da empresa.", Alert.AlertType.ERROR);
+                mostrarAlerta("Erro", "Não foi possível concluir a exclusão do ticket.", Alert.AlertType.ERROR);
             }
 
         } catch (Exception e) {
@@ -73,16 +100,12 @@ public class ControllerConfirmarRejeicao {
 
             String mensagemErro = e.getMessage();
             if (mensagemErro != null && (mensagemErro.contains("foreign key") || mensagemErro.contains("1451"))) {
-                mostrarAlerta( "Violação de Integridade",
-                        "Não é possível excluir a empresa '"+TicketRejeitar.getAssunto() + "' pois existem funcionários, produtos ou registros vinculados a ela no sistema.", Alert.AlertType.ERROR);
+                mostrarAlerta("Violação de Integridade",
+                        "Não é possível excluir o ticket '" + ticketRejeitar.getAssunto() + "' pois existem registros vinculados a ele.", Alert.AlertType.ERROR);
             } else {
-                mostrarAlerta( "Erro de Banco de Dados", "Falha ao deletar empresa: " + mensagemErro, Alert.AlertType.ERROR);
+                mostrarAlerta("Erro de Banco de Dados", "Falha ao deletar ticket: " + mensagemErro, Alert.AlertType.ERROR);
             }
         }
-    }
-
-    public void SetTicket (Ticket ticket){
-        this.TicketRejeitar = ticket;
     }
 
     private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
@@ -92,11 +115,20 @@ public class ControllerConfirmarRejeicao {
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
+
     private void fecharJanela(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         if (stage != null) {
             stage.close();
+        }
+    }
+
+    @FXML
+    public void cancelar() {
+        Stage janelaAtual = (Stage) txtObservacao.getScene().getWindow();
+        if (janelaAtual != null) {
+            janelaAtual.close();
         }
     }
 }

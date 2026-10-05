@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerTicketsAndamento">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.heblecollectiondesktop.controller.ControllerTicketsAndamento">
    <children>
       <VBox spacing="20.0" style="-fx-padding: 24; -fx-background-color: #F8FAFC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,11 +33,6 @@
                      </font>
                   </Button>
                   <Button fx:id="btnNegarTicket" mnemonicParsing="false" onAction="#negarTicket" prefHeight="40.0" style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="✕ Negar">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnDeletarTicket" mnemonicParsing="false" onAction="#deletarTicket" prefHeight="40.0" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="🗑 Deletar">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

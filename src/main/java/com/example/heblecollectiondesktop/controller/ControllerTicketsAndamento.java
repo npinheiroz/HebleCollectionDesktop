@@ -11,11 +11,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -108,21 +112,32 @@ public class ControllerTicketsAndamento {
             mostrarAlerta("Atenção", "Selecione um ticket na tabela para recusar.", Alert.AlertType.WARNING);
             return;
         }
-
         try {
-            boolean sucesso = ticketDAO.atualizarStatus(ticketSelecionado.getId(), false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/ConfirmarNegaçãoTicket.fxml"));
+            Parent subtela1 = loader.load();
 
-            if (sucesso) {
-                registrarLog("REJEICAO_TICKET", ticketSelecionado, "Ticket retornado para análise/negado.");
-                mostrarAlerta("Sucesso", "Status do Ticket #" + ticketSelecionado.getId() + " atualizado.", Alert.AlertType.INFORMATION);
-                carregarTickets();
-            } else {
-                mostrarAlerta("Erro", "Falha ao alterar o status do ticket.", Alert.AlertType.ERROR);
-            }
-        } catch (Exception e) {
+            ControllerConfirmarNegar controllerPai = loader.getController();
+            controllerPai.setTicketSelecionado(ticketSelecionado);
+
+
+            Button btnClicado1 = (Button) event.getSource();
+            Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
+
+            Stage subjanela1 = new Stage();
+            subjanela1.initOwner(janelaAtual);
+            subjanela1.initModality(Modality.WINDOW_MODAL);
+            subjanela1.setScene(new Scene(subtela1));
+            subjanela1.setTitle("Negar Ticket");
+            subjanela1.setResizable(false);
+            subjanela1.showAndWait();
+
+            carregarTickets();
+
+        } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Erro", "Erro ao alterar status do ticket: " + e.getMessage(), Alert.AlertType.ERROR);
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
         }
+
     }
 
     @FXML
