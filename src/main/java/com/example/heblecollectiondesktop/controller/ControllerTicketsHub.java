@@ -27,7 +27,7 @@ public class ControllerTicketsHub {
 
     @FXML
     private void abrirTicketsPendentes(ActionEvent event) {
-        // Adicionada a barra '/' no início do caminho
+
         carregarView("/com/example/heblecollectiondesktop/view/GerenciarTicketsPendentes.fxml", loader -> {
             ControllerTicketsPendentes controller = loader.getController();
             if (controller != null) {
@@ -50,7 +50,7 @@ public class ControllerTicketsHub {
 
     @FXML
     private void abrirTicketsFechados(ActionEvent event) {
-        // Adicionada a barra '/' no início do caminho
+
         carregarView("/com/example/heblecollectiondesktop/view/ticketFechados.fxml", loader -> {
             ControllerTicketFechados controller = loader.getController();
             if (controller != null) {

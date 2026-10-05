@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -45,9 +46,10 @@ public class ControllerDashboard implements Initializable {
     @FXML private Button btnTickets;
     @FXML private Button btnModeracao;
     @FXML private Button btnSair;
-
+    @FXML private VBox vboxProdutos;
     @FXML private VBox containerAtividades;
     @FXML private Pane painelConteudoCentral;
+    @FXML private VBox vboxTickets;
 
     private Node vistaInicialDashboard;
     private Funcionario funcionarioLogado;
@@ -123,7 +125,17 @@ public class ControllerDashboard implements Initializable {
     }
 
     @FXML
-    private void irparaprodutos(ActionEvent event) {
+    private void acaoirprodutos(ActionEvent event) {
+        irparaprodutos();
+    }
+
+    @FXML
+    private void mouseirprodutos(MouseEvent event) {
+        irparaprodutos();
+    }
+
+    @FXML
+    private void irparaprodutos() {
         try {
             URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/GerenciarProdutos.fxml");
             if (url == null) {
@@ -131,7 +143,7 @@ public class ControllerDashboard implements Initializable {
             }
 
             if (url == null) {
-                mostrarAlerta("Erro FXML", "Arquivo GerenciamentoProdutos.fxml não encontrado.");
+                mostrarAlerta("Erro FXML", "Arquivo GerenciarProdutos.fxml não encontrado.");
                 return;
             }
 
@@ -156,7 +168,43 @@ public class ControllerDashboard implements Initializable {
 
     @FXML
     private void handleCupons(ActionEvent event) {
-        mostrarAlerta("Módulo Cupons", "Aba de Cupons Promocionais selecionada.");
+        irparacupons();
+    }
+
+    @FXML
+    private void mouseircupons(MouseEvent event) {
+        irparacupons();
+    }
+
+    @FXML
+    private void irparacupons() {
+        try {
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/GerenciarCupons.fxml");
+            if (url == null) {
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/gerenciarCupons.fxml");
+            }
+
+            if (url == null) {
+                mostrarAlerta("Erro FXML", "Arquivo GerenciarCupons.fxml não encontrado.");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent cuponsView = loader.load();
+
+            ControllerGerenciarCupons controllerCupons = loader.getController();
+            if (controllerCupons != null) {
+                controllerCupons.setContainerCentral(painelConteudoCentral);
+                controllerCupons.setFuncionarioLogado(funcionarioLogado);
+            }
+
+            if (painelConteudoCentral != null) {
+                painelConteudoCentral.getChildren().setAll(cuponsView);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a gestão de cupons: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -270,5 +318,42 @@ public class ControllerDashboard implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void TicketsPendentes(MouseEvent event) {
+        try {
+            URL url = getClass().getResource(
+                    "/com/example/heblecollectiondesktop/view/GerenciarTicketsPendentes.fxml"
+            );
+
+            if (url == null) {
+                mostrarAlerta(
+                        "Erro FXML",
+                        "GerenciarTicketsPendentes.fxml não encontrado."
+                );
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent ticketsView = loader.load();
+
+            ControllerTicketsPendentes controller = loader.getController();
+
+            if (controller != null) {
+                controller.setContainerCentral(painelConteudoCentral);
+                controller.setFuncionarioLogado(funcionarioLogado);
+            }
+
+            painelConteudoCentral.getChildren().setAll(ticketsView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            mostrarAlerta(
+                    "Erro de Carregamento",
+                    "Falha ao carregar os tickets: " + e.getMessage()
+            );
+        }
     }
 }
