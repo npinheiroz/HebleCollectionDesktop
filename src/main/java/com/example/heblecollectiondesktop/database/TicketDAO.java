@@ -20,9 +20,10 @@ public class TicketDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-
+              
                 String statusString = rs.getString("status");
 
+                
                 boolean statusBoolean = "APROVADO".equalsIgnoreCase(statusString)
                         || "CONCLUIDO".equalsIgnoreCase(statusString)
                         || "TRUE".equalsIgnoreCase(statusString)
@@ -51,6 +52,7 @@ public class TicketDAO {
         try (Connection conexao = conexaoDB.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
+            
             String statusTexto = novoStatus ? "APROVADO" : "NEGADO";
 
             stmt.setString(1, statusTexto);
