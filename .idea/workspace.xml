@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Correção da tela de deleção de empresas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/heblecollectiondesktop/view/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +130,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/deletar-empresa-arrumar",
+    "git-widget-placeholder": "feature/transição-rapida-telas",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -220,14 +222,6 @@
       <workItem from="1790874537693" duration="10650000" />
       <workItem from="1791220699364" duration="312000" />
       <workItem from="1791221190611" duration="5059000" />
-    </task>
-    <task id="LOCAL-00001" summary="telas de tickets funcionando e todas juntas">
-      <option name="closed" value="true" />
-      <created>1790878246078</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1790878246078</updated>
     </task>
     <task id="LOCAL-00001" summary="Correção da tela de deleção de empresas">
       <option name="closed" value="true" />

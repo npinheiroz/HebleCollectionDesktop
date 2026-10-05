@@ -14,7 +14,7 @@ import com.example.heblecollectiondesktop.model.Cupom;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Produto;
 import com.example.heblecollectiondesktop.model.Ticket;
-
+import com.example.heblecollectiondesktop.controller.ControllerTicketsHub;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -45,10 +46,10 @@ public class ControllerDashboard implements Initializable {
     @FXML private Button btnTickets;
     @FXML private Button btnModeracao;
     @FXML private Button btnSair;
-
+    @FXML private VBox vboxProdutos;
     @FXML private VBox containerAtividades;
     @FXML private Pane painelConteudoCentral;
-
+    @FXML private VBox vboxTickets;
     private Node vistaInicialDashboard;
     private Funcionario funcionarioLogado;
 
@@ -121,9 +122,16 @@ public class ControllerDashboard implements Initializable {
         }
         carregarMetricasDoBanco();
     }
-
     @FXML
-    private void irparaprodutos(ActionEvent event) {
+    private void acaoirprodutos(ActionEvent event){
+        irparaprodutos();
+    }
+    @FXML
+    private void mouseirprodutos(MouseEvent event){
+        irparaprodutos();
+    }
+    @FXML
+    private void irparaprodutos() {
         try {
             URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/GerenciarProdutos.fxml");
             if (url == null) {
@@ -270,5 +278,42 @@ public class ControllerDashboard implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+    @FXML
+    private void TicketsPendentes (MouseEvent event) {
+        try {
+            URL url = getClass().getResource(
+                    "/com/example/heblecollectiondesktop/view/GerenciarTicketsPendentes.fxml"
+            );
+
+            if (url == null) {
+                mostrarAlerta(
+                        "Erro FXML",
+                        "GerenciarTicketsPendentes.fxml não encontrado."
+                );
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent ticketsView = loader.load();
+
+            ControllerTicketsPendentes controller =
+                    loader.getController();
+
+            if (controller != null) {
+                controller.setContainerCentral(painelConteudoCentral);
+                controller.setFuncionarioLogado(funcionarioLogado);
+            }
+
+            painelConteudoCentral.getChildren().setAll(ticketsView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            mostrarAlerta(
+                    "Erro de Carregamento",
+                    "Falha ao carregar os tickets: " + e.getMessage()
+            );
+        }
     }
 }
