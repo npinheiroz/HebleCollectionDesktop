@@ -12,29 +12,40 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class ControllerDeletarEmpresa {
+
+    @FXML private Label lblFuncionarioInfo;
     @FXML private TextField txNomeEmpresa;
     @FXML private TextField txCNPJ;
     @FXML private TextField txEstilo;
-    @FXML
-    private Label lblFuncionarioInfo;
     @FXML private ComboBox<String> cbMotivo;
     @FXML private TextArea txtObservacao;
-    private final LogsDAO logsDAO = new LogsDAO();
-    private Funcionario funcionarioLogado;
+
     private final EmpresaDAO empresaDAO = new EmpresaDAO();
+    private final LogsDAO logsDAO = new LogsDAO();
+
     private Empresa empresaParaDeletar;
     private ControllerGerenciarEmpresas controllerPai;
-    private String usuarioLogado = "ADMIN";
-    public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, String usuarioLogado) {
+    private Funcionario funcionarioLogado;
+
+    public void setDados(Empresa empresa, ControllerGerenciarEmpresas controllerPai, Funcionario funcionarioLogado) {
         this.empresaParaDeletar = empresa;
         this.controllerPai = controllerPai;
-        if (empresa != null && lblFuncionarioInfo != null) {
-            lblFuncionarioInfo.setText("Excluindo: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
+        this.funcionarioLogado = funcionarioLogado;
+
+        if (empresa != null) {
+            if (lblFuncionarioInfo != null) {
+                lblFuncionarioInfo.setText("Excluindo: " + empresa.getNome() + " (CNPJ: " + empresa.getCnpj() + ")");
+            }
+            if (txNomeEmpresa != null) txNomeEmpresa.setText(empresa.getNome());
+            if (txCNPJ != null) txCNPJ.setText(empresa.getCnpj());
+            if (txEstilo != null) txEstilo.setText(empresa.getEstilo());
         }
     }
+
     public void setFuncionarioLogado(Funcionario funcionario) {
         this.funcionarioLogado = funcionario;
     }
+
     @FXML
     public void initialize() {
         if (cbMotivo != null) {
@@ -68,22 +79,27 @@ public class ControllerDeletarEmpresa {
             boolean sucesso = empresaDAO.deletar(empresaParaDeletar.getId());
 
             if (sucesso) {
-                String usuarioLogado = (funcionarioLogado != null && funcionarioLogado.getMatricula() != null)
-                        ? funcionarioLogado.getMatricula() : "SISTEMA";
-                String alvoAfetado = empresaParaDeletar.getNome();
+                String usuarioLog, autorMatricula = "SISTEMA";
+                if (funcionarioLogado != null && funcionarioLogado.getMatricula() != null && !funcionarioLogado.getMatricula().isBlank()) {
+                    autorMatricula = funcionarioLogado.getMatricula();
+                }
+
+                String alvoAfetado = empresaParaDeletar.getNome() + " (ID: " + empresaParaDeletar.getId() + ")";
                 String detalhes = "Motivo: " + motivo + (observacao.isEmpty() ? "" : " | Obs: " + observacao);
 
+                // Registo no log de moderação
                 logsDAO.registrarLog(
-                        usuarioLogado,
+                        autorMatricula,
                         "EXCLUSAO_EMPRESA",
                         alvoAfetado,
                         detalhes
                 );
+
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Empresa removida com sucesso!");
 
                 if (controllerPai != null) {
                     try {
-                        controllerPai.carregarEmpresas(); // Atualiza a tabela principal
+                        controllerPai.carregarEmpresas();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -107,12 +123,9 @@ public class ControllerDeletarEmpresa {
         }
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
+    @FXML
+    private void cancelar(ActionEvent event) {
+        fecharJanela(event);
     }
 
     private void fecharJanela(ActionEvent event) {
@@ -123,12 +136,11 @@ public class ControllerDeletarEmpresa {
         }
     }
 
-    @FXML
-    private void cancelar(ActionEvent event) {
-        fecharJanela(event);
-    }
-    public void setEmpresa(Empresa empresa) {
-        this.empresaParaDeletar = empresa;
-
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 }

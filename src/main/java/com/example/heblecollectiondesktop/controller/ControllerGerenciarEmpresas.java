@@ -13,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 
 public class ControllerGerenciarEmpresas {
 
@@ -65,16 +63,13 @@ public class ControllerGerenciarEmpresas {
 
     @FXML
     public void initialize() {
-
         if (colID != null) colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         if (colNome != null) colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         if (colCNPJ != null) colCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         if (colEstilo != null) colEstilo.setCellValueFactory(new PropertyValueFactory<>("estilo"));
 
-
         carregarEmpresas();
     }
-
 
     public void carregarEmpresas() {
         try {
@@ -134,30 +129,41 @@ public class ControllerGerenciarEmpresas {
             return;
         }
 
-       try{
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml"));
-           Parent subtela2 = loader.load();
+        try {
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/DeletarEmpresa.fxml");
+            if (url == null) {
+                url = getClass().getResource("/view/DeletarEmpresa.fxml");
+            }
 
-           ControllerDeletarEmpresa controllerDeletar = loader.getController();
-           controllerDeletar.setEmpresa(selecionada);
+            if (url == null) {
+                mostrarAlerta("Erro FXML", "Arquivo DeletarEmpresa.fxml não encontrado.", Alert.AlertType.ERROR);
+                return;
+            }
 
-           Button btnClicado1 = (Button) event.getSource();
-           Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent subtela2 = loader.load();
 
-           Stage subjanela1 = new Stage();
-           subjanela1.initOwner(janelaAtual);
-           subjanela1.initModality(Modality.WINDOW_MODAL);
-           subjanela1.setScene(new Scene(subtela2));
-           subjanela1.setTitle("Deletar Empresa");
-           subjanela1.setResizable(false);
-           subjanela1.showAndWait();
+            ControllerDeletarEmpresa controllerDeletar = loader.getController();
+            if (controllerDeletar != null) {
+                controllerDeletar.setDados(selecionada, this, funcionarioLogado);
+            }
 
-           carregarEmpresas();
-       } catch (IOException e) {
-           e.printStackTrace();
-           mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
-       }
+            Button btnClicado1 = (Button) event.getSource();
+            Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
 
+            Stage subjanela1 = new Stage();
+            subjanela1.initOwner(janelaAtual);
+            subjanela1.initModality(Modality.WINDOW_MODAL);
+            subjanela1.setScene(new Scene(subtela2));
+            subjanela1.setTitle("Deletar Empresa");
+            subjanela1.setResizable(false);
+            subjanela1.showAndWait();
+
+            carregarEmpresas();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -186,19 +192,32 @@ public class ControllerGerenciarEmpresas {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void AbrirEditarEmpresa(ActionEvent event) {
-        Empresa EmpresaSelcionada = TabelaEmpresas.getSelectionModel().getSelectedItem();
-        if (EmpresaSelcionada == null) {
-            mostrarAlerta("Aviso", "Por favor, selecione um funcionário na tabela para editar.", Alert.AlertType.WARNING);
+        Empresa empresaSelecionada = TabelaEmpresas.getSelectionModel().getSelectedItem();
+        if (empresaSelecionada == null) {
+            mostrarAlerta("Aviso", "Por favor, selecione uma empresa na tabela para editar.", Alert.AlertType.WARNING);
             return;
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/EditarEmpresas.fxml"));
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/EditarEmpresas.fxml");
+            if (url == null) {
+                url = getClass().getResource("/view/EditarEmpresas.fxml");
+            }
+
+            if (url == null) {
+                mostrarAlerta("Erro FXML", "Arquivo EditarEmpresas.fxml não encontrado.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(url);
             Parent subtela1 = loader.load();
 
             ControllerEditarEmpresa controllerEditar = loader.getController();
-            controllerEditar.setEmpresa(EmpresaSelcionada);
+            if (controllerEditar != null) {
+                controllerEditar.setEmpresa(empresaSelecionada);
+            }
 
             Button btnClicado1 = (Button) event.getSource();
             Stage janelaAtual = (Stage) btnClicado1.getScene().getWindow();
@@ -215,10 +234,9 @@ public class ControllerGerenciarEmpresas {
 
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " , Alert.AlertType.ERROR );
+            mostrarAlerta("Erro de Carregamento", "Falha ao carregar a sub-tela: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-
 
     private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
