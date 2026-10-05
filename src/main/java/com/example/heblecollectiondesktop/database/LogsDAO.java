@@ -20,9 +20,9 @@ public class LogsDAO {
         try (Connection conn = conexaoDB.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, log.getFuncionarioId() != null ? log.getFuncionarioId() : "SISTEMA");
-            stmt.setString(2, log.getAcao() != null ? log.getAcao() : "N/A");
-            stmt.setString(3, log.getAlvoAfetado() != null ? log.getAlvoAfetado() : "N/A");
+            stmt.setString(1, log.getFuncionarioId() != null && !log.getFuncionarioId().isBlank() ? log.getFuncionarioId() : "SISTEMA");
+            stmt.setString(2, log.getAcao() != null && !log.getAcao().isBlank() ? log.getAcao() : "N/A");
+            stmt.setString(3, log.getAlvoAfetado() != null && !log.getAlvoAfetado().isBlank() ? log.getAlvoAfetado() : "N/A");
             stmt.setString(4, log.getDetalhes() != null ? log.getDetalhes() : "");
             stmt.setTimestamp(5, Timestamp.valueOf(log.getDataAcao() != null ? log.getDataAcao() : LocalDateTime.now()));
 
@@ -44,16 +44,7 @@ public class LogsDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String funcionarioId = rs.getString("funcionario_id");
-                String acao = rs.getString("acao");
-                String alvoAfetado = rs.getString("alvo_afetado");
-                String detalhes = rs.getString("detalhes");
-
-                Timestamp ts = rs.getTimestamp("data_acao");
-                LocalDateTime dataAcao = ts != null ? ts.toLocalDateTime() : null;
-
-                logs.add(new LogModeracao(id, funcionarioId, acao, alvoAfetado, detalhes, dataAcao));
+                logs.add(mapearResultSetParaLog(rs));
             }
 
         } catch (SQLException e) {
@@ -75,16 +66,7 @@ public class LogsDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    int id = rs.getInt("id");
-                    String funcionarioId = rs.getString("funcionario_id");
-                    String acao = rs.getString("acao");
-                    String alvoAfetado = rs.getString("alvo_afetado");
-                    String detalhes = rs.getString("detalhes");
-
-                    Timestamp ts = rs.getTimestamp("data_acao");
-                    LocalDateTime dataAcao = ts != null ? ts.toLocalDateTime() : null;
-
-                    logs.add(new LogModeracao(id, funcionarioId, acao, alvoAfetado, detalhes, dataAcao));
+                    logs.add(mapearResultSetParaLog(rs));
                 }
             }
 
@@ -107,16 +89,7 @@ public class LogsDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    int id = rs.getInt("id");
-                    String funcionarioId = rs.getString("funcionario_id");
-                    String acao = rs.getString("acao");
-                    String alvoAfetado = rs.getString("alvo_afetado");
-                    String detalhes = rs.getString("detalhes");
-
-                    Timestamp ts = rs.getTimestamp("data_acao");
-                    LocalDateTime dataAcao = ts != null ? ts.toLocalDateTime() : null;
-
-                    logs.add(new LogModeracao(id, funcionarioId, acao, alvoAfetado, detalhes, dataAcao));
+                    logs.add(mapearResultSetParaLog(rs));
                 }
             }
 
@@ -131,9 +104,8 @@ public class LogsDAO {
     public void registrarLog(Funcionario moderador, String acao, String alvoAfetado, String detalhes) {
         String identificadorModerador = (moderador != null && moderador.getMatricula() != null && !moderador.getMatricula().isBlank())
                 ? moderador.getMatricula()
-                : (moderador != null && moderador.getMatricula() != null && !moderador.getMatricula().isBlank())
-                ? moderador.getMatricula()
                 : "SISTEMA";
+
         registrarLog(identificadorModerador, acao, alvoAfetado, detalhes);
     }
 
@@ -155,5 +127,18 @@ public class LogsDAO {
 
     public void registrarLog(String matriculaModerador, String acao, String detalhes) {
         registrarLog(matriculaModerador, acao, "N/A", detalhes);
+    }
+
+    private LogModeracao mapearResultSetParaLog(ResultSet rs) throws SQLException {
+        int id = rs.getInt("id");
+        String funcionarioId = rs.getString("funcionario_id");
+        String acao = rs.getString("acao");
+        String alvoAfetado = rs.getString("alvo_afetado");
+        String detalhes = rs.getString("detalhes");
+
+        Timestamp ts = rs.getTimestamp("data_acao");
+        LocalDateTime dataAcao = ts != null ? ts.toLocalDateTime() : null;
+
+        return new LogModeracao(id, funcionarioId, acao, alvoAfetado, detalhes, dataAcao);
     }
 }

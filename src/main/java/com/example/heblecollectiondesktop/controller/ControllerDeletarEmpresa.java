@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class ControllerDeletarEmpresa {
 
     @FXML
-    private Label lblFuncionarioInfo; // Representa as informações da empresa a ser excluída
+    private Label lblFuncionarioInfo;
     @FXML private ComboBox<String> cbMotivo;
     @FXML private TextArea txtObservacao;
 
