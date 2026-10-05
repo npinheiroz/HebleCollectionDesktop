@@ -66,7 +66,7 @@ public class ControllerTicketFechados {
         try {
             List<Ticket> listaBanco = ticketDAO.listarTodos();
             List<Ticket> fechados = listaBanco.stream()
-                    .filter(Ticket::getStatus) // Exibe apenas os finalizados/fechados (true)
+                    .filter(Ticket::getStatus)
                     .collect(Collectors.toList());
 
             ObservableList<Ticket> listaObservable = FXCollections.observableArrayList(fechados);

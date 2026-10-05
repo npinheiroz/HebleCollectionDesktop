@@ -61,7 +61,7 @@ public class ControllerTicketsPendentes {
         try {
             List<Ticket> listaBanco = ticketsPendentesDao.listarTodos();
             List<Ticket> pendentes = listaBanco.stream()
-                    .filter(t -> !t.getStatus()) // Apenas pendentes (false)
+                    .filter(t -> !t.getStatus())
                     .collect(Collectors.toList());
 
             ObservableList<Ticket> lista = FXCollections.observableArrayList(pendentes);
