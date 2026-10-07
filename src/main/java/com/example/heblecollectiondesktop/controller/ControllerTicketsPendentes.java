@@ -54,8 +54,49 @@ public class ControllerTicketsPendentes {
         if (colAssunto != null) colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
         if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+        configurarDuploClique();
         carregarTickets();
+
+
+    }
+
+    private void configurarDuploClique() {
+        if (TabelaTickets == null) return;
+
+        TabelaTickets.setRowFactory(tv -> {
+            TableRow<Ticket> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Ticket ticketSelecionado = row.getItem();
+                    abrirTelaInfo(ticketSelecionado);
+                }
+            });
+            return row;
+        });
+    }
+
+    private void abrirTelaInfo(Ticket ticket) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/InfoPopUp.fxml"));
+            Parent root = loader.load();
+
+
+            ControllerTelaInfoTickets modalController = loader.getController();
+
+
+            modalController.setTicket(ticket);
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Detalhes do Ticket #" + ticket.getId());
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void carregarTickets() {
