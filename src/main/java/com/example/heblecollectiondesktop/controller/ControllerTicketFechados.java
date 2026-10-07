@@ -122,7 +122,7 @@ public class ControllerTicketFechados {
     }
 
     @FXML
-    private void VoltarHub(ActionEvent event) {
+    private void voltarAoHub(ActionEvent event) {
         try {
             URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
             if (url == null) {
