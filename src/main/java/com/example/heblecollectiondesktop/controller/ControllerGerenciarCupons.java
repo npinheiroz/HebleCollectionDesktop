@@ -106,6 +106,37 @@ public class ControllerGerenciarCupons {
     }
 
     @FXML
+    void voltarAoHub(ActionEvent event) {
+        if (containerCentral == null) return;
+
+        try {
+            // Carrega o painel inicial/dashboard principal do sistema
+            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/Dashboard.fxml");
+            if (url == null) {
+                url = getClass().getResource("/com/example/heblecollectiondesktop/view/dashboard.fxml");
+            }
+
+            if (url != null) {
+                FXMLLoader loader = new FXMLLoader(url);
+                Parent dashboardView = loader.load();
+
+                Object controller = loader.getController();
+                if (controller != null) {
+                    try {
+                        controller.getClass().getMethod("setContainerCentral", Pane.class).invoke(controller, containerCentral);
+                        controller.getClass().getMethod("setFuncionarioLogado", Funcionario.class).invoke(controller, funcionarioLogado);
+                    } catch (Exception ignored) {}
+                }
+
+                containerCentral.getChildren().setAll(dashboardView);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível voltar ao Painel Principal.");
+        }
+    }
+
+    @FXML
     void abrirTelaAdicionarCupom(ActionEvent event) {
         try {
             URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/FormularioCupom.fxml");
@@ -121,7 +152,6 @@ public class ControllerGerenciarCupons {
             FXMLLoader loader = new FXMLLoader(url);
             Parent view = loader.load();
 
-            // Passa as referências necessárias para o controller do formulário (se houver)
             Object controller = loader.getController();
             if (controller != null) {
                 try {
@@ -135,7 +165,7 @@ public class ControllerGerenciarCupons {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível carregar a tela de formulário: " + e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível carregar o formulário: " + e.getMessage());
         }
     }
 
@@ -163,7 +193,6 @@ public class ControllerGerenciarCupons {
             FXMLLoader loader = new FXMLLoader(url);
             Parent subtela = loader.load();
 
-            // Injeta o cupom selecionado no controller de edição
             Object controller = loader.getController();
             if (controller != null) {
                 try {
@@ -180,7 +209,6 @@ public class ControllerGerenciarCupons {
             subjanela.setResizable(false);
             subjanela.showAndWait();
 
-            // Recarrega os dados após fechar o modal
             carregarTabela();
 
         } catch (IOException e) {
@@ -207,19 +235,7 @@ public class ControllerGerenciarCupons {
         Optional<ButtonType> resultado = confirmacao.showAndWait();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             try {
-                // Tenta remover via DAO pelo ID ou pelo objeto
-                boolean removido;
-                try {
-                    removido = cupomDAO.deletar(selecionado.getId());
-                } catch (NoSuchMethodError | Exception e) {
-                    // Fallback caso o DAO utilize deletar(Cupom cupom) ou excluir(int id)
-                    try {
-                        removido = cupomDAO.excluir(selecionado.getId());
-                    } catch (Exception ex) {
-                        removido = cupomDAO.deletar(selecionado);
-                    }
-                }
-
+                boolean removido = cupomDAO.deletar(selecionado.getId());
                 if (removido) {
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Cupom removido com sucesso!");
                     carregarTabela();
@@ -230,36 +246,6 @@ public class ControllerGerenciarCupons {
                 e.printStackTrace();
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro de Banco de Dados", "Falha ao remover cupom: " + e.getMessage());
             }
-        }
-    }
-
-    @FXML
-    void voltarAoHub(ActionEvent event) {
-        if (containerCentral == null) return;
-
-        try {
-            URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/CuponsHub.fxml");
-            if (url == null) {
-                url = getClass().getResource("/com/example/heblecollectiondesktop/view/cuponsHub.fxml");
-            }
-
-            if (url != null) {
-                FXMLLoader loader = new FXMLLoader(url);
-                Parent hubView = loader.load();
-
-                Object controller = loader.getController();
-                if (controller != null) {
-                    try {
-                        controller.getClass().getMethod("setContainerCentral", Pane.class).invoke(controller, containerCentral);
-                        controller.getClass().getMethod("setFuncionarioLogado", Funcionario.class).invoke(controller, funcionarioLogado);
-                    } catch (Exception ignored) {}
-                }
-
-                containerCentral.getChildren().setAll(hubView);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível voltar ao Hub de Cupons.");
         }
     }
 
