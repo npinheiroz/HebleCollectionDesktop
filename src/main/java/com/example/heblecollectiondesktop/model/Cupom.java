@@ -2,7 +2,7 @@ package com.example.heblecollectiondesktop.model;
 
 import java.util.Date;
 
-public class Cupom {
+public class  Cupom {
     private int id;
     private String codigo;
     private double descontoPercentual;
