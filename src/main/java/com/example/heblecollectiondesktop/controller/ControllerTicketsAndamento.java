@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -57,7 +54,7 @@ public class ControllerTicketsAndamento {
         if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         if (colFuncionarioId != null) colFuncionarioId.setCellValueFactory(new PropertyValueFactory<>("funcionarioId"));
-
+        configurarDuploClique();
         carregarTickets();
     }
 
@@ -162,6 +159,43 @@ public class ControllerTicketsAndamento {
         } catch (Exception e) {
             e.printStackTrace();
             mostrarAlerta("Erro", "Erro ao deletar ticket: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    private void configurarDuploClique() {
+        if (ticketsEmAndamento == null) return;
+
+        ticketsEmAndamento.setRowFactory(tv -> {
+            TableRow<Ticket> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Ticket ticketSelecionado = row.getItem();
+                    abrirTelaInfo(ticketSelecionado);
+                }
+            });
+            return row;
+        });
+    }
+    private void abrirTelaInfo(Ticket ticket) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/InfoPopUp.fxml"));
+            Parent root = loader.load();
+
+
+            ControllerTelaInfoTickets modalController = loader.getController();
+
+
+            modalController.setTicket(ticket);
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Detalhes do Ticket #" + ticket.getId());
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
