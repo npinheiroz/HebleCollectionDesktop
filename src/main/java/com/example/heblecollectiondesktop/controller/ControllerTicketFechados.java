@@ -1,24 +1,22 @@
 package com.example.heblecollectiondesktop.controller;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import com.example.heblecollectiondesktop.database.TicketDAO;
 import com.example.heblecollectiondesktop.model.Funcionario;
 import com.example.heblecollectiondesktop.model.Ticket;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,9 +56,52 @@ public class ControllerTicketFechados {
         if (colAssunto != null) colAssunto.setCellValueFactory(new PropertyValueFactory<>("assunto"));
         if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+        configurarDuploClique();
         carregarTickets();
+
+
     }
+
+
+    private void configurarDuploClique() {
+        if (tbTicketsFechados == null) return;
+
+        tbTicketsFechados.setRowFactory(tv -> {
+            TableRow<Ticket> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Ticket ticketSelecionado = row.getItem();
+                    abrirTelaInfo(ticketSelecionado);
+                }
+            });
+            return row;
+        });
+    }
+
+    private void abrirTelaInfo(Ticket ticket) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/heblecollectiondesktop/view/InfoPopUp.fxml"));
+            Parent root = loader.load();
+
+
+            ControllerTelaInfoTickets modalController = loader.getController();
+
+
+            modalController.setTicket(ticket);
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Detalhes do Ticket #" + ticket.getId());
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void carregarTickets() {
         try {
@@ -81,7 +122,7 @@ public class ControllerTicketFechados {
     }
 
     @FXML
-    private void voltarAoHub(ActionEvent event) {
+    private void VoltarHub(ActionEvent event) {
         try {
             URL url = getClass().getResource("/com/example/heblecollectiondesktop/view/TicketsHub.fxml");
             if (url == null) {
