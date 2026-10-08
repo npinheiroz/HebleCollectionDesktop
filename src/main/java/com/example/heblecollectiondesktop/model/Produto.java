@@ -34,7 +34,7 @@ public class Produto {
     public int getQuantidadeEstoque() { return quantidadeEstoque; }
     public void setQuantidadeEstoque(int quantidadeEstoque) { this.quantidadeEstoque = quantidadeEstoque; }
 
-    public String getStatus() { return status; }
+    public boolean getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
     public String getNomeEmpresa() { return nomeEmpresa; }
