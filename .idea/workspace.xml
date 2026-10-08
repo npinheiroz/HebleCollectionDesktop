@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Correção da tela de deleção de empresas" />
+    <list default="true" id="cb3a4291-41f8-4b38-8e73-f8ae096bae80" name="Changes" comment="Correção da tela de deleção de empresas">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAdicionarCupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerAdicionarCupom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarCupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerEditarCupom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarCupons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/heblecollectiondesktop/controller/ControllerGerenciarCupons.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/AbrirJanelaInfo" />
+        <entry key="$PROJECT_DIR$" value="feature/cuponsGerenciaparaGerentesapenas" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -126,7 +131,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/cuponsGerenciaparaGerentesapenas",
+    "git-widget-placeholder": "feature/AdicionarCuponsPronto",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -228,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790885376116</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Correção da tela de deleção de empresas">
+      <option name="closed" value="true" />
+      <created>1791482415510</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1791482415510</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
